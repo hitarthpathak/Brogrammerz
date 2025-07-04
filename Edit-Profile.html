@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<head>
+
+    <title>Edit Profile</title>
+
+    <link rel="icon" href="Images/Brogrammerz.jpg">
+
+    <link rel="stylesheet" href="Profile.css">
+
+</head>
+
+<body>
+
+    <div class="body">
+
+        <nav>
+
+            <div class="logo-box">
+
+                <img src="Images/Brogrammerz.jpg" alt="Image Not Available">
+
+            </div>
+
+            <div class="search-box">
+
+                <input id="search-user-input" type="text" placeholder="Search Brogrammerz...">
+
+                <button onclick="search_users()">Search</button>
+
+            </div>
+
+            <div class="logo-box">
+
+                <img src="Images/Brogrammerz.jpg" alt="Image Not Available">
+
+            </div>
+
+        </nav>
+
+        <hr>
+
+        <div class="profile-options">
+
+            <div class="profile-options-left">
+
+                <a href="About.html">
+
+                    <button>About</button>
+
+                </a>
+
+                <button onclick="ranking()">Ranking</button>
+
+            </div>
+
+            <div class="profile-options-right">
+
+                <button onclick="save_profile()">Save Profile</button>
+
+                <button onclick="logout()">Log Out</button>
+
+                <button onclick="delete_profile()">Delete Profile</button>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="main-box">
+
+            <div class="left">
+
+                <div class="profile-photo-box">
+
+                    <img id="user-profile-photo" src="" alt="Image Not Available">
+
+                </div>
+
+                <input type="file" accept=".jpg, .jpeg, .png" onchange="upload_profile_photo()">
+
+                <input id="user-name" class="edit-page-input" type="text" placeholder="Enter Your Name">
+
+                <textarea id="user-bio" class="edit-page-input" type="text" placeholder="Enter Your Bio"></textarea>
+
+                <div class="followers-box">
+
+                    <button id="follow-btn" disabled>Follow</button>
+
+                    <span id="user-followers"></span>
+
+                </div>
+
+                <button id="edit-email-password" onclick="edit_email_password()">Edit E-Mail & Password</button>
+
+                <div id="edit-email-password-box" class="edit-email-password-hide">
+
+                    <input id="user-email" class="edit-page-input" type="email" placeholder="Edit Your E-Mail">
+
+                    <input id="user-password" class="edit-page-input" type="password" placeholder="Edit Your Password">
+
+                </div>
+
+            </div>
+
+            <div class="right">
+
+                <table>
+
+                    <tr>
+                        <td>Date Of Birth: </td>
+                        <td><input id="user-date-of-birth" class="edit-page-input" type="text"
+                                placeholder="Enter Your Date Of Birth"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Gender: </td>
+                        <td><input id="user-gender" class="edit-page-input" type="text" placeholder="Enter Your Gender">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Hometown: </td>
+                        <td><input id="user-hometown" class="edit-page-input" type="text"
+                                placeholder="Enter Your Hometown"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Current City: </td>
+                        <td><input id="user-current-city" class="edit-page-input" type="text"
+                                placeholder="Enter Your Current City"></td>
+                    </tr>
+
+                    <tr>
+                        <td>School(s): </td>
+                        <td><textarea id="user-school-s" class="edit-page-input"
+                                placeholder="Enter Your School(s)"></textarea></td>
+                    </tr>
+
+                    <tr>
+                        <td>College(s): </td>
+                        <td><textarea id="user-college-s" class="edit-page-input"
+                                placeholder="Enter Your College(s)"></textarea></td>
+                    </tr>
+
+                    <tr>
+                        <td>Job(s): </td>
+                        <td><textarea id="user-job-s" class="edit-page-input"
+                                placeholder="Enter Your Job(s)"></textarea></td>
+                    </tr>
+
+                    <tr>
+                        <td>Projects(s): </td>
+                        <td><textarea id="user-project-s" class="edit-page-input"
+                                placeholder="Enter Your Project(s)"></textarea></td>
+                    </tr>
+
+                    <tr>
+                        <td>Programming Language(s): </td>
+                        <td><textarea id="user-programming-language-s" class="edit-page-input"
+                                placeholder="Enter Your Programming Language(s)"></textarea></td>
+                    </tr>
+
+                    <tr>
+                        <td>Portfolio Website: </td>
+                        <td><input id="user-portfolio-website" class="edit-page-input" type="text"
+                                placeholder="Enter Your Portfolio Website"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Contact E-Mail: </td>
+                        <td><input id="user-contact-email" class="edit-page-input" type="text"
+                                placeholder="Enter Your Contact E-Mail"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Contact Number: </td>
+                        <td><input id="user-contact-number" class="edit-page-input" type="text"
+                                placeholder="Enter Your Contact Number"></td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="display-error-message">
+
+        <p>You Can't Use Brogrammerz Under 660px Width / More Than 200% Zoom!</p>
+
+    </div>
+
+</body>
+
+<script src="Profile.js"></script>
+
+</html>
