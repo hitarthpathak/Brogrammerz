@@ -183,24 +183,24 @@ function save_profile() {
         logged_in_user.profile_photo = logged_in_user.profile_photo;
         logged_in_user.name = user_name.value;
         logged_in_user.bio = user_bio.value;
+        
+        if (user_email.value == "") {
+            alert('E-Mail Cannot Be Set Empty!');
+            return false;
+        }
+        if (user_password.value == "") {
+            alert('Password Cannot Be Set Empty!');
+            return false;
+        }
         for (user of users_data) {
             if ((user_email.value == user.email) && (user_email.value != logged_in_user_email)) {
                 alert("E-Mail Is Already In Use!");
                 return false;
             }
-            else if (user_email.value == "") {
-                alert('E-Mail Cannot Be Set Empty!');
-                return false;
-            }
-            else if (user_password.value == "") {
-                alert('Password Cannot Be Set Empty!');
-                return false;
-            }
-            else {
-                localStorage.setItem("logged-in-user-email", JSON.stringify(user_email.value));
-                logged_in_user.email = user_email.value;
-            }
         }
+        logged_in_user.email = user_email.value;
+        localStorage.setItem("logged-in-user-email", JSON.stringify(user_email.value));
+        
         logged_in_user.password = user_password.value;
         logged_in_user.date_of_birth = user_date_of_birth.value;
         logged_in_user.gender = user_gender.value;
@@ -231,7 +231,6 @@ function delete_profile() {
         let user_id = users_data.indexOf(logged_in_user);
         users_data.splice(user_id, 1);
         localStorage.setItem("users", JSON.stringify(users_data));
-        localStorage.removeItem("logged-in-user");
         localStorage.removeItem("logged-in-user-email");
         localStorage.removeItem("search-query");
         localStorage.removeItem("searched-user-email");
