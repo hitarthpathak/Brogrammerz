@@ -32,14 +32,14 @@ let logged_in_user = users_data.find((filter_user) => {
     return filter_user.email == logged_in_user_email;
 });
 
-if (!logged_in_user) {
-    alert("User Is Not Logged In! Redirecting To Login Page.");
-    location = "index.html";
-}
-
 // ------------------------------------------------------------------------------------------------
 
 function check_validation() {
+
+    if (!logged_in_user) {
+        alert("User Is Not Logged In! Redirecting To Login Page.");
+        location = "index.html";
+    }
 
     let name_pattern = /^[a-zA-ZÀ-ÖØ-öø-ÿ'-. ]{2,50}$/i;
     let email_pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
