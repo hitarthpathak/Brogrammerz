@@ -18,8 +18,6 @@ let searched_user_data = filtered_user;
 
 window.addEventListener("load", () => {
 
-    // localStorage.removeItem("searched-user-email");
-
     search_user_input.value = search_query;
 
     search_users();
