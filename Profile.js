@@ -35,7 +35,7 @@ window.addEventListener("load", () => {
 
     if (!logged_in_user) {
         alert("User Is Not Logged In! Redirecting To Login Page.");
-        location = "index.html";
+        location.href = "index.html";
     }
 
     search_user_input.value = "";
