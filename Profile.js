@@ -29,14 +29,14 @@ let logged_in_user = users_data.find((filter_user) => {
     return filter_user.email == logged_in_user_email;
 });
 
-if (!logged_in_user) {
-    alert("User Is Not Logged In! Redirecting To Login Page.");
-    location = "index.html";
-}
-
 // ------------------------------------------------------------------------------------------------
 
 window.addEventListener("load", () => {
+
+    if (!logged_in_user) {
+        alert("User Is Not Logged In! Redirecting To Login Page.");
+        location = "index.html";
+    }
 
     search_user_input.value = "";
 
