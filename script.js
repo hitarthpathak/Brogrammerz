@@ -18,8 +18,8 @@ function login() {
 
 function check_validation() {
 
-    let email_pattern = /^[a-zA-Z0-9.]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
-    let password_pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$%^&+=!])[\S]{8,}$/;
+    let email_pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    let password_pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,64}$/;
 
     let email_validation = email_pattern.test(email.value);
     let password_validation = password_pattern.test(password.value);

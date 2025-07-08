@@ -18,6 +18,7 @@ let new_user = {
     followers: "[0]",
     date_of_birth: "",
     gender: "",
+    relationship_status: "",
     hometown: "",
     current_city: "",
     school_s: "",
@@ -63,17 +64,17 @@ function registration() {
 
 function check_validation() {
 
-    let name_pattern = /^(?=.{3,20}$)[A-Za-z]+([ '-][A-Za-z]+)*$/;
-    let date_of_birth_pattern = /^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(\d{4})$/;
-    let email_pattern = /^[a-zA-Z0-9.]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
-    let password_pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$%^&+=!])[\S]{8,}$/;
+    let name_pattern = /^[a-zA-ZÀ-ÖØ-öø-ÿ'-. ]{2,50}$/i;
+    let date_of_birth_pattern = /^(?:(?:31-(?:0?[13578]|1[02]))|(?:29|30)-(?:0?[1,3-9]|1[0-2]))-(?:19|20)\d\d$|^29-0?2-(?:19|20)(?:[02468][048]|[13579][26])$|^(?:0?[1-9]|1\d|2[0-8])-(?:0?[1-9]|1[0-2])-(?:19|20)\d\d$/;
+    let email_pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    let password_pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,64}$/;
 
     let name_validation = name_pattern.test(name.value);
     let date_of_birth_validation = date_of_birth_pattern.test(date_of_birth.value);
     let email_validation = email_pattern.test(email.value);
     let password_validation = password_pattern.test(password.value);
 
-    if (name.value === "") {
+    if (name.value == "") {
         alert("Please Enter Your Name!");
         return false;
     }

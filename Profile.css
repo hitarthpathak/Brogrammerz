@@ -112,6 +112,7 @@ nav {
 .main-box .left {
     height: 100%;
     width: 30%;
+    text-align: center;
     display: flex;
     align-items: center;
     justify-content: start;
@@ -123,7 +124,6 @@ nav {
     border: 1px solid black;
     height: 15rem;
     width: auto;
-    text-align: center;
 }
 
 .profile-photo-box img {
@@ -131,12 +131,14 @@ nav {
     width: auto;
 }
 
-#user-name {
+#user-name,
+#display-user-name {
     font-weight: bold;
     text-align: center;
 }
 
-#user-bio {
+#user-bio,
+#display-user-bio {
     text-align: center;
 }
 
@@ -197,6 +199,10 @@ table td {
     padding: 0.3rem;
     font-family: Arial;
     outline: none;
+}
+
+.display-page-content {
+    white-space: pre-wrap;
 }
 
 /* ------------------------------------------------------------------------------------------------ */

@@ -6,6 +6,7 @@ let user_email = document.getElementById("user-email");
 let user_password = document.getElementById("user-password");
 let user_date_of_birth = document.getElementById("user-date-of-birth");
 let user_gender = document.getElementById("user-gender");
+let user_relationship_status = document.getElementById("user-relationship-status");
 let user_hometown = document.getElementById("user-hometown");
 let user_current_city = document.getElementById("user-current-city");
 let user_school_s = document.getElementById("user-school-s");
@@ -42,21 +43,22 @@ window.addEventListener("load", () => {
     search_user_input.value = searched_user.name;
 
     user_profile_photo.src = searched_user.profile_photo;
-    user_name.innerText = searched_user.name;
-    user_bio.innerText = searched_user.bio;
-    user_followers.innerText = searched_user.followers;
-    user_date_of_birth.innerText = searched_user.date_of_birth;
-    user_gender.innerText = searched_user.gender;
-    user_hometown.innerText = searched_user.hometown;
-    user_current_city.innerText = searched_user.current_city;
-    user_school_s.innerText = searched_user.school_s;
-    user_college_s.innerText = searched_user.college_s;
-    user_job_s.innerText = searched_user.job_s;
-    user_project_s.innerText = searched_user.project_s;
-    user_programming_languages.innerText = searched_user.programming_languages;
-    user_portfolio_website.innerText = searched_user.portfolio_website;
-    user_contact_email.innerText = searched_user.contact_email;
-    user_contact_number.innerText = searched_user.contact_number;
+    user_name.textContent = searched_user.name;
+    user_bio.textContent = searched_user.bio;
+    user_followers.textContent = searched_user.followers;
+    user_date_of_birth.textContent = searched_user.date_of_birth;
+    user_gender.textContent = searched_user.gender;
+    user_relationship_status.textContent = searched_user.relationship_status;
+    user_hometown.textContent = searched_user.hometown;
+    user_current_city.textContent = searched_user.current_city;
+    user_school_s.textContent = searched_user.school_s;
+    user_college_s.textContent = searched_user.college_s;
+    user_job_s.textContent = searched_user.job_s;
+    user_project_s.textContent = searched_user.project_s;
+    user_programming_languages.textContent = searched_user.programming_languages;
+    user_portfolio_website.textContent = searched_user.portfolio_website;
+    user_contact_email.textContent = searched_user.contact_email;
+    user_contact_number.textContent = searched_user.contact_number;
 
 });
 
