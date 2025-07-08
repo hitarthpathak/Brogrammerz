@@ -36,6 +36,16 @@ nav {
     justify-content: space-around;
 }
 
+.logo-box {
+    height: 100%;
+    width: auto;
+}
+
+.logo-box img {
+    height: 100%;
+    width: auto;
+}
+
 /* ------------------------------------------------------------------------------------------------ */
 
 .profile-options {
