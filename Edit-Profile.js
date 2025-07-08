@@ -34,7 +34,7 @@ let logged_in_user = users_data.find((filter_user) => {
 
 if (!logged_in_user) {
     alert("User Is Not Logged In! Redirecting To Login Page.");
-    location = "/";
+    location = "index.html";
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -281,7 +281,7 @@ function logout() {
     localStorage.removeItem("logged-in-user-email");
     localStorage.removeItem("searched-user-email");
     localStorage.removeItem("search-query");
-    location = "/";
+    location = "index.html";
 
 };
 
@@ -299,7 +299,7 @@ function delete_profile() {
         localStorage.removeItem("search-query");
         localStorage.removeItem("searched-user-email");
         alert("Your Profile Is Deleted!");
-        location = "/";
+        location = "index.html";
     }
     else {
         return false;
