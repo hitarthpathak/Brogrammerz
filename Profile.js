@@ -13,10 +13,13 @@ let display_user_job_s = document.getElementById("display-user-job-s");
 let display_user_project_s = document.getElementById("display-user-project-s");
 let display_user_programming_language_s = document.getElementById("display-user-programming-language-s");
 let display_user_portfolio_website = document.getElementById("display-user-portfolio-website");
+let display_user_social_media = document.getElementById("display-user-social-media");
 let display_user_contact_email = document.getElementById("display-user-contact-email");
 let display_user_contact_number = document.getElementById("display-user-contact-number");
+let display_user_resume = document.getElementById("display-user-resume");
 
 let search_user_input = document.getElementById("search-user-input");
+let show_resume_path = document.getElementById("show-resume-path");
 
 // ------------------------------------------------------------------------------------------------
 
@@ -28,6 +31,7 @@ let logged_in_user_email = JSON.parse(localStorage.getItem("logged-in-user-email
 let logged_in_user = users_data.find((filter_user) => {
     return filter_user.email == logged_in_user_email;
 });
+
 
 // ------------------------------------------------------------------------------------------------
 
@@ -55,6 +59,7 @@ window.addEventListener("load", () => {
     display_user_project_s.textContent = logged_in_user.project_s;
     display_user_programming_language_s.textContent = logged_in_user.programming_language_s;
     display_user_portfolio_website.textContent = logged_in_user.portfolio_website;
+    display_user_social_media.textContent = logged_in_user.social_media;
     display_user_contact_email.textContent = logged_in_user.contact_email;
     display_user_contact_number.textContent = logged_in_user.contact_number;
 
@@ -119,6 +124,37 @@ function delete_profile() {
     }
     else {
         return false;
+    }
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
+function base_64_to_blob_url(base_64_url) {
+
+    let [prefix, base_64_string] = base_64_url.split(',');
+    let contentType = prefix.match(/:(.*?);/)[1];
+    let byte_characters = atob(base_64_string);
+    let byte_numbers = new Array(byte_characters.length);
+
+    for (let i = 0; i < byte_characters.length; i++) {
+        byte_numbers[i] = byte_characters.charCodeAt(i);
+    }
+
+    let byte_array = new Uint8Array(byte_numbers);
+    let blob = new Blob([byte_array], { type: contentType });
+    return URL.createObjectURL(blob);
+
+};
+
+function show_resume() {
+
+    if (logged_in_user.resume) {
+        let blob_url = base_64_to_blob_url(logged_in_user.resume);
+        window.open(blob_url, "_blank");
+    }
+    else {
+        alert("Resume Is Not Available!");
     }
 
 };

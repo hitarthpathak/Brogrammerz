@@ -27,8 +27,10 @@ let new_user = {
     project_s: "",
     programming_languages: "",
     portfolio_website: "",
+    social_media: "",
     contact_email: "",
-    contact_number: ""
+    contact_number: "",
+    resume: ""
 };
 
 // ------------------------------------------------------------------------------------------------

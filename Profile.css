@@ -193,6 +193,13 @@ table td {
     padding: 1rem;
 }
 
+td button {
+    height: auto;
+    width: auto;
+    padding: 0.3rem;
+    cursor: pointer;
+}
+
 .edit-page-input {
     height: auto;
     width: 100%;
@@ -207,7 +214,7 @@ table td {
 
 /* ------------------------------------------------------------------------------------------------ */
 
-@media (max-width: 660px) {
+@media (max-width: 950px) {
     .body {
         display: none;
     }

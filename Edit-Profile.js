@@ -15,6 +15,7 @@ let user_job_s = document.getElementById("user-job-s");
 let user_project_s = document.getElementById("user-project-s");
 let user_programming_language_s = document.getElementById("user-programming-language-s");
 let user_portfolio_website = document.getElementById("user-portfolio-website");
+let user_social_media = document.getElementById("user-social-media");
 let user_contact_email = document.getElementById("user-contact-email");
 let user_contact_number = document.getElementById("user-contact-number");
 
@@ -31,6 +32,7 @@ let logged_in_user_email = JSON.parse(localStorage.getItem("logged-in-user-email
 let logged_in_user = users_data.find((filter_user) => {
     return filter_user.email == logged_in_user_email;
 });
+
 
 // ------------------------------------------------------------------------------------------------
 
@@ -56,6 +58,7 @@ function check_validation() {
     let project_s_pattern = /^(?:[a-zA-Z0-9À-ÖØ-öø-ÿ ,.'\-()&]{2,100}\r?\n?)*$/i;
     let programming_language_s_pattern = /^(?:[a-zA-Z0-9À-ÖØ-öø-ÿ ,.'\-()&]{2,100}\r?\n?)*$/i;
     let portfolio_website_pattern = /^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(\/[\w\-._~:/?#[\]@!$&'()*+,;=]*)?$/;
+    let social_media_pattern = /^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(\/[\w\-._~:/?#[\]@!$&'()*+,;=]*)?$/m;
     let contact_email_pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     let contact_number_pattern = /^[+]?[\d\s\-()]{7,15}$/;
 
@@ -74,6 +77,7 @@ function check_validation() {
     let project_s_validation = project_s_pattern.test(user_project_s.value);
     let programming_language_s_validation = programming_language_s_pattern.test(user_programming_language_s.value);
     let portfolio_website_validation = portfolio_website_pattern.test(user_portfolio_website.value);
+    let social_media_validation = social_media_pattern.test(user_social_media.value);
     let contact_email_validation = contact_email_pattern.test(user_contact_email.value);
     let contact_number_validation = contact_number_pattern.test(user_contact_number.value);
 
@@ -137,6 +141,10 @@ function check_validation() {
         alert("Portfolio Website(s) Is Not Valid!");
         return false;
     }
+    if (!social_media_validation && user_social_media.value != "") {
+        alert("Social Media Is Not Valid!");
+        return false;
+    }
     if (!contact_email_validation && user_contact_email.value != "") {
         alert("Contact E-Mail Is Not Valid!");
         return false;
@@ -171,6 +179,7 @@ window.addEventListener("load", () => {
     user_project_s.value = logged_in_user.project_s;
     user_programming_language_s.value = logged_in_user.programming_language_s;
     user_portfolio_website.value = logged_in_user.portfolio_website;
+    user_social_media.value = logged_in_user.social_media;
     user_contact_email.value = logged_in_user.contact_email;
     user_contact_number.value = logged_in_user.contact_number;
 
@@ -222,8 +231,10 @@ function save_profile() {
             logged_in_user.project_s = user_project_s.value;
             logged_in_user.programming_language_s = user_programming_language_s.value;
             logged_in_user.portfolio_website = user_portfolio_website.value;
+            logged_in_user.social_media = user_social_media.value;
             logged_in_user.contact_email = user_contact_email.value;
             logged_in_user.contact_number = user_contact_number.value;
+            logged_in_user.resume = logged_in_user.resume;
 
             localStorage.setItem("users", JSON.stringify(users_data));
             location = "Profile.html";
@@ -263,8 +274,10 @@ function save_profile() {
             logged_in_user.project_s = user_project_s.value;
             logged_in_user.programming_language_s = user_programming_language_s.value;
             logged_in_user.portfolio_website = user_portfolio_website.value;
+            logged_in_user.social_media = user_social_media.value;
             logged_in_user.contact_email = user_contact_email.value;
             logged_in_user.contact_number = user_contact_number.value;
+            logged_in_user.resume = logged_in_user.resume;
 
             localStorage.setItem("users", JSON.stringify(users_data));
             location = "Profile.html";
@@ -313,17 +326,22 @@ function upload_profile_photo() {
 
     let file = event.target.files[0];
 
-    if (file) {
-        let reader = new FileReader();
-        reader.onloadend = () => {
-            let base_64_string = reader.result;
-            logged_in_user.profile_photo = base_64_string;
-            user_profile_photo.src = logged_in_user.profile_photo;
-        };
-        reader.readAsDataURL(file);
+    if (file.size <= (1024 * 1024)) {
+        if (file) {
+            let reader = new FileReader();
+            reader.onloadend = () => {
+                let base_64_string = reader.result;
+                logged_in_user.profile_photo = base_64_string;
+                user_profile_photo.src = logged_in_user.profile_photo;
+            };
+            reader.readAsDataURL(file);
+        }
+        else {
+            return false;
+        }
     }
     else {
-        return false;
+        alert('File Is Too Big (1MB Allowed!)');
     }
 
 };
@@ -343,5 +361,39 @@ function edit_email_password() {
         edit_email_password_box.classList.add("edit-email-password-hide");
         edit_email_password_box.classList.remove("edit-email-password-show");
     }
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
+function upload_resume() {
+
+    let file = event.target.files[0];
+
+    if (file.size <= (1024 * 1024)) {
+        if (file) {
+            let reader = new FileReader();
+            reader.onloadend = () => {
+                let base_64_string = reader.result;
+                logged_in_user.resume = base_64_string;
+            };
+            reader.readAsDataURL(file);
+        }
+        else {
+            return false;
+        }
+    }
+    else {
+        alert('File Is Too Big (1MB Allowed!)');
+    }
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
+function delete_resume() {
+
+    logged_in_user.resume = "";
+    localStorage.setItem("users", JSON.stringify(users_data));
 
 };
