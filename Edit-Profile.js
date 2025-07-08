@@ -393,7 +393,13 @@ function upload_resume() {
 
 function delete_resume() {
 
-    logged_in_user.resume = "";
-    localStorage.setItem("users", JSON.stringify(users_data));
+    if (logged_in_user.resume != "") {
+        logged_in_user.resume = "";
+        localStorage.setItem("users", JSON.stringify(users_data));
+        alert("Your Resume Is Deleted!");
+    }
+    else {
+        alert("Resume Is Not Available!");
+    }
 
 };
