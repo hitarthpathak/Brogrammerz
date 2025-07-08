@@ -15,8 +15,10 @@ let user_job_s = document.getElementById("user-job-s");
 let user_project_s = document.getElementById("user-project-s");
 let user_programming_languages = document.getElementById("user-programming-language-s");
 let user_portfolio_website = document.getElementById("user-portfolio-website");
+let user_social_media = document.getElementById("user-social-media");
 let user_contact_email = document.getElementById("user-contact-email");
 let user_contact_number = document.getElementById("user-contact-number");
+let user_resume = document.getElementById("user-resume");
 
 let search_user_input = document.getElementById("search-user-input");
 
@@ -57,6 +59,7 @@ window.addEventListener("load", () => {
     user_project_s.textContent = searched_user.project_s;
     user_programming_languages.textContent = searched_user.programming_languages;
     user_portfolio_website.textContent = searched_user.portfolio_website;
+    user_social_media.textContent = searched_user.social_media;
     user_contact_email.textContent = searched_user.contact_email;
     user_contact_number.textContent = searched_user.contact_number;
 
@@ -97,5 +100,36 @@ function ranking() {
 function follow_user() {
 
     alert("Working On It!");
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
+function base_64_to_blob_url(base_64_url) {
+
+    let [prefix, base_64_string] = base_64_url.split(',');
+    let contentType = prefix.match(/:(.*?);/)[1];
+    let byte_characters = atob(base_64_string);
+    let byte_numbers = new Array(byte_characters.length);
+
+    for (let i = 0; i < byte_characters.length; i++) {
+        byte_numbers[i] = byte_characters.charCodeAt(i);
+    }
+
+    let byte_array = new Uint8Array(byte_numbers);
+    let blob = new Blob([byte_array], { type: contentType });
+    return URL.createObjectURL(blob);
+
+};
+
+function show_resume() {
+
+    if (searched_user.resume) {
+        let blob_url = base_64_to_blob_url(searched_user.resume);
+        window.open(blob_url, "_blank");
+    }
+    else {
+        alert("Resume Is Not Available!");
+    }
 
 };

@@ -167,6 +167,13 @@ table td {
     padding: 1rem;
 }
 
+td button {
+    height: auto;
+    width: auto;
+    padding: 0.3rem;
+    cursor: pointer;
+}
+
 .display-page-content {
     white-space: pre-wrap;
 }
