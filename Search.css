@@ -74,6 +74,28 @@ nav {
 
 /* ------------------------------------------------------------------------------------------------ */
 
+.profile-options {
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile-options a {
+    text-decoration: none;
+    color: black;
+}
+
+.profile-options button {
+    height: auto;
+    width: auto;
+    padding: 0.3rem;
+    cursor: pointer;
+}
+
+/* ------------------------------------------------------------------------------------------------ */
+
 #search-results {
     border: 1px solid black;
     padding: 1rem;
