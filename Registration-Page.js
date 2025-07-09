@@ -25,7 +25,7 @@ let new_user = {
     college_s: "",
     job_s: "",
     project_s: "",
-    programming_languages: "",
+    programming_language_s: "",
     portfolio_website: "",
     social_media: "",
     contact_email: "",
