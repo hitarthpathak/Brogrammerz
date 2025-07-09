@@ -37,6 +37,12 @@ let logged_in_user = users_data.find((filter_user) => {
 
 window.addEventListener("load", () => {
 
+    users_data.forEach(user => {
+        delete user.programming_languages;
+    });
+
+    localStorage.setItem("users", JSON.stringify(users_data));
+
     if (!logged_in_user) {
         alert("User Is Not Logged In! Redirecting To Login Page.");
         location = "index.html";
