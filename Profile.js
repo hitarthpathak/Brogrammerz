@@ -37,11 +37,6 @@ let logged_in_user = users_data.find((filter_user) => {
 
 window.addEventListener("load", () => {
 
-    for (user of users_data) {
-        user.followers = "0";
-        localStorage.setItem("users", JSON.stringify(users_data));
-    }
-
     if (!logged_in_user) {
         alert("User Is Not Logged In! Redirecting To Login Page.");
         location = "index.html";
