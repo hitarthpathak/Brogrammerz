@@ -15,7 +15,7 @@ let new_user = {
     profile_photo: "Images/Add Profile Picture (Icon).jpg",
     name: "",
     bio: "",
-    followers: "[0]",
+    followers: "0",
     date_of_birth: "",
     gender: "",
     relationship_status: "",
@@ -43,7 +43,7 @@ function registration() {
             return already_registered_user.email == email.value;
         })
 
-        if (already_registered != "") {
+        if (already_registered) {
             alert("User Already Exists!");
         }
         else {

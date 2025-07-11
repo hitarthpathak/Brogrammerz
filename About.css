@@ -9,6 +9,14 @@ body {
     width: 100%;
 }
 
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 hr {
     margin: 1rem 0;
 }

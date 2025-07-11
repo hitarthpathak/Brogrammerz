@@ -21,12 +21,14 @@ let user_contact_number = document.getElementById("user-contact-number");
 let user_resume = document.getElementById("user-resume");
 
 let search_user_input = document.getElementById("search-user-input");
+let follow_button = document.getElementById("follow-btn");
 
 // ------------------------------------------------------------------------------------------------
 
 let users_data = JSON.parse(localStorage.getItem("users")) || [];
 let logged_in_user_email = JSON.parse(localStorage.getItem("logged-in-user-email")) || "";
 let searched_user_email = JSON.parse(localStorage.getItem("searched-user-email")) || "";
+let users_followers = JSON.parse(localStorage.getItem("users-followers")) || {};
 
 // ------------------------------------------------------------------------------------------------
 
@@ -47,7 +49,7 @@ window.addEventListener("load", () => {
     user_profile_photo.src = searched_user.profile_photo;
     user_name.textContent = searched_user.name;
     user_bio.textContent = searched_user.bio;
-    user_followers.textContent = searched_user.followers;
+    user_followers.textContent = "[" + searched_user.followers + "]";
     user_date_of_birth.textContent = searched_user.date_of_birth;
     user_gender.textContent = searched_user.gender;
     user_relationship_status.textContent = searched_user.relationship_status;
@@ -99,7 +101,22 @@ function ranking() {
 
 function follow_user() {
 
-    alert("Working On It!");
+    let searched_user_followers = users_followers[searched_user_email] || [];
+
+    if (searched_user_followers.includes(logged_in_user_email)) {
+        alert("You Have Already Followed The User!");
+        return false;
+    }
+    else {
+        searched_user.followers = (parseInt(searched_user.followers) + 1).toString();
+        localStorage.setItem("users", JSON.stringify(users_data));
+
+        user_followers.textContent = "[" + searched_user.followers + "]";
+
+        searched_user_followers.push(logged_in_user_email);
+        users_followers[searched_user_email] = searched_user_followers;
+        localStorage.setItem("users-followers", JSON.stringify(users_followers));
+    }
 
 };
 

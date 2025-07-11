@@ -38,11 +38,6 @@ let logged_in_user = users_data.find((filter_user) => {
 
 function check_validation() {
 
-    if (!logged_in_user) {
-        alert("User Is Not Logged In! Redirecting To Login Page.");
-        location = "index.html";
-    }
-
     let name_pattern = /^[a-zA-ZÀ-ÖØ-öø-ÿ'-. ]{2,50}$/i;
     let email_pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     let password_pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,64}$/;
@@ -161,6 +156,11 @@ function check_validation() {
 // ------------------------------------------------------------------------------------------------
 
 window.addEventListener("load", () => {
+
+    if (!logged_in_user) {
+        alert("User Is Not Logged In! Redirecting To Login Page.");
+        location = "index.html";
+    }
 
     search_user_input.value = "";
 
@@ -307,10 +307,25 @@ function delete_profile() {
     if (confirm(delete_profile_confirmation) == true) {
         let user_id = users_data.indexOf(logged_in_user);
         users_data.splice(user_id, 1);
+
+        for (let other_users_email in users_followers) {
+            users_followers[other_users_email] = users_followers[other_users_email].filter(
+                other_followers_email => other_followers_email != logged_in_user_email
+            );
+        }
+
+        delete users_followers[logged_in_user_email];
+
+        for (let user of users_data) {
+            let followers_list = users_followers[user.email] || [];
+            user.followers = followers_list.length.toString();
+        }
+
         localStorage.setItem("users", JSON.stringify(users_data));
+        localStorage.setItem("users-followers", JSON.stringify(users_followers));
         localStorage.removeItem("logged-in-user-email");
-        localStorage.removeItem("search-query");
         localStorage.removeItem("searched-user-email");
+        localStorage.removeItem("search-query");
         alert("Your Profile Is Deleted!");
         location = "index.html";
     }

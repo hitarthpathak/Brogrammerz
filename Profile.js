@@ -19,12 +19,12 @@ let display_user_contact_number = document.getElementById("display-user-contact-
 let display_user_resume = document.getElementById("display-user-resume");
 
 let search_user_input = document.getElementById("search-user-input");
-let show_resume_path = document.getElementById("show-resume-path");
 
 // ------------------------------------------------------------------------------------------------
 
 let users_data = JSON.parse(localStorage.getItem("users")) || [];
 let logged_in_user_email = JSON.parse(localStorage.getItem("logged-in-user-email")) || "";
+let users_followers = JSON.parse(localStorage.getItem("users-followers")) || {};
 
 // ------------------------------------------------------------------------------------------------
 
@@ -47,7 +47,7 @@ window.addEventListener("load", () => {
     user_profile_photo.src = logged_in_user.profile_photo;
     display_user_name.textContent = logged_in_user.name;
     display_user_bio.textContent = logged_in_user.bio;
-    display_user_followers.textContent = logged_in_user.followers;
+    display_user_followers.textContent = "[" + logged_in_user.followers + "]";
     display_user_date_of_birth.textContent = logged_in_user.date_of_birth;
     display_user_gender.textContent = logged_in_user.gender;
     display_user_relationship_status.textContent = logged_in_user.relationship_status;
@@ -115,10 +115,25 @@ function delete_profile() {
     if (confirm(delete_profile_confirmation) == true) {
         let user_id = users_data.indexOf(logged_in_user);
         users_data.splice(user_id, 1);
+
+        for (let other_users_email in users_followers) {
+            users_followers[other_users_email] = users_followers[other_users_email].filter(
+                other_followers_email => other_followers_email != logged_in_user_email
+            );
+        }
+
+        delete users_followers[logged_in_user_email];
+
+        for (let user of users_data) {
+            let followers_list = users_followers[user.email] || [];
+            user.followers = followers_list.length.toString();
+        }
+
         localStorage.setItem("users", JSON.stringify(users_data));
+        localStorage.setItem("users-followers", JSON.stringify(users_followers));
         localStorage.removeItem("logged-in-user-email");
-        localStorage.removeItem("search-query");
         localStorage.removeItem("searched-user-email");
+        localStorage.removeItem("search-query");
         alert("Your Profile Is Deleted!");
         location = "index.html";
     }
@@ -133,7 +148,7 @@ function delete_profile() {
 function base_64_to_blob_url(base_64_url) {
 
     let [prefix, base_64_string] = base_64_url.split(',');
-    let contentType = prefix.match(/:(.*?);/)[1];
+    let content_type = prefix.match(/:(.*?);/)[1];
     let byte_characters = atob(base_64_string);
     let byte_numbers = new Array(byte_characters.length);
 
@@ -142,7 +157,7 @@ function base_64_to_blob_url(base_64_url) {
     }
 
     let byte_array = new Uint8Array(byte_numbers);
-    let blob = new Blob([byte_array], { type: contentType });
+    let blob = new Blob([byte_array], { type: content_type });
     return URL.createObjectURL(blob);
 
 };
