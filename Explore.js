@@ -96,7 +96,7 @@ function filter_users() {
 
     let filtered_user = users_data.filter((filter_user) => {
         return (
-            filter_user.gender.toLowerCase().includes(gender_filter.value.toLowerCase()) &&
+            filter_user.gender.toLowerCase().startsWith(gender_filter.value.toLowerCase()) &&
             filter_user.relationship_status.toLowerCase().includes(relationship_status_filter.value.toLowerCase()) &&
             filter_user.hometown.toLowerCase().includes(hometown_filter.value.toLowerCase()) &&
             filter_user.current_city.toLowerCase().includes(current_city_filter.value.toLowerCase()) &&
