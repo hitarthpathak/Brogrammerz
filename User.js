@@ -27,20 +27,20 @@ let follow_button = document.getElementById("follow-button");
 
 let users_data = JSON.parse(localStorage.getItem("users")) || [];
 let logged_in_user_email = JSON.parse(localStorage.getItem("logged-in-user-email")) || "";
-let searched_user_email = JSON.parse(localStorage.getItem("searched-user-email")) || "";
+let show_user_email = JSON.parse(localStorage.getItem("show-user-email")) || "";
 let users_followers = JSON.parse(localStorage.getItem("users-followers")) || {};
 
 // ------------------------------------------------------------------------------------------------
 
 let searched_user = users_data.find((filter_user) => {
-    return filter_user.email == searched_user_email;
+    return filter_user.email == show_user_email;
 });
 
-if (searched_user_email == logged_in_user_email) {
+if (show_user_email == logged_in_user_email) {
     your_profile();
 };
 
-let is_followed = (users_followers[searched_user_email] || []).includes(logged_in_user_email);
+let is_followed = (users_followers[show_user_email] || []).includes(logged_in_user_email);
 
 // ------------------------------------------------------------------------------------------------
 
@@ -102,9 +102,31 @@ function ranking() {
 
 // ------------------------------------------------------------------------------------------------
 
+function explore() {
+
+    location = "Explore.html";
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
 function follow_user() {
 
-    let searched_user_followers = users_followers[searched_user_email] || [];
+    // for (user of users_data) {
+    //     user.followers = "0";
+    //     localStorage.setItem("users", JSON.stringify(users_data));
+    // }
+
+    // for (let other_users_email in users_followers) {
+    //     users_followers[other_users_email] = users_followers[other_users_email].filter(
+    //         other_followers_email => other_followers_email != logged_in_user_email
+    //     );
+    // }
+    // localStorage.setItem("users-followers", JSON.stringify(users_followers));
+
+    // --------------------------------------------------------------------------------------------
+
+    let searched_user_followers = users_followers[show_user_email] || [];
 
     if (searched_user_followers.includes(logged_in_user_email)) {
         alert("You Have Already Followed The User!");
@@ -117,7 +139,7 @@ function follow_user() {
         user_followers.textContent = "[" + searched_user.followers + "]";
 
         searched_user_followers.push(logged_in_user_email);
-        users_followers[searched_user_email] = searched_user_followers;
+        users_followers[show_user_email] = searched_user_followers;
         localStorage.setItem("users-followers", JSON.stringify(users_followers));
 
         follow_button.textContent = "Followed";

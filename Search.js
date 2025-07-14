@@ -58,17 +58,17 @@ function load_search_results() {
                 search_results.appendChild(searched_user);
 
                 searched_user.addEventListener("click", () => {
-                    localStorage.setItem("searched-user-email", JSON.stringify(user.email));
+                    localStorage.setItem("show-user-email", JSON.stringify(user.email));
                     location = "User.html";
                 });
 
             });
         }
         else {
-            let searched_user = document.createElement("div");
-            searched_user.classList.add("searched-user");
-            searched_user.innerText = "No Users Found!";
-            search_results.appendChild(searched_user);
+            let filtered_user = document.createElement("div");
+            filtered_user.classList.add("searched-user");
+            filtered_user.innerText = "No Users Found!";
+            filter_results.appendChild(filtered_user);
         }
 
     }
@@ -80,16 +80,24 @@ function load_search_results() {
 
 // ------------------------------------------------------------------------------------------------
 
-function your_profile() {
+function ranking() {
 
-    location = "Profile.html";
+    alert("Working On It!");
 
 };
 
 // ------------------------------------------------------------------------------------------------
 
-function ranking() {
+function explore() {
 
-    alert("Working On It!");
+    location = "Explore.html";
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
+function your_profile() {
+
+    location = "Profile.html";
 
 };

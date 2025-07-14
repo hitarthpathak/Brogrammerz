@@ -70,7 +70,7 @@ form #registration-btn {
 
 /* ------------------------------------------------------------------------------------------------ */
 
-@media (max-width: 950px) {
+@media (min-width: 2000px) {
     .main-box {
         display: none;
     }
@@ -86,5 +86,26 @@ form #registration-btn {
     .display-error-message {
         display: block;
         margin-top: 10vh;
+        text-align: center;
+    }
+}
+
+@media (max-width: 650px) {
+    .main-box {
+        display: none;
+    }
+
+    body {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        align-items: top;
+        justify-content: center;
+    }
+
+    .display-error-message {
+        display: block;
+        margin-top: 10vh;
+        text-align: center;
     }
 }

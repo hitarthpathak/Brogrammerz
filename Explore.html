@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<head>
+
+    <title>Search</title>
+
+    <link rel="icon" href="Images/Brogrammerz.jpg">
+
+    <link rel="stylesheet" href="Explore.css">
+
+</head>
+
+<body>
+
+    <div class="body">
+
+        <nav>
+
+            <div class="logo-box">
+
+                <img src="Images/Brogrammerz.jpg" alt="Image Not Available">
+
+            </div>
+
+            <div class="search-box">
+
+                <input id="search-user-input" type="text" placeholder="Search Brogrammerz...">
+
+                <button onclick="search_users()">Search</button>
+
+            </div>
+
+            <div class="logo-box">
+
+                <img src="Images/Brogrammerz.jpg" alt="Image Not Available">
+
+            </div>
+
+        </nav>
+
+        <hr>
+
+        <div class="profile-options">
+
+            <div class="profile-options-left">
+
+                <a href="About.html">
+
+                    <button>About</button>
+
+                </a>
+
+                <button onclick="ranking()">Ranking</button>
+
+            </div>
+
+            <div class="profile-options-right">
+
+                <button onclick="your_profile()">Your Profile</button>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="filter-options">
+
+            <div class="filter-options-left">
+
+                <input id="gender-filter" class="filter-input" type="text" placeholder="Gender">
+
+                <input id="relationship-status-filter" class="filter-input" type="text"
+                    placeholder="Relationship Status">
+
+                <input id="hometown-filter" class="filter-input" type="text" placeholder="Hometown">
+
+                <input id="current-city-filter" class="filter-input" type="text" placeholder="Current City">
+
+                <input id="school-filter" class="filter-input" type="text" placeholder="School">
+
+                <input id="college-filter" class="filter-input" type="text" placeholder="College">
+
+                <input id="job-filter" class="filter-input" type="text" placeholder="Job">
+
+                <input id="programming-language-filter" class="filter-input" type="text"
+                    placeholder="Programming Language">
+
+                <input id="project-filter" class="filter-input" type="text" placeholder="Project">
+
+            </div>
+
+            <div class="filter-options-right">
+
+                <button onclick="filter_users()">Filter Users</button>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div id="filter-results"></div>
+
+    </div>
+
+    <div class="display-error-message">
+
+        <p>You Can Only Use Brogrammerz In Between 75% & 200% Zoom!</p>
+        <p>So Stay In Your Limits!</p>
+
+    </div>
+
+</body>
+
+<script src="Explore.js"></script>
+
+</html>
