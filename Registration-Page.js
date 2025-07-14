@@ -39,9 +39,9 @@ function registration() {
 
     if (check_validation()) {
 
-        let already_registered = users_data.filter((already_registered_user) => {
+        let already_registered = users_data.find((already_registered_user) => {
             return already_registered_user.email == email.value;
-        })
+        });
 
         if (already_registered) {
             alert("User Already Exists!");

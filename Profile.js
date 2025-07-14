@@ -63,6 +63,14 @@ window.addEventListener("load", () => {
     display_user_contact_email.textContent = logged_in_user.contact_email;
     display_user_contact_number.textContent = logged_in_user.contact_number;
 
+    display_user_portfolio_website.style.color = "blue";
+    display_user_portfolio_website.style.cursor = "pointer";
+
+});
+
+display_user_portfolio_website.addEventListener("click", () => {
+    let url = "https://" + logged_in_user.portfolio_website;
+    window.open(url, "_blank");
 });
 
 // ------------------------------------------------------------------------------------------------
@@ -70,8 +78,7 @@ window.addEventListener("load", () => {
 function search_users() {
 
     if (search_user_input.value != "") {
-        localStorage.setItem("search-query", JSON.stringify(search_user_input.value));
-        location = "Search.html";
+        location = `Search.html?name=${search_user_input.value}`;
     }
     else {
         alert("Please Insert The User's Name!");

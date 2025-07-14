@@ -4,38 +4,34 @@ let search_results = document.getElementById("search-results");
 // ------------------------------------------------------------------------------------------------
 
 let users_data = JSON.parse(localStorage.getItem("users")) || [];
-let search_query = JSON.parse(localStorage.getItem("search-query"));
-
-// ------------------------------------------------------------------------------------------------
-
-let filtered_user = users_data.filter((filter_user) => {
-    return filter_user.name.toLowerCase().includes(search_query.toLowerCase());
-});
-
-let searched_user_data = filtered_user;
 
 // ------------------------------------------------------------------------------------------------
 
 window.addEventListener("load", () => {
 
-    search_user_input.value = search_query;
-
-    search_users();
+    let search_parameter = new URLSearchParams(window.location.search);
+    search_user_input.value = search_parameter.get("name");
+    load_search_results();
 
 });
 
 // ------------------------------------------------------------------------------------------------
 
 function search_users() {
+    search_parameter = new URLSearchParams(window.location.search);
+    search_parameter.set("name", search_user_input.value);
+    window.location.search = search_parameter.toString();
+}
+
+function load_search_results() {
 
     if (search_user_input.value != "") {
-        localStorage.setItem("search-query", JSON.stringify(search_user_input.value));
 
         filtered_user = users_data.filter((filter_user) => {
             return filter_user.name.toLowerCase().includes(search_user_input.value.toLowerCase());
         });
 
-        searched_user_data = filtered_user;
+        let searched_user_data = filtered_user;
 
         search_results.innerHTML = "";
 

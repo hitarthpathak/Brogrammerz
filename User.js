@@ -21,7 +21,7 @@ let user_contact_number = document.getElementById("user-contact-number");
 let user_resume = document.getElementById("user-resume");
 
 let search_user_input = document.getElementById("search-user-input");
-let follow_button = document.getElementById("follow-btn");
+let follow_button = document.getElementById("follow-button");
 
 // ------------------------------------------------------------------------------------------------
 
@@ -38,13 +38,17 @@ let searched_user = users_data.find((filter_user) => {
 
 if (searched_user_email == logged_in_user_email) {
     your_profile();
-}
+};
+
+let is_followed = (users_followers[searched_user_email] || []).includes(logged_in_user_email);
 
 // ------------------------------------------------------------------------------------------------
 
 window.addEventListener("load", () => {
 
     search_user_input.value = searched_user.name;
+
+    follow_button.textContent = is_followed ? "Followed" : "Follow";
 
     user_profile_photo.src = searched_user.profile_photo;
     user_name.textContent = searched_user.name;
@@ -72,8 +76,7 @@ window.addEventListener("load", () => {
 function search_users() {
 
     if (search_user_input.value != "") {
-        localStorage.setItem("search-query", JSON.stringify(search_user_input.value));
-        location = "Search.html";
+        location = `Search.html?name=${search_user_input.value}`;
     }
     else {
         alert("Please Insert The User's Name!");
@@ -116,6 +119,8 @@ function follow_user() {
         searched_user_followers.push(logged_in_user_email);
         users_followers[searched_user_email] = searched_user_followers;
         localStorage.setItem("users-followers", JSON.stringify(users_followers));
+
+        follow_button.textContent = "Followed";
     }
 
 };
