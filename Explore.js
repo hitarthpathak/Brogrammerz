@@ -103,25 +103,25 @@ function filter_users() {
 
     let filtered_user = users_data.filter((filter_user) => {
         return (
-            filter_user.gender.toLowerCase().startsWith(gender_filter.value.toLowerCase()) ||
-            filter_user.relationship_status.toLowerCase().includes(relationship_status_filter.value.toLowerCase()) ||
-            filter_user.hometown.toLowerCase().includes(hometown_filter.value.toLowerCase()) ||
-            filter_user.current_city.toLowerCase().includes(current_city_filter.value.toLowerCase()) ||
-            filter_user.school_s.some((school) =>
+            (!gender_filter.value || filter_user.gender.toLowerCase().startsWith(gender_filter.value.toLowerCase())) &&
+            (!relationship_status_filter.value || filter_user.relationship_status.toLowerCase().includes(relationship_status_filter.value.toLowerCase())) &&
+            (!hometown_filter.value || filter_user.hometown.toLowerCase().includes(hometown_filter.value.toLowerCase())) &&
+            (!current_city_filter.value || filter_user.current_city.toLowerCase().includes(current_city_filter.value.toLowerCase())) &&
+            (!school_filter.value || filter_user.school_s.some((school) =>
                 school.toLowerCase().includes(school_filter.value.toLowerCase())
-            ) ||
-            filter_user.college_s.some((college) =>
+            )) &&
+            (!college_filter.value || filter_user.college_s.some((college) =>
                 college.toLowerCase().includes(college_filter.value.toLowerCase())
-            ) ||
-            filter_user.job_s.some((job) =>
+            )) &&
+            (!job_filter.value || filter_user.job_s.some((job) =>
                 job.toLowerCase().includes(job_filter.value.toLowerCase())
-            ) ||
-            filter_user.programming_language_s.some((lang) =>
+            )) &&
+            (!programming_language_filter.value || filter_user.programming_language_s.some((lang) =>
                 lang.toLowerCase().includes(programming_language_filter.value.toLowerCase())
-            ) ||
-            filter_user.project_s.some((project) =>
+            )) &&
+            (!project_filter.value || filter_user.project_s.some((project) =>
                 project.toLowerCase().includes(project_filter.value.toLowerCase())
-            )
+            ))
         )
     });
 
