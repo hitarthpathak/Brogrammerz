@@ -98,6 +98,7 @@ function filter_users() {
 
     if (empty_filter) {
         alert("Filter Inputs Can't Be Empty!");
+        return false;
     }
 
     let filtered_user = users_data.filter((filter_user) => {
