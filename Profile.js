@@ -24,14 +24,12 @@ let search_user_input = document.getElementById("search-user-input");
 
 let users_data = JSON.parse(localStorage.getItem("users")) || [];
 let logged_in_user_email = JSON.parse(localStorage.getItem("logged-in-user-email")) || "";
-let users_followers = JSON.parse(localStorage.getItem("users-followers")) || {};
 
 // ------------------------------------------------------------------------------------------------
 
 let logged_in_user = users_data.find((filter_user) => {
     return filter_user.email == logged_in_user_email;
 });
-
 
 // ------------------------------------------------------------------------------------------------
 
@@ -47,30 +45,22 @@ window.addEventListener("load", () => {
     user_profile_photo.src = logged_in_user.profile_photo;
     display_user_name.textContent = logged_in_user.name;
     display_user_bio.textContent = logged_in_user.bio;
-    display_user_followers.textContent = "[" + logged_in_user.followers + "]";
+    display_user_followers.textContent = "[" + logged_in_user.followers.length + "]";
     display_user_date_of_birth.textContent = logged_in_user.date_of_birth;
     display_user_gender.textContent = logged_in_user.gender;
     display_user_relationship_status.textContent = logged_in_user.relationship_status;
     display_user_hometown.textContent = logged_in_user.hometown;
     display_user_current_city.textContent = logged_in_user.current_city;
-    display_user_school_s.textContent = logged_in_user.school_s;
-    display_user_college_s.textContent = logged_in_user.college_s;
-    display_user_job_s.textContent = logged_in_user.job_s;
-    display_user_project_s.textContent = logged_in_user.project_s;
-    display_user_programming_language_s.textContent = logged_in_user.programming_language_s;
+    display_user_school_s.textContent = logged_in_user.school_s.join("\n");
+    display_user_college_s.textContent = logged_in_user.college_s.join("\n");
+    display_user_job_s.textContent = logged_in_user.job_s.join("\n");
+    display_user_project_s.textContent = logged_in_user.project_s.join("\n");
+    display_user_programming_language_s.textContent = logged_in_user.programming_language_s.join("\n");
     display_user_portfolio_website.textContent = logged_in_user.portfolio_website;
-    display_user_social_media.textContent = logged_in_user.social_media;
+    display_user_social_media.textContent = logged_in_user.social_media.join("\n");
     display_user_contact_email.textContent = logged_in_user.contact_email;
     display_user_contact_number.textContent = logged_in_user.contact_number;
 
-    display_user_portfolio_website.style.color = "blue";
-    display_user_portfolio_website.style.cursor = "pointer";
-
-});
-
-display_user_portfolio_website.addEventListener("click", () => {
-    let url = "https://" + logged_in_user.portfolio_website;
-    window.open(url, "_blank");
 });
 
 // ------------------------------------------------------------------------------------------------
@@ -115,8 +105,7 @@ function edit_profile() {
 function logout() {
 
     localStorage.removeItem("logged-in-user-email");
-    localStorage.removeItem("searched-user-email");
-    localStorage.removeItem("search-query");
+    localStorage.removeItem("show-user-email");
     location = "index.html";
 
 };
@@ -128,29 +117,27 @@ function delete_profile() {
     let delete_profile_confirmation = 'Are You Sure You Want To Delete Your Profile?';
 
     if (confirm(delete_profile_confirmation) == true) {
+
         let user_id = users_data.indexOf(logged_in_user);
         users_data.splice(user_id, 1);
 
-        for (let other_users_email in users_followers) {
-            users_followers[other_users_email] = users_followers[other_users_email].filter(
-                other_followers_email => other_followers_email != logged_in_user_email
-            );
-        }
-
-        delete users_followers[logged_in_user_email];
-
         for (let user of users_data) {
-            let followers_list = users_followers[user.email] || [];
-            user.followers = followers_list.length.toString();
+            if (user.followers.includes(logged_in_user_email)) {
+                let follower_id = user.followers.indexOf(logged_in_user_email);
+                user.followers.splice(follower_id, 1)
+            }
+            else if (user.followings.includes(logged_in_user_email)) {
+                let following_id = user.followings.indexOf(logged_in_user_email);
+                user.followings.splice(following_id, 1)
+            }
         }
 
         localStorage.setItem("users", JSON.stringify(users_data));
-        localStorage.setItem("users-followers", JSON.stringify(users_followers));
         localStorage.removeItem("logged-in-user-email");
-        localStorage.removeItem("searched-user-email");
-        localStorage.removeItem("search-query");
+        localStorage.removeItem("show-user-email");
         alert("Your Profile Is Deleted!");
         location = "index.html";
+
     }
     else {
         return false;

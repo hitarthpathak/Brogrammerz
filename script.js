@@ -3,6 +3,10 @@ let password = document.getElementById("password");
 
 // ------------------------------------------------------------------------------------------------
 
+let users_data = JSON.parse(localStorage.getItem("users")) || [];
+
+// ------------------------------------------------------------------------------------------------
+
 function login() {
 
     if ((check_validation()) && (check_login_data())) {
@@ -49,8 +53,6 @@ function check_validation() {
 // ------------------------------------------------------------------------------------------------
 
 function check_login_data() {
-
-    let users_data = JSON.parse(localStorage.getItem("users")) || [];
 
     let filter_user = users_data.filter((filter_user) => {
         return filter_user.email == email.value;

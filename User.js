@@ -26,48 +26,51 @@ let follow_button = document.getElementById("follow-button");
 // ------------------------------------------------------------------------------------------------
 
 let users_data = JSON.parse(localStorage.getItem("users")) || [];
-let logged_in_user_email = JSON.parse(localStorage.getItem("logged-in-user-email")) || "";
 let show_user_email = JSON.parse(localStorage.getItem("show-user-email")) || "";
-let users_followers = JSON.parse(localStorage.getItem("users-followers")) || {};
+let logged_in_user_email = JSON.parse(localStorage.getItem("logged-in-user-email")) || "";
 
 // ------------------------------------------------------------------------------------------------
 
-let searched_user = users_data.find((filter_user) => {
+let show_user = users_data.find((filter_user) => {
     return filter_user.email == show_user_email;
+});
+
+let logged_in_user = users_data.find((filter_user) => {
+    return filter_user.email == logged_in_user_email;
 });
 
 if (show_user_email == logged_in_user_email) {
     your_profile();
 };
 
-let is_followed = (users_followers[show_user_email] || []).includes(logged_in_user_email);
+let is_followed = show_user.followers.includes(logged_in_user_email);
 
 // ------------------------------------------------------------------------------------------------
 
 window.addEventListener("load", () => {
 
-    search_user_input.value = searched_user.name;
+    search_user_input.value = show_user.name;
 
     follow_button.textContent = is_followed ? "Followed" : "Follow";
 
-    user_profile_photo.src = searched_user.profile_photo;
-    user_name.textContent = searched_user.name;
-    user_bio.textContent = searched_user.bio;
-    user_followers.textContent = "[" + searched_user.followers + "]";
-    user_date_of_birth.textContent = searched_user.date_of_birth;
-    user_gender.textContent = searched_user.gender;
-    user_relationship_status.textContent = searched_user.relationship_status;
-    user_hometown.textContent = searched_user.hometown;
-    user_current_city.textContent = searched_user.current_city;
-    user_school_s.textContent = searched_user.school_s;
-    user_college_s.textContent = searched_user.college_s;
-    user_job_s.textContent = searched_user.job_s;
-    user_project_s.textContent = searched_user.project_s;
-    user_programming_language_s.textContent = searched_user.programming_language_s;
-    user_portfolio_website.textContent = searched_user.portfolio_website;
-    user_social_media.textContent = searched_user.social_media;
-    user_contact_email.textContent = searched_user.contact_email;
-    user_contact_number.textContent = searched_user.contact_number;
+    user_profile_photo.src = show_user.profile_photo;
+    user_name.textContent = show_user.name;
+    user_bio.textContent = show_user.bio;
+    user_followers.textContent = "[" + show_user.followers.length + "]";
+    user_date_of_birth.textContent = show_user.date_of_birth;
+    user_gender.textContent = show_user.gender;
+    user_relationship_status.textContent = show_user.relationship_status;
+    user_hometown.textContent = show_user.hometown;
+    user_current_city.textContent = show_user.current_city;
+    user_school_s.textContent = show_user.school_s.join("\n");
+    user_college_s.textContent = show_user.college_s.join("\n");
+    user_job_s.textContent = show_user.job_s.join("\n");
+    user_project_s.textContent = show_user.project_s.join("\n");
+    user_programming_language_s.textContent = show_user.programming_language_s.join("\n");
+    user_portfolio_website.textContent = show_user.portfolio_website;
+    user_social_media.textContent = show_user.social_media.join("\n");
+    user_contact_email.textContent = show_user.contact_email;
+    user_contact_number.textContent = show_user.contact_number;
 
 });
 
@@ -81,14 +84,6 @@ function search_users() {
     else {
         alert("Please Insert The User's Name!");
     }
-
-};
-
-// ------------------------------------------------------------------------------------------------
-
-function your_profile() {
-
-    location = "Profile.html";
 
 };
 
@@ -110,38 +105,33 @@ function explore() {
 
 // ------------------------------------------------------------------------------------------------
 
+function your_profile() {
+
+    location = "Profile.html";
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
 function follow_user() {
 
     // for (user of users_data) {
-    //     user.followers = "0";
+    //     user.followers = [];
+    //     user.following = [];
     //     localStorage.setItem("users", JSON.stringify(users_data));
     // }
 
-    // for (let other_users_email in users_followers) {
-    //     users_followers[other_users_email] = users_followers[other_users_email].filter(
-    //         other_followers_email => other_followers_email != logged_in_user_email
-    //     );
-    // }
-    // localStorage.setItem("users-followers", JSON.stringify(users_followers));
-
     // --------------------------------------------------------------------------------------------
 
-    let searched_user_followers = users_followers[show_user_email] || [];
-
-    if (searched_user_followers.includes(logged_in_user_email)) {
+    if (show_user.followers.includes(logged_in_user_email)) {
         alert("You Have Already Followed The User!");
         return false;
     }
     else {
-        searched_user.followers = (parseInt(searched_user.followers) + 1).toString();
+        show_user.followers.push(logged_in_user_email);
+        logged_in_user.followings.push(show_user_email);
         localStorage.setItem("users", JSON.stringify(users_data));
-
-        user_followers.textContent = "[" + searched_user.followers + "]";
-
-        searched_user_followers.push(logged_in_user_email);
-        users_followers[show_user_email] = searched_user_followers;
-        localStorage.setItem("users-followers", JSON.stringify(users_followers));
-
+        user_followers.textContent = "[" + show_user.followers.length + "]";
         follow_button.textContent = "Followed";
     }
 
@@ -168,8 +158,8 @@ function base_64_to_blob_url(base_64_url) {
 
 function show_resume() {
 
-    if (searched_user.resume) {
-        let blob_url = base_64_to_blob_url(searched_user.resume);
+    if (show_user.resume) {
+        let blob_url = base_64_to_blob_url(show_user.resume);
         window.open(blob_url, "_blank");
     }
     else {

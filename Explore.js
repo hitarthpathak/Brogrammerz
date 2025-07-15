@@ -88,11 +88,17 @@ function your_profile() {
 
 function filter_users() {
 
-    // filter_input.forEach((input) => {
-    //     if (input.value == "") {
-    //         alert("Filter Inputs Can't Be Empty!")
-    //     }
-    // });
+    let empty_filter = true;
+
+    filter_input.forEach((input) => {
+        if (input.value != "") {
+            empty_filter = false;
+        }
+    });
+
+    if (empty_filter) {
+        alert("Filter Inputs Can't Be Empty!");
+    }
 
     let filtered_user = users_data.filter((filter_user) => {
         return (
@@ -100,11 +106,21 @@ function filter_users() {
             filter_user.relationship_status.toLowerCase().includes(relationship_status_filter.value.toLowerCase()) &&
             filter_user.hometown.toLowerCase().includes(hometown_filter.value.toLowerCase()) &&
             filter_user.current_city.toLowerCase().includes(current_city_filter.value.toLowerCase()) &&
-            filter_user.school_s.toLowerCase().includes(school_filter.value.toLowerCase()) &&
-            filter_user.college_s.toLowerCase().includes(college_filter.value.toLowerCase()) &&
-            filter_user.job_s.toLowerCase().includes(job_filter.value.toLowerCase()) &&
-            filter_user.programming_language_s.toLowerCase().includes(programming_language_filter.value.toLowerCase()) &&
-            filter_user.project_s.toLowerCase().includes(project_filter.value.toLowerCase())
+            filter_user.school_s.some((school) =>
+                school.toLowerCase().includes(school_filter.value.toLowerCase())
+            ) &&
+            filter_user.college_s.some((college) =>
+                college.toLowerCase().includes(college_filter.value.toLowerCase())
+            ) &&
+            filter_user.job_s.some((job) =>
+                job.toLowerCase().includes(job_filter.value.toLowerCase())
+            ) &&
+            filter_user.programming_language_s.some((lang) =>
+                lang.toLowerCase().includes(programming_language_filter.value.toLowerCase())
+            ) &&
+            filter_user.project_s.some((project) =>
+                project.toLowerCase().includes(project_filter.value.toLowerCase())
+            )
         )
     });
 
@@ -141,6 +157,12 @@ function filter_users() {
 
         });
 
+    }
+    else {
+        let filtered_user = document.createElement("div");
+        filtered_user.classList.add("filtered-user");
+        filtered_user.innerText = "No Users Found!";
+        filter_results.appendChild(filtered_user);
     }
 
 };

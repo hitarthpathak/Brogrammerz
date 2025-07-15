@@ -17,12 +17,6 @@ window.addEventListener("load", () => {
 
 // ------------------------------------------------------------------------------------------------
 
-function search_users() {
-    search_parameter = new URLSearchParams(window.location.search);
-    search_parameter.set("name", search_user_input.value);
-    window.location.search = search_parameter.toString();
-}
-
 function load_search_results() {
 
     if (search_user_input.value != "") {
@@ -65,10 +59,10 @@ function load_search_results() {
             });
         }
         else {
-            let filtered_user = document.createElement("div");
-            filtered_user.classList.add("searched-user");
-            filtered_user.innerText = "No Users Found!";
-            filter_results.appendChild(filtered_user);
+            let searched_user = document.createElement("div");
+            searched_user.classList.add("searched-user");
+            searched_user.innerText = "No Users Found!";
+            search_results.appendChild(searched_user);
         }
 
     }
@@ -76,6 +70,12 @@ function load_search_results() {
         alert("Please Insert The User's Name!");
     }
 
+};
+
+function search_users() {
+    search_parameter = new URLSearchParams(window.location.search);
+    search_parameter.set("name", search_user_input.value);
+    window.location.search = search_parameter.toString();
 };
 
 // ------------------------------------------------------------------------------------------------

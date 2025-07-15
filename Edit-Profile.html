@@ -143,44 +143,80 @@
 
                     <tr>
                         <td>School(s): </td>
-                        <td><textarea id="user-school-s" class="edit-page-input"
-                                placeholder="Enter Your School(s)"></textarea></td>
+                        <td>
+                            <div id="multiple-data-school-s">
+                                <textarea class="edit-page-input user-school-s" type="text"
+                                    placeholder="Enter Your School"></textarea>
+                            </div>
+                            <br>
+                            <button onclick="add_more_school_s()">Add More</button>
+                        </td>
                     </tr>
 
                     <tr>
                         <td>College(s): </td>
-                        <td><textarea id="user-college-s" class="edit-page-input"
-                                placeholder="Enter Your College(s)"></textarea></td>
+                        <td>
+                            <div id="multiple-data-college-s">
+                                <textarea class="edit-page-input user-college-s" type="text"
+                                    placeholder="Enter Your College"></textarea>
+                            </div>
+                            <br>
+                            <button onclick="add_more_college_s()">Add More</button>
+                        </td>
                     </tr>
 
                     <tr>
                         <td>Job(s): </td>
-                        <td><textarea id="user-job-s" class="edit-page-input"
-                                placeholder="Enter Your Job(s)"></textarea></td>
+                        <td>
+                            <div id="multiple-data-job-s">
+                                <textarea class="edit-page-input user-job-s" type="text"
+                                    placeholder="Enter Your Job"></textarea>
+                            </div>
+                            <br>
+                            <button onclick="add_more_job_s()">Add More</button>
+                        </td>
                     </tr>
 
                     <tr>
                         <td>Projects(s): </td>
-                        <td><textarea id="user-project-s" class="edit-page-input"
-                                placeholder="Enter Your Project(s)"></textarea></td>
+                        <td>
+                            <div id="multiple-data-project-s">
+                                <textarea class="edit-page-input user-project-s" type="text"
+                                    placeholder="Enter Your Project"></textarea>
+                            </div>
+                            <br>
+                            <button onclick="add_more_project_s()">Add More</button>
+                        </td>
                     </tr>
 
                     <tr>
                         <td>Programming Language(s): </td>
-                        <td><textarea id="user-programming-language-s" class="edit-page-input"
-                                placeholder="Enter Your Programming Language(s)"></textarea></td>
+                        <td>
+                            <div id="multiple-data-programming-language-s">
+                                <input class="edit-page-input user-programming-language-s" type="text"
+                                    placeholder="Enter Your Programming Language">
+                            </div>
+                            <br>
+                            <button onclick="add_more_programming_language_s()">Add More</button>
+                        </td>
                     </tr>
 
                     <tr>
                         <td>Portfolio Website: </td>
                         <td><input id="user-portfolio-website" class="edit-page-input" type="text"
-                                placeholder="Enter Your Portfolio Website"></td>
+                                placeholder="Enter Your Portfolio Website (Link)"></td>
                     </tr>
 
                     <tr>
                         <td>Social Media: </td>
-                        <td><textarea id="user-social-media" class="edit-page-input"
-                                placeholder="Enter Your Social Media"></textarea></td>
+                        <td>
+                            <div id="multiple-data-social-media">
+                                <input class="edit-page-input user-social-media" type="text"
+                                    placeholder="Enter Your Social Media (Link)">
+                            </div>
+                            <br>
+                            <button onclick="add_more_social_media()">Add More</button>
+                        </td>
                     </tr>
 
                     <tr>
@@ -198,7 +234,7 @@
                     <tr>
                         <td>Resume: </td>
                         <td>
-                            <input type="file" max="1024" accept=".pdf, .doc, .docx" onchange="upload_resume()">
+                            <input type="file" accept=".pdf, .doc, .docx" onchange="upload_resume()">
                             <hr>
                             <button onclick="delete_resume()">Delete Resume</button>
                         </td>
