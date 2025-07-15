@@ -153,7 +153,7 @@ window.addEventListener("load", () => {
         logged_in_user.social_media.forEach((social_media) => {
             let new_input = document.createElement("input");
             new_input.classList.add("edit-page-input", "user-social-media");
-            new_input.placeholder = "Enter Your Social Media";
+            new_input.placeholder = "Enter Your Social Media (Link)";
             new_input.value = social_media;
             multiple_data_social_media.appendChild(new_input);
         });
@@ -161,7 +161,7 @@ window.addEventListener("load", () => {
     else {
         let new_input = document.createElement("input");
         new_input.classList.add("edit-page-input", "user-social-media");
-        new_input.placeholder = "Enter Your Social Media";
+        new_input.placeholder = "Enter Your Social Media (Link)";
         multiple_data_social_media.appendChild(new_input);
     }
 
