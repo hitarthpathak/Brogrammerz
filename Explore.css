@@ -123,7 +123,8 @@ nav {
     cursor: pointer;
 }
 
-.filter-options input, select {
+.filter-options input,
+select {
     height: auto;
     width: auto;
     padding: 0.3rem;

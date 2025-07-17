@@ -12,7 +12,7 @@
 
 <body>
 
-    <div class="body">
+    <div id="body">
 
         <nav>
 
@@ -60,6 +60,8 @@
 
                 <button onclick="save_profile()">Save Profile</button>
 
+                <button onclick="show_connections_box()">Connections</button>
+
                 <button onclick="logout()">Log Out</button>
 
                 <button onclick="delete_profile()">Delete Profile</button>
@@ -80,7 +82,8 @@
 
                 </div>
 
-                <input type="file" accept=".jpg, .jpeg, .png" onchange="upload_profile_photo()">
+                <input id="upload-profile-photo" type="file" accept=".jpg, .jpeg, .png"
+                    onchange="upload_profile_photo()">
 
                 <input id="user-name" class="edit-page-input" type="text" placeholder="Enter Your Name">
 
@@ -247,7 +250,7 @@
                     <tr>
                         <td>Resume: </td>
                         <td>
-                            <input type="file" accept=".pdf, .doc, .docx" onchange="upload_resume()">
+                            <input id="upload-resume" type="file" accept=".pdf, .doc, .docx" onchange="upload_resume()">
                             <hr>
                             <button onclick="delete_resume()">Delete Resume</button>
                         </td>

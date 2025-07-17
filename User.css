@@ -122,13 +122,13 @@ nav {
 .profile-photo-box {
     border: 1px solid black;
     height: 15rem;
-    width: auto;
+    width: 12rem;
     text-align: center;
 }
 
 .profile-photo-box img {
     height: 100%;
-    width: auto;
+    width: 100%;
 }
 
 #user-name {

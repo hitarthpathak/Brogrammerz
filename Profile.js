@@ -102,6 +102,179 @@ function edit_profile() {
 
 // ------------------------------------------------------------------------------------------------
 
+function show_connections_box() {
+
+    let existing_box = document.querySelector(".show-connections-box");
+    if (existing_box) return true;
+
+    let body = document.getElementById("body");
+    let connections_box = document.createElement("div");
+    connections_box.classList.add("show-connections-box");
+    connections_box.innerHTML =
+        `
+
+            <div class="top">
+
+                <span>Your Connections</span>
+
+            </div>
+
+            <div class="button-box">
+
+                <button id="followers-button" class="show-connections" onclick="show_followers_list()">Followers</button>
+                
+                <button id="followings-button" onclick="show_followings_list()">Following</button>
+
+                <button id="x-button" onclick="hide_connections_box()">X</button>
+
+            </div>
+
+            <div id="list-box"></div>
+            
+        `
+    body.appendChild(connections_box);
+
+    show_followers_list();
+
+};
+
+function show_followers_list() {
+
+    let followers_button = document.getElementById("followers-button");
+    let followings_button = document.getElementById("followings-button");
+    let list_box = document.getElementById("list-box");
+
+    followers_button.classList.add("show-connections");
+    followings_button.classList.remove("show-connections");
+
+    list_box.innerHTML = "";
+
+    logged_in_user.followers.forEach((follower_email) => {
+        let follower_user = users_data.find((user) => user.email == follower_email);
+
+        let connected_user_box = document.createElement("div");
+        connected_user_box.classList.add("connected-user-box");
+
+        let connected_user = document.createElement("div");
+        connected_user.classList.add("connected-user");
+        connected_user.innerHTML =
+            `
+                
+                <div class="connected-user-img-box">
+                
+                    <img src="${follower_user.profile_photo}" alt="Image Not Available">
+    
+                </div>
+                
+                <div class="connected-user-data">
+                
+                    <p>${follower_user.name}</p>
+                
+                </div>
+                
+            `;
+
+        connected_user.addEventListener("click", () => {
+            localStorage.setItem("show-user-email", JSON.stringify(follower_user.email));
+            location = "User.html";
+        });
+
+        let remove_user = document.createElement("button");
+        remove_user.id = "remove";
+        remove_user.innerText = "Remove";
+
+        remove_user.addEventListener("click", () => {
+            logged_in_user.followers = logged_in_user.followers.filter((user) => user != follower_user.email);
+            follower_user.followings = follower_user.followings.filter((user) => user != logged_in_user.email);
+            localStorage.setItem("users", JSON.stringify(users_data));
+            show_followers_list();
+            display_user_followers.textContent = "[" + logged_in_user.followers.length + "]";
+        })
+
+        connected_user_box.appendChild(connected_user);
+        connected_user_box.appendChild(remove_user);
+
+        list_box.appendChild(connected_user_box);
+    });
+
+};
+
+function show_followings_list() {
+
+    let followers_button = document.getElementById("followers-button");
+    let followings_button = document.getElementById("followings-button");
+    let list_box = document.getElementById("list-box");
+
+    followers_button.classList.remove("show-connections");
+    followings_button.classList.add("show-connections");
+
+    list_box.innerHTML = "";
+
+    logged_in_user.followings.forEach((following_email) => {
+        let following_user = users_data.find((user) => user.email == following_email);
+
+        let connected_user_box = document.createElement("div");
+        connected_user_box.classList.add("connected-user-box");
+
+        let connected_user = document.createElement("div");
+        connected_user.classList.add("connected-user");
+        connected_user.innerHTML =
+            `
+                
+                <div class="connected-user-img-box">
+                
+                    <img src="${following_user.profile_photo}" alt="Image Not Available">
+    
+                </div>
+                
+                <div class="connected-user-data">
+                
+                    <p>${following_user.name}</p>
+                
+                </div>
+                
+            `;
+
+        connected_user.addEventListener("click", () => {
+            localStorage.setItem("show-user-email", JSON.stringify(following_user.email));
+            location = "User.html";
+        });
+
+        let remove_user = document.createElement("button");
+        remove_user.id = "remove";
+        remove_user.innerText = "Remove";
+
+        remove_user.addEventListener("click", () => {
+            logged_in_user.followings = logged_in_user.followings.filter((user) => user != following_user.email);
+            following_user.followers = following_user.followers.filter((user) => user != logged_in_user.email);
+            localStorage.setItem("users", JSON.stringify(users_data));
+            show_followings_list();
+        })
+
+        connected_user_box.appendChild(connected_user);
+        connected_user_box.appendChild(remove_user);
+
+        list_box.appendChild(connected_user_box);
+    });
+
+};
+
+function hide_connections_box() {
+
+    let connections_box = document.querySelector(".show-connections-box");
+    if (!connections_box) return true;
+
+    connections_box.classList.remove("show-connections-box");
+    connections_box.classList.add("hide-connections-box");
+
+    connections_box.addEventListener("animationend", () => {
+        connections_box.remove();
+    }, { once: true });
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
 function logout() {
 
     localStorage.removeItem("logged-in-user-email");

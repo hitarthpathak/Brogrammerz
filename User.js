@@ -43,6 +43,7 @@ if (show_user_email == logged_in_user_email) {
     your_profile();
 };
 
+// let is_followed = show_user.followers.some((follower) => follower.email == logged_in_user_email);
 let is_followed = show_user.followers.includes(logged_in_user_email);
 
 // ------------------------------------------------------------------------------------------------
@@ -117,8 +118,9 @@ function follow_user() {
 
     // for (user of users_data) {
     //     user.followers = [];
-    //     user.following = [];
+    //     user.followings = [];
     //     localStorage.setItem("users", JSON.stringify(users_data));
+    //     location.reload();
     // }
 
     // --------------------------------------------------------------------------------------------
