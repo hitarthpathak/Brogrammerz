@@ -56,8 +56,40 @@ window.addEventListener("load", () => {
     display_user_job_s.textContent = logged_in_user.job_s.join("\n");
     display_user_project_s.textContent = logged_in_user.project_s.join("\n");
     display_user_programming_language_s.textContent = logged_in_user.programming_language_s.join("\n");
+
     display_user_portfolio_website.textContent = logged_in_user.portfolio_website;
-    display_user_social_media.textContent = logged_in_user.social_media.join("\n");
+    display_user_portfolio_website.style.color = "blue";
+    display_user_portfolio_website.style.cursor = "pointer";
+    display_user_portfolio_website.onmouseover = function () {
+        display_user_portfolio_website.style.textDecoration = "underline";
+    };
+    display_user_portfolio_website.onmouseout = function () {
+        display_user_portfolio_website.style.textDecoration = "none";
+    };
+    display_user_portfolio_website.addEventListener("click", () => {
+        let url = "https://" + logged_in_user.portfolio_website;
+        window.open(url, "_blank");
+    });
+
+    logged_in_user.social_media.forEach((input) => {
+        let link = document.createElement("span");
+        link.textContent = input;
+        link.style.display = "block";
+        link.style.color = "blue";
+        link.style.cursor = "pointer";
+        link.onmouseover = function () {
+            link.style.textDecoration = "underline";
+        };
+        link.onmouseout = function () {
+            link.style.textDecoration = "none";
+        };
+        link.addEventListener("click", () => {
+            let url = "https://" + input;
+            window.open(url, "_blank");
+        });
+        display_user_social_media.appendChild(link);
+    });
+
     display_user_contact_email.textContent = logged_in_user.contact_email;
     display_user_contact_number.textContent = logged_in_user.contact_number;
 
