@@ -66,7 +66,7 @@ window.addEventListener("load", () => {
         logged_in_user.school_s.forEach((school) => {
             let new_input = document.createElement("textarea");
             new_input.classList.add("edit-page-input", "user-school-s");
-            new_input.placeholder = "Enter Your School";
+            new_input.placeholder = "Enter Your School (School Name, City)";
             new_input.value = school;
             multiple_data_school_s.appendChild(new_input);
         });
@@ -74,7 +74,7 @@ window.addEventListener("load", () => {
     else {
         let new_input = document.createElement("textarea");
         new_input.classList.add("edit-page-input", "user-school-s");
-        new_input.placeholder = "Enter Your School";
+        new_input.placeholder = "Enter Your School (School Name, City)";
         multiple_data_school_s.appendChild(new_input);
     }
 
@@ -83,7 +83,7 @@ window.addEventListener("load", () => {
         logged_in_user.college_s.forEach((college) => {
             let new_input = document.createElement("textarea");
             new_input.classList.add("edit-page-input", "user-college-s");
-            new_input.placeholder = "Enter Your College";
+            new_input.placeholder = "Enter Your College (College Name, City)";
             new_input.value = college;
             multiple_data_college_s.appendChild(new_input);
         });
@@ -91,7 +91,7 @@ window.addEventListener("load", () => {
     else {
         let new_input = document.createElement("textarea");
         new_input.classList.add("edit-page-input", "user-college-s");
-        new_input.placeholder = "Enter Your College";
+        new_input.placeholder = "Enter Your College (College Name, City)";
         multiple_data_college_s.appendChild(new_input);
     }
 
@@ -100,7 +100,7 @@ window.addEventListener("load", () => {
         logged_in_user.job_s.forEach((job) => {
             let new_input = document.createElement("textarea");
             new_input.classList.add("edit-page-input", "user-job-s");
-            new_input.placeholder = "Enter Your Job";
+            new_input.placeholder = "Enter Your Job (Position, Company Name)";
             new_input.value = job;
             multiple_data_job_s.appendChild(new_input);
         });
@@ -108,7 +108,7 @@ window.addEventListener("load", () => {
     else {
         let new_input = document.createElement("textarea");
         new_input.classList.add("edit-page-input", "user-job-s");
-        new_input.placeholder = "Enter Your Job";
+        new_input.placeholder = "Enter Your Job (Position, Company Name)";
         multiple_data_job_s.appendChild(new_input);
     }
 
@@ -117,7 +117,7 @@ window.addEventListener("load", () => {
         logged_in_user.project_s.forEach((project) => {
             let new_input = document.createElement("textarea");
             new_input.classList.add("edit-page-input", "user-project-s");
-            new_input.placeholder = "Enter Your Project";
+            new_input.placeholder = "Enter Your Project (Title, Description)";
             new_input.value = project;
             multiple_data_project_s.appendChild(new_input);
         });
@@ -125,7 +125,7 @@ window.addEventListener("load", () => {
     else {
         let new_input = document.createElement("textarea");
         new_input.classList.add("edit-page-input", "user-project-s");
-        new_input.placeholder = "Enter Your Project";
+        new_input.placeholder = "Enter Your Project (Title, Description)";
         multiple_data_project_s.appendChild(new_input);
     }
 
@@ -187,7 +187,7 @@ function search_users() {
 
 function ranking() {
 
-    alert("Working On It!");
+    location = "Ranking.html";
 
 };
 
@@ -783,7 +783,7 @@ function add_more_school_s() {
     let new_input = document.createElement("textarea");
     new_input.classList.add("edit-page-input");
     new_input.classList.add("user-school-s");
-    new_input.placeholder = "Enter Your School";
+    new_input.placeholder = "Enter Your School (School Name, City)";
     multiple_data_school_s.appendChild(new_input);
 
 };
@@ -793,7 +793,7 @@ function add_more_college_s() {
     let new_input = document.createElement("textarea");
     new_input.classList.add("edit-page-input");
     new_input.classList.add("user-college-s");
-    new_input.placeholder = "Enter Your College";
+    new_input.placeholder = "Enter Your College (College Name, City)";
     multiple_data_college_s.appendChild(new_input);
 
 };
@@ -803,7 +803,7 @@ function add_more_job_s() {
     let new_input = document.createElement("textarea");
     new_input.classList.add("edit-page-input");
     new_input.classList.add("user-job-s");
-    new_input.placeholder = "Enter Your Job";
+    new_input.placeholder = "Enter Your Job (Position, Company Name)";
     multiple_data_job_s.appendChild(new_input);
 
 };
@@ -813,7 +813,7 @@ function add_more_project_s() {
     let new_input = document.createElement("textarea");
     new_input.classList.add("edit-page-input");
     new_input.classList.add("user-project-s");
-    new_input.placeholder = "Enter Your Project";
+    new_input.placeholder = "Enter Your Project (Title, Description)";
     multiple_data_project_s.appendChild(new_input);
 
 };

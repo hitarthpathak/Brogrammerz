@@ -14,7 +14,7 @@ hr {
 }
 
 
-.body {
+#body {
     height: 100vh;
     width: 100vw;
     padding: 1rem;
@@ -92,6 +92,168 @@ nav {
     width: auto;
     padding: 0.3rem;
     cursor: pointer;
+}
+
+.show-connections-box {
+    border: 2px solid black;
+    height: 30rem;
+    width: 40rem;
+    background-color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    animation: show-connections-box 0.3s;
+}
+
+.show-connections-box .top {
+    border-bottom: 1px solid black;
+    height: 10%;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.top span {
+    font-size: 1.5rem;
+}
+
+.show-connections-box .button-box {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    height: 10%;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.button-box #followers-button,
+#followings-button {
+    height: auto;
+    width: 40%;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.button-box #x-button {
+    height: auto;
+    width: auto;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.show-connections-box .show-connections {
+    background-color: rgba(130, 130, 130, 0.300);
+}
+
+.show-connections-box #list-box {
+    height: 80%;
+    width: auto;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    overflow: auto;
+}
+
+#list-box .connected-user-box {
+    height: 5rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.connected-user-box .connected-user {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.connected-user:hover {
+    border: 1px solid black;
+}
+
+.connected-user .connected-user-img-box {
+    border: 1px solid black;
+    border-right: none;
+    height: 100%;
+    width: 30%;
+    text-align: center;
+}
+
+.connected-user-img-box img {
+    height: 100%;
+    width: 50%;
+}
+
+.connected-user .connected-user-data {
+    border: 1px solid black;
+    height: 100%;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.connected-user-data p {
+    height: fit-content;
+    width: fit-content;
+}
+
+.connected-user-box #remove {
+    height: 100%;
+    width: auto;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+@keyframes show-connections-box {
+    from {
+        height: 0rem;
+        width: 0rem;
+        opacity: 0;
+    }
+
+    to {
+        height: 25rem;
+        width: 40rem;
+        opacity: 1;
+    }
+}
+
+.hide-connections-box {
+    border: 2px solid blue;
+    height: 25rem;
+    width: 40rem;
+    background-color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    animation: hide-connections-box 0.3s;
+}
+
+@keyframes hide-connections-box {
+    from {
+        height: 25rem;
+        width: 40rem;
+        opacity: 1;
+    }
+
+    to {
+        height: 0rem;
+        width: 0rem;
+        opacity: 0;
+    }
 }
 
 /* ------------------------------------------------------------------------------------------------ */

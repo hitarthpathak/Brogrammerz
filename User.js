@@ -43,7 +43,6 @@ if (show_user_email == logged_in_user_email) {
     your_profile();
 };
 
-// let is_followed = show_user.followers.some((follower) => follower.email == logged_in_user_email);
 let is_followed = show_user.followers.includes(logged_in_user_email);
 
 // ------------------------------------------------------------------------------------------------
@@ -68,8 +67,40 @@ window.addEventListener("load", () => {
     user_job_s.textContent = show_user.job_s.join("\n");
     user_project_s.textContent = show_user.project_s.join("\n");
     user_programming_language_s.textContent = show_user.programming_language_s.join("\n");
+
     user_portfolio_website.textContent = show_user.portfolio_website;
-    user_social_media.textContent = show_user.social_media.join("\n");
+    user_portfolio_website.style.color = "blue";
+    user_portfolio_website.style.cursor = "pointer";
+    user_portfolio_website.onmouseover = function () {
+        user_portfolio_website.style.textDecoration = "underline";
+    };
+    user_portfolio_website.onmouseout = function () {
+        user_portfolio_website.style.textDecoration = "none";
+    };
+    user_portfolio_website.addEventListener("click", () => {
+        let url = show_user.portfolio_website;
+        window.open(url, "_blank");
+    });
+
+    show_user.social_media.forEach((input) => {
+        let link = document.createElement("span");
+        link.textContent = input;
+        link.style.display = "block";
+        link.style.color = "blue";
+        link.style.cursor = "pointer";
+        link.onmouseover = function () {
+            link.style.textDecoration = "underline";
+        };
+        link.onmouseout = function () {
+            link.style.textDecoration = "none";
+        };
+        link.addEventListener("click", () => {
+            let url = input;
+            window.open(url, "_blank");
+        });
+        user_social_media.appendChild(link);
+    });
+
     user_contact_email.textContent = show_user.contact_email;
     user_contact_number.textContent = show_user.contact_number;
 
@@ -92,7 +123,7 @@ function search_users() {
 
 function ranking() {
 
-    alert("Working On It!");
+    location = "Ranking.html";
 
 };
 
@@ -101,6 +132,154 @@ function ranking() {
 function explore() {
 
     location = "Explore.html";
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
+function show_connections_box() {
+
+    let existing_box = document.querySelector(".show-connections-box");
+    if (existing_box) return true;
+
+    let body = document.getElementById("body");
+    let connections_box = document.createElement("div");
+    connections_box.classList.add("show-connections-box");
+    connections_box.innerHTML =
+        `
+
+            <div class="top">
+
+                <span>User's Connections</span>
+
+            </div>
+
+            <div class="button-box">
+
+                <button id="followers-button" class="show-connections" onclick="show_followers_list()">Followers</button>
+                
+                <button id="followings-button" onclick="show_followings_list()">Following</button>
+
+                <button id="x-button" onclick="hide_connections_box()">X</button>
+
+            </div>
+
+            <div id="list-box"></div>
+            
+        `
+    body.appendChild(connections_box);
+
+    show_followers_list();
+
+};
+
+function show_followers_list() {
+
+    let followers_button = document.getElementById("followers-button");
+    let followings_button = document.getElementById("followings-button");
+    let list_box = document.getElementById("list-box");
+
+    followers_button.classList.add("show-connections");
+    followings_button.classList.remove("show-connections");
+
+    list_box.innerHTML = "";
+
+    show_user.followers.forEach((follower_email) => {
+        let follower_user = users_data.find((user) => user.email == follower_email);
+
+        let connected_user_box = document.createElement("div");
+        connected_user_box.classList.add("connected-user-box");
+
+        let connected_user = document.createElement("div");
+        connected_user.classList.add("connected-user");
+        connected_user.innerHTML =
+            `
+                
+                <div class="connected-user-img-box">
+                
+                    <img src="${follower_user.profile_photo}" alt="Image Not Available">
+    
+                </div>
+                
+                <div class="connected-user-data">
+                
+                    <p>${follower_user.name}</p>
+                
+                </div>
+                
+            `;
+
+        connected_user.addEventListener("click", () => {
+            localStorage.setItem("show-user-email", JSON.stringify(follower_user.email));
+            location = "User.html";
+        });
+
+        connected_user_box.appendChild(connected_user);
+
+        list_box.appendChild(connected_user_box);
+    });
+
+};
+
+function show_followings_list() {
+
+    let followers_button = document.getElementById("followers-button");
+    let followings_button = document.getElementById("followings-button");
+    let list_box = document.getElementById("list-box");
+
+    followers_button.classList.remove("show-connections");
+    followings_button.classList.add("show-connections");
+
+    list_box.innerHTML = "";
+
+    show_user.followings.forEach((following_email) => {
+        let following_user = users_data.find((user) => user.email == following_email);
+
+        let connected_user_box = document.createElement("div");
+        connected_user_box.classList.add("connected-user-box");
+
+        let connected_user = document.createElement("div");
+        connected_user.classList.add("connected-user");
+        connected_user.innerHTML =
+            `
+                
+                <div class="connected-user-img-box">
+                
+                    <img src="${following_user.profile_photo}" alt="Image Not Available">
+    
+                </div>
+                
+                <div class="connected-user-data">
+                
+                    <p>${following_user.name}</p>
+                
+                </div>
+                
+            `;
+
+        connected_user.addEventListener("click", () => {
+            localStorage.setItem("show-user-email", JSON.stringify(following_user.email));
+            location = "User.html";
+        });
+
+        connected_user_box.appendChild(connected_user);
+
+        list_box.appendChild(connected_user_box);
+    });
+
+};
+
+function hide_connections_box() {
+
+    let connections_box = document.querySelector(".show-connections-box");
+    if (!connections_box) return true;
+
+    connections_box.classList.remove("show-connections-box");
+    connections_box.classList.add("hide-connections-box");
+
+    connections_box.addEventListener("animationend", () => {
+        connections_box.remove();
+    }, { once: true });
 
 };
 
@@ -115,15 +294,6 @@ function your_profile() {
 // ------------------------------------------------------------------------------------------------
 
 function follow_user() {
-
-    // for (user of users_data) {
-    //     user.followers = [];
-    //     user.followings = [];
-    //     localStorage.setItem("users", JSON.stringify(users_data));
-    //     location.reload();
-    // }
-
-    // --------------------------------------------------------------------------------------------
 
     if (show_user.followers.includes(logged_in_user_email)) {
         alert("You Have Already Followed The User!");

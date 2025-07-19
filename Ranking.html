@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<head>
+
+    <title>Ranking</title>
+
+    <link rel="icon" href="Images/Brogrammerz.jpg">
+
+    <link rel="stylesheet" href="Ranking.css">
+
+</head>
+
+<body>
+
+    <div class="body">
+
+        <nav>
+
+            <div class="logo-box">
+
+                <img src="Images/Brogrammerz.jpg" alt="Image Not Available">
+
+            </div>
+
+            <div class="search-box">
+
+                <input id="search-user-input" type="text" placeholder="Search Brogrammerz...">
+
+                <button onclick="search_users()">Search</button>
+
+            </div>
+
+            <div class="logo-box">
+
+                <img src="Images/Brogrammerz.jpg" alt="Image Not Available">
+
+            </div>
+
+        </nav>
+
+        <hr>
+
+        <div class="profile-options">
+
+            <div class="profile-options-left">
+
+                <a href="About.html">
+
+                    <button>About</button>
+
+                </a>
+
+                <button onclick="explore()">Explore</button>
+
+            </div>
+
+            <div class="profile-options-right">
+
+                <button onclick="your_profile()">Your Profile</button>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="ranking-box">
+
+            <table id="ranking-table">
+
+                <tr>
+                    <th>Rank</th>
+                    <th>Brogrammer</th>
+                    <th>Followers</th>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <div class="display-error-message">
+
+        <p>You Can Only Use Brogrammerz In Between 75% & 200% Zoom!</p>
+        <p>So Stay In Your Limits!</p>
+
+    </div>
+
+</body>
+
+<script src="Ranking.js"></script>
+
+</html>

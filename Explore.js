@@ -72,7 +72,7 @@ function search_users() {
 
 function ranking() {
 
-    alert("Working On It!");
+    location = "Ranking.html";
 
 };
 

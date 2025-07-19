@@ -67,7 +67,7 @@ window.addEventListener("load", () => {
         display_user_portfolio_website.style.textDecoration = "none";
     };
     display_user_portfolio_website.addEventListener("click", () => {
-        let url = "https://" + logged_in_user.portfolio_website;
+        let url = logged_in_user.portfolio_website;
         window.open(url, "_blank");
     });
 
@@ -84,7 +84,7 @@ window.addEventListener("load", () => {
             link.style.textDecoration = "none";
         };
         link.addEventListener("click", () => {
-            let url = "https://" + input;
+            let url = input;
             window.open(url, "_blank");
         });
         display_user_social_media.appendChild(link);
@@ -112,7 +112,7 @@ function search_users() {
 
 function ranking() {
 
-    alert("Working On It!");
+    location = "Ranking.html";
 
 };
 
@@ -221,7 +221,7 @@ function show_followers_list() {
             localStorage.setItem("users", JSON.stringify(users_data));
             show_followers_list();
             display_user_followers.textContent = "[" + logged_in_user.followers.length + "]";
-        })
+        });
 
         connected_user_box.appendChild(connected_user);
         connected_user_box.appendChild(remove_user);
@@ -281,7 +281,7 @@ function show_followings_list() {
             following_user.followers = following_user.followers.filter((user) => user != logged_in_user.email);
             localStorage.setItem("users", JSON.stringify(users_data));
             show_followings_list();
-        })
+        });
 
         connected_user_box.appendChild(connected_user);
         connected_user_box.appendChild(remove_user);
