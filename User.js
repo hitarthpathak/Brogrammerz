@@ -150,7 +150,7 @@ function show_connections_box() {
 
             <div class="top">
 
-                <span>User's Connections</span>
+                <span>${show_user.name}'s Connections</span>
 
             </div>
 
