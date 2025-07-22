@@ -127,10 +127,6 @@ function filter_users() {
 
     let filtered_user_data = filtered_user;
 
-    filter_input.forEach((input) => {
-        input.value = "";
-    });
-
     filter_results.innerHTML = "";
 
     if (filtered_user_data != "") {
