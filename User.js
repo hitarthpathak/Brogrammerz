@@ -124,7 +124,7 @@ window.addEventListener("load", () => {
         user_contact_number.style.textDecoration = "none";
     };
     user_contact_number.addEventListener("click", () => {
-        location = "callto:show_user.contact_number";
+        location = "tel:show_user.contact_number";
     });
 
 });
