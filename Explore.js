@@ -171,3 +171,43 @@ function filter_users() {
     }
 
 };
+
+// ------------------------------------------------------------------------------------------------
+
+function clear_filter() {
+
+    filter_input.forEach((input) => {
+        input.value = "";
+    });
+
+    filter_results.innerHTML = "";
+
+    users_data.forEach((user) => {
+        let filtered_user = document.createElement("div");
+        filtered_user.classList.add("filtered-user");
+        filtered_user.innerHTML =
+            `
+                
+                 <div class="filtered-user-img-box">
+                
+                    <img src="${user.profile_photo}" alt="Image Not Available">
+    
+                </div>
+                
+                <div class="filtered-user-data">
+                
+                    <p>${user.name}</p>
+                
+                </div>
+                
+            `;
+        filter_results.appendChild(filtered_user);
+
+        filtered_user.addEventListener("click", () => {
+            localStorage.setItem("show-user-email", JSON.stringify(user.email));
+            location = "User.html";
+        });
+
+    });
+
+};
