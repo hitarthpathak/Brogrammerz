@@ -111,7 +111,7 @@ window.addEventListener("load", () => {
         user_contact_email.style.textDecoration = "none";
     };
     user_contact_email.addEventListener("click", () => {
-        location = "mailto:show_user.contact_email";
+        location = `mailto:${show_user.contact_email}`;
     });
 
     user_contact_number.textContent = show_user.contact_number;
@@ -124,7 +124,7 @@ window.addEventListener("load", () => {
         user_contact_number.style.textDecoration = "none";
     };
     user_contact_number.addEventListener("click", () => {
-        location = "tel:show_user.contact_number";
+        location = `tel:${show_user.contact_number}`;
     });
 
 });
