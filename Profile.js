@@ -100,7 +100,7 @@ window.addEventListener("load", () => {
         display_user_contact_email.style.textDecoration = "none";
     };
     display_user_contact_email.addEventListener("click", () => {
-        location = "mailto:logged_in_user.contact_email";
+        location = `mailto:${logged_in_user.contact_email}`;
     });
 
     display_user_contact_number.textContent = logged_in_user.contact_number;
@@ -113,7 +113,7 @@ window.addEventListener("load", () => {
         display_user_contact_number.style.textDecoration = "none";
     };
     display_user_contact_number.addEventListener("click", () => {
-        location = "tel:logged_in_user.contact_number";
+        location = `tel:${logged_in_user.contact_number}`;
     });
 
 });
