@@ -296,7 +296,7 @@ function your_profile() {
 function follow_user() {
 
     if (show_user.followers.includes(logged_in_user_email)) {
-        alert("You Have Already Followed The User!");
+        alert(`You Have Already Followed ${show_user.name}!`);
         return false;
     }
     else {
