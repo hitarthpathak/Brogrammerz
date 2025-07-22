@@ -91,7 +91,30 @@ window.addEventListener("load", () => {
     });
 
     display_user_contact_email.textContent = logged_in_user.contact_email;
+    display_user_contact_email.style.color = "blue";
+    display_user_contact_email.style.cursor = "pointer";
+    display_user_contact_email.onmouseover = function () {
+        display_user_contact_email.style.textDecoration = "underline";
+    };
+    display_user_contact_email.onmouseout = function () {
+        display_user_contact_email.style.textDecoration = "none";
+    };
+    display_user_contact_email.addEventListener("click", () => {
+        location = "mailto:logged_in_user.contact_email";
+    });
+
     display_user_contact_number.textContent = logged_in_user.contact_number;
+    display_user_contact_number.style.color = "blue";
+    display_user_contact_number.style.cursor = "pointer";
+    display_user_contact_number.onmouseover = function () {
+        display_user_contact_number.style.textDecoration = "underline";
+    };
+    display_user_contact_number.onmouseout = function () {
+        display_user_contact_number.style.textDecoration = "none";
+    };
+    display_user_contact_number.addEventListener("click", () => {
+        location = "callto:logged_in_user.contact_number";
+    });
 
 });
 
