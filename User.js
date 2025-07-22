@@ -102,7 +102,30 @@ window.addEventListener("load", () => {
     });
 
     user_contact_email.textContent = show_user.contact_email;
+    user_contact_email.style.color = "blue";
+    user_contact_email.style.cursor = "pointer";
+    user_contact_email.onmouseover = function () {
+        user_contact_email.style.textDecoration = "underline";
+    };
+    user_contact_email.onmouseout = function () {
+        user_contact_email.style.textDecoration = "none";
+    };
+    user_contact_email.addEventListener("click", () => {
+        location = "mailto:show_user.contact_email";
+    });
+
     user_contact_number.textContent = show_user.contact_number;
+    user_contact_number.style.color = "blue";
+    user_contact_number.style.cursor = "pointer";
+    user_contact_number.onmouseover = function () {
+        user_contact_number.style.textDecoration = "underline";
+    };
+    user_contact_number.onmouseout = function () {
+        user_contact_number.style.textDecoration = "none";
+    };
+    user_contact_number.addEventListener("click", () => {
+        location = "callto:show_user.contact_number";
+    });
 
 });
 
