@@ -109,7 +109,7 @@ nav {
 .searched-user {
     height: 5rem;
     width: 100%;
-    background-color: rgba(130, 130, 130, 0.300);
+    background-color: rgba(130, 130, 130, 0.200);
     display: flex;
     align-items: center;
     justify-content: center;

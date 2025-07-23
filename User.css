@@ -171,7 +171,7 @@ nav {
 .connected-user-box .connected-user {
     height: 100%;
     width: 100%;
-    background-color: rgba(130, 130, 130, 0.300);
+    background-color: rgba(130, 130, 130, 0.200);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -271,11 +271,11 @@ nav {
 /* ------------------------------------------------------------------------------------------------ */
 
 .main-box .left {
-    border: 3px solid white;
+    border: 5px solid white;
     height: 100%;
     width: 30%;
     padding: 1rem;
-    background-color: rgba(130, 130, 130, 0.300);
+    background-color: rgba(130, 130, 130, 0.200);
     display: flex;
     align-items: center;
     justify-content: start;
@@ -332,7 +332,7 @@ table td {
     height: auto;
     width: 50%;
     padding: 1rem;
-    background-color: rgba(130, 130, 130, 0.300);
+    background-color: rgba(130, 130, 130, 0.200);
 }
 
 td button {
