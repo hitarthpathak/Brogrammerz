@@ -107,7 +107,7 @@ nav {
     animation: show-connections-box 0.3s;
 }
 
-.show-connections-box .top {
+.top {
     border-bottom: 1px solid black;
     height: 10%;
     width: auto;
@@ -120,8 +120,7 @@ nav {
     font-size: 1.5rem;
 }
 
-.show-connections-box .button-box {
-    border-top: 1px solid black;
+.button-box {
     border-bottom: 1px solid black;
     height: 10%;
     width: auto;
@@ -145,17 +144,18 @@ nav {
     cursor: pointer;
 }
 
-.show-connections-box .show-connections {
+.show-connections {
     background-color: rgba(130, 130, 130, 0.300);
 }
 
-.show-connections-box #list-box {
+#list-box {
     height: 80%;
     width: auto;
     padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: start;
+    gap: 1rem;
     flex-direction: column;
     overflow: auto;
 }
@@ -171,6 +171,7 @@ nav {
 .connected-user-box .connected-user {
     height: 100%;
     width: 100%;
+    background-color: rgba(130, 130, 130, 0.300);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -182,8 +183,7 @@ nav {
 }
 
 .connected-user .connected-user-img-box {
-    border: 1px solid black;
-    border-right: none;
+    border-right: 1px solid black;
     height: 100%;
     width: 30%;
     text-align: center;
@@ -195,7 +195,6 @@ nav {
 }
 
 .connected-user .connected-user-data {
-    border: 1px solid black;
     height: 100%;
     width: 70%;
     display: flex;
@@ -230,8 +229,8 @@ nav {
 }
 
 .hide-connections-box {
-    border: 2px solid blue;
-    height: 25rem;
+    border: 2px solid black;
+    height: 30rem;
     width: 40rem;
     background-color: white;
     position: fixed;
@@ -244,7 +243,7 @@ nav {
 
 @keyframes hide-connections-box {
     from {
-        height: 25rem;
+        height: 30rem;
         width: 40rem;
         opacity: 1;
     }
@@ -272,8 +271,11 @@ nav {
 /* ------------------------------------------------------------------------------------------------ */
 
 .main-box .left {
+    border: 3px solid white;
     height: 100%;
     width: 30%;
+    padding: 1rem;
+    background-color: rgba(130, 130, 130, 0.300);
     display: flex;
     align-items: center;
     justify-content: start;
@@ -281,11 +283,15 @@ nav {
     flex-direction: column;
 }
 
+.left p {
+    height: auto;
+    width: 100%;
+}
+
 .profile-photo-box {
     border: 1px solid black;
     height: 15rem;
     width: 12rem;
-    text-align: center;
 }
 
 .profile-photo-box img {
@@ -312,7 +318,6 @@ nav {
 /* ------------------------------------------------------------------------------------------------ */
 
 .main-box .right {
-    border: 1px solid black;
     height: 100%;
     width: 70%;
 }
@@ -323,10 +328,11 @@ table {
 }
 
 table td {
-    border: 1px solid black;
+    border: 3px solid white;
     height: auto;
     width: 50%;
     padding: 1rem;
+    background-color: rgba(130, 130, 130, 0.300);
 }
 
 td button {
@@ -343,7 +349,7 @@ td button {
 /* ------------------------------------------------------------------------------------------------ */
 
 @media (min-width: 2000px) {
-    .body {
+    #body {
         display: none;
     }
 
@@ -363,7 +369,7 @@ td button {
 }
 
 @media (max-width: 650px) {
-    .body {
+    #body {
         display: none;
     }
 

@@ -104,7 +104,6 @@ nav {
 }
 
 .ranking-box table {
-    border: 1px solid black;
     height: auto;
     width: 70%;
     text-align: center;
@@ -113,8 +112,9 @@ nav {
 
 table th,
 td {
-    border: 1px solid black;
+    border: 3px solid white;
     padding: 1rem;
+    background-color: rgba(130, 130, 130, 0.300);
 }
 
 /* ------------------------------------------------------------------------------------------------ */

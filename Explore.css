@@ -97,6 +97,8 @@ nav {
 .filter-options {
     height: auto;
     width: 100%;
+    padding: 1rem;
+    background-color: rgba(130, 130, 130, 0.300);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -151,6 +153,7 @@ select {
 .filtered-user {
     height: 5rem;
     width: 100%;
+    background-color: rgba(130, 130, 130, 0.300);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -161,9 +164,8 @@ select {
     border: 1px solid black;
 }
 
-.filtered-user .filtered-user-img-box {
-    border: 1px solid black;
-    border-right: none;
+.filtered-user-img-box {
+    border-right: 1px solid black;
     height: 100%;
     width: 30%;
     text-align: center;
@@ -174,8 +176,7 @@ select {
     width: auto;
 }
 
-.filtered-user-data {
-    border: 1px solid black;
+.filtered-user .filtered-user-data {
     height: 100%;
     width: 70%;
     display: flex;
