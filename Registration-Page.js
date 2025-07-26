@@ -300,7 +300,22 @@ function save_data(name, date_of_birth, email, password) {
         resume: ""
     };
 
-    users_data.push(user_1, user_2, user_3, user_4, user_5);
-    localStorage.setItem("users", JSON.stringify(users_data));
+    let fake_user_emails = [
+        "aarav.sharma@example.in",
+        "neha.patel@example.in",
+        "rohit.verma@example.in",
+        "kavya.singh@example.in",
+        "rahul.yadav@example.in"
+    ];
+
+    // Checking Fake Users :-
+
+    let existing_emails = new Set(users_data.map(user => user.email));
+    let existing_fake_users = fake_user_emails.every(email => existing_emails.has(email));
+
+    if (!existing_fake_users) {
+        users_data.push(user_1, user_2, user_3, user_4, user_5);
+        localStorage.setItem("users", JSON.stringify(users_data));
+    }
 
 };
