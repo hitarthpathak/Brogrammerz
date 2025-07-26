@@ -9,6 +9,8 @@ let job_filter = document.getElementById("job-filter");
 let programming_language_filter = document.getElementById("programming-language-filter");
 let project_filter = document.getElementById("project-filter");
 let filter_input = document.querySelectorAll(".filter-input");
+let found_users = document.getElementById("found-users");
+let found_users_number = document.getElementById("found-users-number");
 let filter_results = document.getElementById("filter-results");
 
 // ------------------------------------------------------------------------------------------------
@@ -24,6 +26,8 @@ window.addEventListener("load", () => {
     filter_input.forEach((input) => {
         input.value = "";
     });
+
+    found_users.style.display = "none";
 
     users_data.forEach((user) => {
         let filtered_user = document.createElement("div");
@@ -127,6 +131,10 @@ function filter_users() {
 
     let filtered_user_data = filtered_user;
 
+    found_users.style.display = "block";
+
+    found_users_number.textContent = filtered_user_data.length;
+
     filter_results.innerHTML = "";
 
     if (filtered_user_data != "") {
@@ -175,6 +183,8 @@ function clear_filter() {
     filter_input.forEach((input) => {
         input.value = "";
     });
+
+    found_users.style.display = "none";
 
     filter_results.innerHTML = "";
 

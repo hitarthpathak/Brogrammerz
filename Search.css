@@ -96,6 +96,10 @@ nav {
 
 /* ------------------------------------------------------------------------------------------------ */
 
+#found-users {
+    margin-bottom: 1rem;
+}
+
 #search-results {
     border: 1px solid black;
     padding: 1rem;

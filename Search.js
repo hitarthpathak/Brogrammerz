@@ -1,4 +1,5 @@
 let search_user_input = document.getElementById("search-user-input");
+let found_users_number = document.getElementById("found-users-number");
 let search_results = document.getElementById("search-results");
 
 // ------------------------------------------------------------------------------------------------
@@ -26,6 +27,8 @@ function load_search_results() {
         });
 
         let searched_user_data = filtered_user;
+
+        found_users_number.textContent = searched_user_data.length;
 
         search_results.innerHTML = "";
 

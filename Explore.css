@@ -140,6 +140,10 @@ select {
 
 /* ------------------------------------------------------------------------------------------------ */
 
+#found-users {
+    margin-bottom: 1rem;
+}
+
 #filter-results {
     border: 1px solid black;
     padding: 1rem;
