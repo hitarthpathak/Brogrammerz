@@ -62,6 +62,7 @@ function check_login_data() {
 
     if (!exist_user) {
         alert("User Not Found! Please Register First!");
+        location = "Registration-Page.html";
         return false;
     }
     else if ((email.value == exist_user.email) && (password.value != exist_user.password)) {
