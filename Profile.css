@@ -191,7 +191,7 @@ nav {
 
 .connected-user-img-box img {
     height: 100%;
-    width: 50%;
+    width: auto;
 }
 
 .connected-user .connected-user-data {
@@ -291,7 +291,7 @@ nav {
 .profile-photo-box {
     border: 1px solid black;
     height: 15rem;
-    width: 12rem;
+    width: 10rem;
 }
 
 .profile-photo-box img {
