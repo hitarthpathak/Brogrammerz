@@ -49,6 +49,8 @@ let is_followed = show_user.followers.includes(logged_in_user_email);
 
 window.addEventListener("load", () => {
 
+    document.title = show_user.name;
+
     search_user_input.value = show_user.name;
 
     follow_button.textContent = is_followed ? "Followed" : "Follow";
