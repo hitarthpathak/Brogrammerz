@@ -100,7 +100,7 @@ window.addEventListener("load", () => {
         logged_in_user.job_s.forEach((job) => {
             let new_input = document.createElement("textarea");
             new_input.classList.add("edit-page-input", "user-job-s");
-            new_input.placeholder = "Enter Your Job (Position, Company Name, City)";
+            new_input.placeholder = "Enter Your Job (Position, Company Name)";
             new_input.value = job;
             multiple_data_job_s.appendChild(new_input);
         });
@@ -108,7 +108,7 @@ window.addEventListener("load", () => {
     else {
         let new_input = document.createElement("textarea");
         new_input.classList.add("edit-page-input", "user-job-s");
-        new_input.placeholder = "Enter Your Job (Position, Company Name, City)";
+        new_input.placeholder = "Enter Your Job (Position, Company Name)";
         multiple_data_job_s.appendChild(new_input);
     }
 
@@ -778,6 +778,19 @@ function edit_email_password() {
 
 // ------------------------------------------------------------------------------------------------
 
+function show_password() {
+
+    if (user_password.type == "password") {
+        user_password.type = "text";
+    }
+    else {
+        user_password.type = "password";
+    }
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
 function add_more_school_s() {
 
     let new_input = document.createElement("textarea");
@@ -803,7 +816,7 @@ function add_more_job_s() {
     let new_input = document.createElement("textarea");
     new_input.classList.add("edit-page-input");
     new_input.classList.add("user-job-s");
-    new_input.placeholder = "Enter Your Job (Position, Company Name, City)";
+    new_input.placeholder = "Enter Your Job (Position, Company Name)";
     multiple_data_job_s.appendChild(new_input);
 
 };

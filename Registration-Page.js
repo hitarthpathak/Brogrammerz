@@ -12,7 +12,7 @@ let users_data = JSON.parse(localStorage.getItem("users")) || [];
 let new_user = {
     email: "",
     password: "",
-    profile_photo: "Images/Add Profile Picture (Icon).jpg",
+    profile_photo: "Images/Add Profile Picture (Default).jpg",
     name: "",
     bio: "",
     followers: [],
@@ -135,7 +135,7 @@ function save_data(name, date_of_birth, email, password) {
     let user_1 = {
         email: "aarav.sharma@example.in",
         password: "Aarav@2024",
-        profile_photo: "Images/Add Profile Picture (Icon).jpg",
+        profile_photo: "Images/Add Profile Picture (Default).jpg",
         name: "Aarav Sharma",
         bio: "Full-stack developer passionate about React and Node.js.",
         followers: [
@@ -169,7 +169,7 @@ function save_data(name, date_of_birth, email, password) {
     let user_2 = {
         email: "neha.patel@example.in",
         password: "Neha@2024",
-        profile_photo: "Images/Add Profile Picture (Icon).jpg",
+        profile_photo: "Images/Add Profile Picture (Default).jpg",
         name: "Neha Patel",
         bio: "Frontend developer who loves Vue and clean UI design.",
         followers: [
@@ -202,7 +202,7 @@ function save_data(name, date_of_birth, email, password) {
     let user_3 = {
         email: "rohit.verma@example.in",
         password: "Rohit@2024",
-        profile_photo: "Images/Add Profile Picture (Icon).jpg",
+        profile_photo: "Images/Add Profile Picture (Default).jpg",
         name: "Rohit Verma",
         bio: "Backend specialist with a focus on Node.js and microservices.",
         followers: [
@@ -235,7 +235,7 @@ function save_data(name, date_of_birth, email, password) {
     let user_4 = {
         email: "kavya.singh@example.in",
         password: "Kavya@2024",
-        profile_photo: "Images/Add Profile Picture (Icon).jpg",
+        profile_photo: "Images/Add Profile Picture (Default).jpg",
         name: "Kavya Singh",
         bio: "ML enthusiast and Kaggle contributor.",
         followers: [
@@ -269,7 +269,7 @@ function save_data(name, date_of_birth, email, password) {
     let user_5 = {
         email: "rahul.yadav@example.in",
         password: "Rahul@2024",
-        profile_photo: "Images/Add Profile Picture (Icon).jpg",
+        profile_photo: "Images/Add Profile Picture (Default).jpg",
         name: "Rahul Yadav",
         bio: "DevOps engineer with a knack for automation and cloud.",
         followers: [

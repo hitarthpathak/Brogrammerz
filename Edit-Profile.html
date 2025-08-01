@@ -103,7 +103,13 @@
 
                     <input id="user-email" class="edit-page-input" type="text" placeholder="Edit Your E-Mail">
 
-                    <input id="user-password" class="edit-page-input" type="text" placeholder="Edit Your Password">
+                    <div id="password-box">
+
+                        <input id="user-password" class="edit-page-input" type="password" placeholder="Edit Your Password">
+
+                        <img src="Images/Show Password (Icon).png" alt="Image Not Available" onclick="show_password()">
+
+                    </div>
 
                 </div>
 
@@ -123,7 +129,7 @@
                         <td>Gender: </td>
                         <td>
                             <select id="user-gender" class="edit-page-input">
-                                <option selected value="">Please Select Your Gender</option>
+                                <option selected disabled value="">Please Select Your Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                                 <option value="Other">Other</option>
@@ -135,7 +141,7 @@
                         <td>Relationship Status: </td>
                         <td>
                             <select id="user-relationship-status" class="edit-page-input">
-                                <option selected value="">Please Select Your Relationship Status</option>
+                                <option selected disabled value="">Please Select Your Relationship Status</option>
                                 <option value="Single">Single</option>
                                 <option value="In A Relationship">In A Relationship</option>
                                 <option value="Married">Married</option>
