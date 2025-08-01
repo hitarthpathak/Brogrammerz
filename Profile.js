@@ -54,7 +54,7 @@ window.addEventListener("load", () => {
     display_user_school_s.textContent = logged_in_user.school_s.join("\n");
     display_user_college_s.textContent = logged_in_user.college_s.join("\n");
     display_user_job_s.textContent = logged_in_user.job_s.join("\n");
-    display_user_project_s.textContent = logged_in_user.project_s.join("\n");
+    display_user_project_s.textContent = logged_in_user.project_s.join("\n \n");
     display_user_programming_language_s.textContent = logged_in_user.programming_language_s.join("\n");
 
     display_user_portfolio_website.textContent = logged_in_user.portfolio_website;
