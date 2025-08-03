@@ -360,12 +360,7 @@ function base_64_to_blob_url(base_64_url) {
 
 function show_resume() {
 
-    if (show_user.resume) {
-        let blob_url = base_64_to_blob_url(show_user.resume);
-        window.open(blob_url, "_blank");
-    }
-    else {
-        alert("Resume Is Not Available!");
-    }
+    let blob_url = base_64_to_blob_url(show_user.resume);
+    window.open(blob_url, "_blank");
 
 };
