@@ -19,6 +19,7 @@ let user_social_media = document.getElementById("user-social-media");
 let user_contact_email = document.getElementById("user-contact-email");
 let user_contact_number = document.getElementById("user-contact-number");
 let user_resume = document.getElementById("user-resume");
+let show_resume_button = document.getElementById("show-resume");
 
 let search_user_input = document.getElementById("search-user-input");
 let follow_button = document.getElementById("follow-button");
@@ -128,6 +129,10 @@ window.addEventListener("load", () => {
     user_contact_number.addEventListener("click", () => {
         location = `tel:${show_user.contact_number}`;
     });
+
+    if (show_user.resume == "") {
+        show_resume_button.disabled = true;
+    }
 
 });
 
