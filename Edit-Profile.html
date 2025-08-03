@@ -105,7 +105,8 @@
 
                     <div id="password-box">
 
-                        <input id="user-password" class="edit-page-input" type="password" placeholder="Edit Your Password">
+                        <input id="user-password" class="edit-page-input" type="password"
+                            placeholder="Edit Your Password">
 
                         <img src="Images/Show Password (Icon).png" alt="Image Not Available" onclick="show_password()">
 
@@ -238,9 +239,11 @@
                     <tr>
                         <td>Resume: </td>
                         <td>
-                            <input id="upload-resume" type="file" accept=".pdf, .doc, .docx" onchange="upload_resume()">
-                            <hr>
-                            <button onclick="delete_resume()">Delete Resume</button>
+                            <div id="resume-box">
+                                <input id="user-resume" type="file" accept=".pdf, .doc, .docx"
+                                    onchange="upload_resume()">
+                            </div>
+                            <button id="delete-resume" onclick="delete_resume()">Delete Resume</button>
                         </td>
                     </tr>
 

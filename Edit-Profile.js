@@ -18,9 +18,12 @@ let user_portfolio_website = document.getElementById("user-portfolio-website");
 let user_social_media = document.querySelectorAll(".user-social-media");
 let user_contact_email = document.getElementById("user-contact-email");
 let user_contact_number = document.getElementById("user-contact-number");
+let user_resume = document.getElementById("user-resume");
 
 let search_user_input = document.getElementById("search-user-input");
 let edit_email_password_box = document.getElementById("edit-email-password-box");
+let resume_box = document.getElementById("resume-box");
+let delete_resume_button = document.getElementById("delete-resume");
 
 let multiple_data_school_s = document.getElementById("multiple-data-school-s");
 let multiple_data_college_s = document.getElementById("multiple-data-college-s");
@@ -167,6 +170,31 @@ window.addEventListener("load", () => {
 
     user_contact_email.value = logged_in_user.contact_email;
     user_contact_number.value = logged_in_user.contact_number;
+
+    if (logged_in_user.resume === "") {
+        resume_box.innerHTML = "";
+        delete_resume_button.style.display = "none";
+        resume_box.appendChild(user_resume);
+    }
+    else {
+        resume_box.style.display = "flex";
+        resume_box.style.alignItems = "center";
+        resume_box.style.justifyContent = "start";
+        resume_box.style.gap = "0.5rem";
+
+        user_resume.style.display = "none";
+
+        let change_resume = document.createElement("button");
+        change_resume.textContent = "Change Resume";
+        change_resume.addEventListener("click", () => {
+            user_resume.click();
+        });
+
+        delete_resume_button.style.display = "inline-block";
+
+        resume_box.appendChild(change_resume);
+        resume_box.appendChild(delete_resume_button);
+    }
 
 });
 
@@ -874,19 +902,26 @@ function upload_resume() {
         alert('File Is Too Big! (1MB Allowed)');
     }
 
+    delete_resume_button.style.display = "inline-block";
+    resume_box.appendChild(delete_resume_button);
+
+    resume_box.style.display = "flex";
+    resume_box.style.alignItems = "center";
+    resume_box.style.justifyContent = "start";
+    resume_box.style.gap = "0.5rem";
+
 };
 
 // ------------------------------------------------------------------------------------------------
 
 function delete_resume() {
 
-    if (logged_in_user.resume != "") {
-        logged_in_user.resume = "";
-        localStorage.setItem("users", JSON.stringify(users_data));
-        alert("Your Resume Is Deleted!");
-    }
-    else {
-        alert("Resume Is Not Available!");
-    }
+    logged_in_user.resume = "";
+    localStorage.setItem("users", JSON.stringify(users_data));
+    alert("Your Resume Is Deleted!");
+
+    resume_box.innerHTML = "";
+    user_resume.style.display = "inline-block";
+    resume_box.appendChild(user_resume);
 
 };
