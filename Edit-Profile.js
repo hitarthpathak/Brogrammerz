@@ -171,7 +171,7 @@ window.addEventListener("load", () => {
     user_contact_email.value = logged_in_user.contact_email;
     user_contact_number.value = logged_in_user.contact_number;
 
-    if (logged_in_user.resume === "") {
+    if (logged_in_user.resume == "") {
         resume_box.innerHTML = "";
         delete_resume_button.style.display = "none";
         resume_box.appendChild(user_resume);

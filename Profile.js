@@ -17,6 +17,7 @@ let display_user_social_media = document.getElementById("display-user-social-med
 let display_user_contact_email = document.getElementById("display-user-contact-email");
 let display_user_contact_number = document.getElementById("display-user-contact-number");
 let display_user_resume = document.getElementById("display-user-resume");
+let show_resume_button = document.getElementById("show-resume");
 
 let search_user_input = document.getElementById("search-user-input");
 
@@ -115,6 +116,10 @@ window.addEventListener("load", () => {
     display_user_contact_number.addEventListener("click", () => {
         location = `tel:${logged_in_user.contact_number}`;
     });
+
+    if (logged_in_user.resume == "") {
+        show_resume_button.disabled = true;
+    }
 
 });
 
@@ -394,12 +399,7 @@ function base_64_to_blob_url(base_64_url) {
 
 function show_resume() {
 
-    if (logged_in_user.resume) {
-        let blob_url = base_64_to_blob_url(logged_in_user.resume);
-        window.open(blob_url, "_blank");
-    }
-    else {
-        alert("Resume Is Not Available!");
-    }
+    let blob_url = base_64_to_blob_url(logged_in_user.resume);
+    window.open(blob_url, "_blank");
 
 };
