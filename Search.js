@@ -10,6 +10,11 @@ let users_data = JSON.parse(localStorage.getItem("users")) || [];
 
 window.addEventListener("load", () => {
 
+    if (!logged_in_user) {
+        alert("User Is Not Logged In! Redirecting To Login Page.");
+        location = "index.html";
+    };
+
     let search_parameter = new URLSearchParams(window.location.search);
     search_user_input.value = search_parameter.get("name");
     load_search_results();

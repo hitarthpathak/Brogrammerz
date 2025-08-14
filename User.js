@@ -50,6 +50,11 @@ let is_followed = show_user.followers.includes(logged_in_user_email);
 
 window.addEventListener("load", () => {
 
+    if (!logged_in_user) {
+        alert("User Is Not Logged In! Redirecting To Login Page.");
+        location = "index.html";
+    };
+
     document.title = show_user.name;
 
     search_user_input.value = show_user.name;

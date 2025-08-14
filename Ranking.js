@@ -9,6 +9,11 @@ let users_data = JSON.parse(localStorage.getItem("users")) || [];
 
 window.addEventListener("load", () => {
 
+    if (!logged_in_user) {
+        alert("User Is Not Logged In! Redirecting To Login Page.");
+        location = "index.html";
+    };
+
     show_ranking();
 
 });
