@@ -46,6 +46,7 @@ function registration() {
 
         if (already_registered) {
             alert("User Already Exists!");
+            return false;
         }
         else {
             save_data(name.value, date_of_birth.value, email.value, password.value);
@@ -131,40 +132,6 @@ function save_data(name, date_of_birth, email, password) {
     localStorage.setItem("users", JSON.stringify(users_data));
 
     // Generating Fake Users :-
-
-    let user_0 = {
-        email: "hitarth@gmail.com",
-        password: "Hit@813713",
-        profile_photo: "https://hitarthpathak.github.io/Wikipedia/Images/HITARTH%20(Profile%20Photo).jpg",
-        name: "Hitarth Pathak",
-        bio: "I am a Web Developer, Web Designer and an Internet Researcher.",
-        followers: [
-            "neha.patel@example.in", "rohit.verma@example.in", "kavya.singh@example.in",
-            "rahul.yadav@example.in"
-        ],
-        followings: [
-            "rohit.verma@example.in", "neha.patel@example.in", "kavya.singh@example.in",
-            "rahul.yadav@example.in"
-        ],
-        date_of_birth: "17-08-2001",
-        gender: "Male",
-        relationship_status: "Single",
-        hometown: "Banswara, Rajasthan, India",
-        current_city: "Jaipur, Rajasthan, India",
-        school_s: ["Maa Bharti School, Banswara", "St. Thomas School, Banswara", "Tiny Tots Sr. Sec. School, Banswara"],
-        college_s: ["St. Wilfred's PG College, Jaipur"],
-        job_s: ["Software Engineer at Infosys"],
-        project_s: ["Wikipedia - My own Wikipedia Page.", "IMDb - My own IMDb Page.", "FaceMash - Hot or Not Website."],
-        programming_language_s: ["JavaScript", "Python", "SQL"],
-        portfolio_website: "https://hitarthpathak.github.io",
-        social_media: [
-            "https://instagram.com/itsmehitarth",
-            "https://twitter.com/itsmehitarth"
-        ],
-        contact_email: "hitarthpathakofficial@gmail.com",
-        contact_number: "+91 9587813713",
-        resume: "https://hitarthpathak.github.io/Documents/Hitarth%20Pathak.pdf"
-    };
 
     let user_1 = {
         email: "aarav.sharma@example.in",
@@ -335,7 +302,6 @@ function save_data(name, date_of_birth, email, password) {
     };
 
     let fake_user_emails = [
-        "hitarth@gmail.com",
         "aarav.sharma@example.in",
         "neha.patel@example.in",
         "rohit.verma@example.in",
@@ -349,7 +315,7 @@ function save_data(name, date_of_birth, email, password) {
     let existing_fake_users = fake_user_emails.every(email => existing_emails.has(email));
 
     if (!existing_fake_users) {
-        users_data.push(user_0, user_1, user_2, user_3, user_4, user_5);
+        users_data.push(user_1, user_2, user_3, user_4, user_5);
         localStorage.setItem("users", JSON.stringify(users_data));
     }
 
