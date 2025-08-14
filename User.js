@@ -73,7 +73,7 @@ window.addEventListener("load", () => {
     user_school_s.textContent = show_user.school_s.join("\n");
     user_college_s.textContent = show_user.college_s.join("\n");
     user_job_s.textContent = show_user.job_s.join("\n");
-    user_project_s.textContent = show_user.project_s.join("\n");
+    user_project_s.textContent = show_user.project_s.join("\n \n");
     user_programming_language_s.textContent = show_user.programming_language_s.join("\n");
 
     user_portfolio_website.textContent = show_user.portfolio_website;
