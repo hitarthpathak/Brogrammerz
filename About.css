@@ -92,6 +92,18 @@ nav {
 
 /* ------------------------------------------------------------------------------------------------ */
 
+footer {
+    border: 1px solid black;
+    height: 3rem;
+    width: 100%;
+    padding: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* ------------------------------------------------------------------------------------------------ */
+
 @media (min-width: 2000px) {
     .body {
         display: none;

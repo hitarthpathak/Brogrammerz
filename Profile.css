@@ -13,7 +13,6 @@ hr {
     margin: 1rem 0;
 }
 
-
 #body {
     height: 100vh;
     width: 100vw;
@@ -49,7 +48,7 @@ nav {
 
 .search-box {
     height: 100%;
-    width: auto;
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -58,7 +57,7 @@ nav {
 
 .search-box input {
     height: 100%;
-    width: auto;
+    width: 50%;
     font-size: 1rem;
     padding: 0.5rem;
     outline: none;
@@ -407,6 +406,26 @@ td #user-resume {
 
 .display-page-content {
     white-space: pre-wrap;
+}
+
+/* ------------------------------------------------------------------------------------------------ */
+
+footer {
+    border: 1px solid black;
+    height: 3rem;
+    width: 100%;
+    padding: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
 
 /* ------------------------------------------------------------------------------------------------ */
