@@ -5,6 +5,13 @@ let search_results = document.getElementById("search-results");
 // ------------------------------------------------------------------------------------------------
 
 let users_data = JSON.parse(localStorage.getItem("users")) || [];
+let logged_in_user_email = JSON.parse(localStorage.getItem("logged-in-user-email")) || "";
+
+// ------------------------------------------------------------------------------------------------
+
+let logged_in_user = users_data.find((filter_user) => {
+    return filter_user.email == logged_in_user_email;
+});
 
 // ------------------------------------------------------------------------------------------------
 
