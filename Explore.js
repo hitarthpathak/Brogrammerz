@@ -119,8 +119,8 @@ function filter_users() {
 
     let filtered_user = users_data.filter((filter_user) => {
         return (
-            (!gender_filter.value || filter_user.gender.toLowerCase().startsWith(gender_filter.value.toLowerCase())) &&
-            (!relationship_status_filter.value || filter_user.relationship_status.toLowerCase().includes(relationship_status_filter.value.toLowerCase())) &&
+            (!gender_filter.value || filter_user.gender.toLowerCase() == (gender_filter.value.toLowerCase())) &&
+            (!relationship_status_filter.value || filter_user.relationship_status.toLowerCase() == (relationship_status_filter.value.toLowerCase())) &&
             (!hometown_filter.value || filter_user.hometown.toLowerCase().includes(hometown_filter.value.toLowerCase())) &&
             (!current_city_filter.value || filter_user.current_city.toLowerCase().includes(current_city_filter.value.toLowerCase())) &&
             (!school_filter.value || filter_user.school_s.some((school) =>

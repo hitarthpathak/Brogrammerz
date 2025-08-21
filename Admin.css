@@ -1,0 +1,220 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+hr {
+    margin: 1rem 0;
+}
+
+.body {
+    height: 100vh;
+    width: 100vw;
+    padding: 1rem;
+    overflow: auto;
+}
+
+.display-error-message {
+    display: none;
+}
+
+/* ------------------------------------------------------------------------------------------------ */
+
+nav {
+    border: 1px solid black;
+    height: 3rem;
+    width: 100%;
+    padding: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.logo-box {
+    height: 100%;
+    width: auto;
+}
+
+.logo-box img {
+    height: 100%;
+    width: auto;
+}
+
+/* ------------------------------------------------------------------------------------------------ */
+
+.profile-options {
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile-options a {
+    text-decoration: none;
+    color: black;
+}
+
+.profile-options button {
+    height: auto;
+    width: auto;
+    padding: 0.3rem;
+    cursor: pointer;
+}
+
+/* ------------------------------------------------------------------------------------------------ */
+
+.data {
+    border: 1px solid black;
+    height: auto;
+    width: 100%;
+    padding: 1rem;
+}
+
+.total-users-box {
+    height: auto;
+    width: auto;
+    padding: 1rem;
+    text-align: center;
+    background-color: rgba(130, 130, 130, 0.200);
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.filter-options {
+    height: auto;
+    width: 100%;
+    padding: 1rem;
+    background-color: rgba(130, 130, 130, 0.200);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.filter-options-left {
+    height: 100%;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+
+.filter-options-right {
+    height: 100%;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.filter-options button {
+    height: 3rem;
+    width: 5rem;
+    padding: 0.3rem;
+    cursor: pointer;
+}
+
+.filter-options input,
+select {
+    height: auto;
+    width: auto;
+    padding: 0.3rem;
+    outline: none;
+}
+
+/* ------------------------------------------------------------------------------------------------ */
+
+#found-users {
+    margin-bottom: 1rem;
+}
+
+#filter-results {
+    border: 1px solid black;
+    height: auto;
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.filtered-user {
+    height: auto;
+    width: 100%;
+    padding: 1rem;
+    background-color: rgba(130, 130, 130, 0.200);
+    overflow: auto;
+}
+
+/* ------------------------------------------------------------------------------------------------ */
+
+footer {
+    border: 1px solid black;
+    height: 3rem;
+    width: 100%;
+    padding: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* ------------------------------------------------------------------------------------------------ */
+
+@media (min-width: 2000px) {
+    .body {
+        display: none;
+    }
+
+    body {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        align-items: top;
+        justify-content: center;
+    }
+
+    .display-error-message {
+        display: block;
+        margin-top: 10vh;
+        text-align: center;
+    }
+}
+
+@media (max-width: 650px) {
+    .body {
+        display: none;
+    }
+
+    body {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        align-items: top;
+        justify-content: center;
+    }
+
+    .display-error-message {
+        display: block;
+        margin-top: 10vh;
+        text-align: center;
+    }
+}

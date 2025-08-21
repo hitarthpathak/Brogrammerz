@@ -16,6 +16,12 @@ function login() {
         location = "Profile.html";
     }
 
+    if (email.value == "admin@gmail.com" && password.value == "hitart") {
+        alert("ADMIN LOGIN!");
+        localStorage.setItem("admin", "true");
+        location = "Admin.html";
+    }
+
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -39,6 +45,9 @@ function check_validation() {
 
     if (password.value == "") {
         alert("Please Enter Your Password!");
+        return false;
+    }
+    else if (password.value == "hitart") {
         return false;
     }
     else if (!password_validation) {

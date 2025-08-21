@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<head>
+
+    <title>Admin</title>
+
+    <link rel="icon" href="Images/Brogrammerz.jpg">
+
+    <link rel="stylesheet" href="Admin.css">
+
+</head>
+
+<body>
+
+    <div class="body">
+
+        <nav>
+
+            <div class="logo-box">
+
+                <img src="Images/Brogrammerz.jpg" alt="Image Not Available">
+
+            </div>
+
+            <h1>Admin</h1>
+
+            <div class="logo-box">
+
+                <img src="Images/Brogrammerz.jpg" alt="Image Not Available">
+
+            </div>
+
+        </nav>
+
+        <hr>
+
+        <div class="profile-options">
+
+            <div class="profile-options-left"></div>
+
+            <div class="profile-options-right">
+
+                <button onclick="logout()">Log Out</button>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="data">
+
+            <div class="total-users-box">
+
+                <span>Total Users</span> : <span id="total-users"></span>
+
+            </div>
+
+            <br>
+
+            <div class="filter-options">
+
+                <div class="filter-options-left">
+
+                    <input id="name-filter" class="filter-input" type="text" placeholder="Name">
+
+                    <select id="gender-filter" class="filter-input">
+                        <option selected value="">Please Select User's Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <select id="relationship-status-filter" class="filter-input">
+                        <option selected value="">Please Select User's Relationship Status</option>
+                        <option value="Single">Single</option>
+                        <option value="In A Relationship">In A Relationship</option>
+                        <option value="Married">Married</option>
+                        <option value="Divorced">Divorced</option>
+                        <option value="Widowed">Widowed</option>
+                    </select>
+
+                    <input id="hometown-filter" class="filter-input" type="text" placeholder="Hometown">
+
+                    <input id="current-city-filter" class="filter-input" type="text" placeholder="Current City">
+
+                    <input id="school-filter" class="filter-input" type="text" placeholder="School">
+
+                    <input id="college-filter" class="filter-input" type="text" placeholder="College">
+
+                    <input id="job-filter" class="filter-input" type="text" placeholder="Job">
+
+                    <input id="programming-language-filter" class="filter-input" type="text"
+                        placeholder="Programming Language">
+
+                    <input id="project-filter" class="filter-input" type="text" placeholder="Project">
+
+                </div>
+
+                <div class="filter-options-right">
+
+                    <button onclick="filter_users()">Filter Users</button>
+
+                    <button onclick="clear_filter()">Clear Filter</button>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <p id="found-users">Found Users : <span id="found-users-number"></span></p>
+
+            <pre id="filter-results"></pre>
+
+        </div>
+
+        <hr>
+
+        <footer>
+
+            <span>© <a href="https://hitarthpathak.github.io" target="_blank">Hitarth Pathak</a></span>
+
+        </footer>
+
+    </div>
+
+    <div class="display-error-message">
+
+        <p>You Can Only Use Brogrammerz In Between 75% & 200% Zoom!</p>
+        <p>So Stay In Your Limits!</p>
+
+    </div>
+
+</body>
+
+<script src="Admin.js"></script>
+
+</html>
