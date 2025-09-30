@@ -37,12 +37,12 @@ let logged_in_user = brogrammerz.find((filter_user) => {
 window.addEventListener("load", () => {
 
     let users_data = JSON.parse(localStorage.getItem("users")) || [];
-    localStorage.setItem("brogrammerz", users_data);
+    localStorage.setItem("brogrammerz", JSON.stringify(users_data));
 
-    if (!logged_in_user) {
-        alert("User Is Not Logged In! Redirecting To Login Page.");
-        location = "index.html";
-    };
+    // if (!logged_in_user) {
+    //     alert("User Is Not Logged In! Redirecting To Login Page.");
+    //     location = "index.html";
+    // };
 
     search_user_input.value = "";
 
@@ -404,5 +404,6 @@ function show_resume() {
 
     let blob_url = base_64_to_blob_url(logged_in_user.resume);
     window.open(blob_url, "_blank");
+
 
 };
