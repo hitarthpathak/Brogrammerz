@@ -3,7 +3,7 @@ let password = document.getElementById("password");
 
 // ------------------------------------------------------------------------------------------------
 
-let brogrammerz = JSON.parse(localStorage.getItem("brogrammerz")) || [];
+let brogrammerz = JSON.parse(localStorage.getItem("users")) || [];
 
 // ------------------------------------------------------------------------------------------------
 
@@ -82,5 +82,6 @@ function check_login_data() {
         localStorage.setItem("logged-in-user-email", JSON.stringify(email.value));
         return true;
     }
+
 
 };
