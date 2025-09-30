@@ -23,18 +23,21 @@ let search_user_input = document.getElementById("search-user-input");
 
 // ------------------------------------------------------------------------------------------------
 
-let users_data = JSON.parse(localStorage.getItem("users")) || [];
+let brogrammerz = JSON.parse(localStorage.getItem("brogrammerz")) || [];
 let logged_in_user_email = JSON.parse(localStorage.getItem("logged-in-user-email")) || "";
 
 // ------------------------------------------------------------------------------------------------
 
-let logged_in_user = users_data.find((filter_user) => {
+let logged_in_user = brogrammerz.find((filter_user) => {
     return filter_user.email == logged_in_user_email;
 });
 
 // ------------------------------------------------------------------------------------------------
 
 window.addEventListener("load", () => {
+
+    let users_data = JSON.parse(localStorage.getItem("users")) || [];
+    localStorage.setItem("brogrammerz", users_data);
 
     if (!logged_in_user) {
         alert("User Is Not Logged In! Redirecting To Login Page.");
@@ -210,7 +213,7 @@ function show_followers_list() {
     list_box.innerHTML = "";
 
     logged_in_user.followers.forEach((follower_email) => {
-        let follower_user = users_data.find((user) => user.email == follower_email);
+        let follower_user = brogrammerz.find((user) => user.email == follower_email);
 
         let connected_user_box = document.createElement("div");
         connected_user_box.classList.add("connected-user-box");
@@ -246,7 +249,7 @@ function show_followers_list() {
         remove_user.addEventListener("click", () => {
             logged_in_user.followers = logged_in_user.followers.filter((user) => user != follower_user.email);
             follower_user.followings = follower_user.followings.filter((user) => user != logged_in_user.email);
-            localStorage.setItem("users", JSON.stringify(users_data));
+            localStorage.setItem("brogrammerz", JSON.stringify(brogrammerz));
             show_followers_list();
             display_user_followers.textContent = "[" + logged_in_user.followers.length + "]";
         });
@@ -271,7 +274,7 @@ function show_followings_list() {
     list_box.innerHTML = "";
 
     logged_in_user.followings.forEach((following_email) => {
-        let following_user = users_data.find((user) => user.email == following_email);
+        let following_user = brogrammerz.find((user) => user.email == following_email);
 
         let connected_user_box = document.createElement("div");
         connected_user_box.classList.add("connected-user-box");
@@ -307,7 +310,7 @@ function show_followings_list() {
         remove_user.addEventListener("click", () => {
             logged_in_user.followings = logged_in_user.followings.filter((user) => user != following_user.email);
             following_user.followers = following_user.followers.filter((user) => user != logged_in_user.email);
-            localStorage.setItem("users", JSON.stringify(users_data));
+            localStorage.setItem("brogrammerz", JSON.stringify(brogrammerz));
             show_followings_list();
         });
 
@@ -351,10 +354,10 @@ function delete_profile() {
 
     if (confirm(delete_profile_confirmation) == true) {
 
-        let user_id = users_data.indexOf(logged_in_user);
-        users_data.splice(user_id, 1);
+        let user_id = brogrammerz.indexOf(logged_in_user);
+        brogrammerz.splice(user_id, 1);
 
-        for (let user of users_data) {
+        for (let user of brogrammerz) {
             if (user.followers.includes(logged_in_user_email)) {
                 let follower_id = user.followers.indexOf(logged_in_user_email);
                 user.followers.splice(follower_id, 1)
@@ -365,7 +368,7 @@ function delete_profile() {
             }
         }
 
-        localStorage.setItem("users", JSON.stringify(users_data));
+        localStorage.setItem("brogrammerz", JSON.stringify(brogrammerz));
         localStorage.removeItem("logged-in-user-email");
         localStorage.removeItem("show-user-email");
         alert("Your Profile Is Deleted!");

@@ -15,12 +15,12 @@ let filter_results = document.getElementById("filter-results");
 
 // ------------------------------------------------------------------------------------------------
 
-let users_data = JSON.parse(localStorage.getItem("users")) || [];
+let brogrammerz = JSON.parse(localStorage.getItem("brogrammerz")) || [];
 let logged_in_user_email = JSON.parse(localStorage.getItem("logged-in-user-email")) || "";
 
 // ------------------------------------------------------------------------------------------------
 
-let logged_in_user = users_data.find((filter_user) => {
+let logged_in_user = brogrammerz.find((filter_user) => {
     return filter_user.email == logged_in_user_email;
 });
 
@@ -41,7 +41,7 @@ window.addEventListener("load", () => {
 
     found_users.style.display = "none";
 
-    users_data.forEach((user) => {
+    brogrammerz.forEach((user) => {
         let filtered_user = document.createElement("div");
         filtered_user.classList.add("filtered-user");
         filtered_user.innerHTML =
@@ -117,7 +117,7 @@ function filter_users() {
         return false;
     }
 
-    let filtered_user = users_data.filter((filter_user) => {
+    let filtered_user = brogrammerz.filter((filter_user) => {
         return (
             (!gender_filter.value || filter_user.gender.toLowerCase() == (gender_filter.value.toLowerCase())) &&
             (!relationship_status_filter.value || filter_user.relationship_status.toLowerCase() == (relationship_status_filter.value.toLowerCase())) &&
@@ -200,7 +200,7 @@ function clear_filter() {
 
     filter_results.innerHTML = "";
 
-    users_data.forEach((user) => {
+    brogrammerz.forEach((user) => {
         let filtered_user = document.createElement("div");
         filtered_user.classList.add("filtered-user");
         filtered_user.innerHTML =

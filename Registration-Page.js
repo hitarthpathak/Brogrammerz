@@ -5,7 +5,7 @@ let password = document.getElementById("password");
 
 // ------------------------------------------------------------------------------------------------
 
-let users_data = JSON.parse(localStorage.getItem("users")) || [];
+let brogrammerz = JSON.parse(localStorage.getItem("brogrammerz")) || [];
 
 // ------------------------------------------------------------------------------------------------
 
@@ -40,7 +40,7 @@ function registration() {
 
     if (check_validation()) {
 
-        let already_registered = users_data.find((already_registered_user) => {
+        let already_registered = brogrammerz.find((already_registered_user) => {
             return already_registered_user.email == email.value;
         });
 
@@ -127,9 +127,9 @@ function save_data(name, date_of_birth, email, password) {
     new_user.email = email;
     new_user.password = password;
 
-    users_data.push(new_user);
+    brogrammerz.push(new_user);
 
-    localStorage.setItem("users", JSON.stringify(users_data));
+    localStorage.setItem("brogrammerz", JSON.stringify(brogrammerz));
 
     // Generating Fake Users :-
 
@@ -311,12 +311,12 @@ function save_data(name, date_of_birth, email, password) {
 
     // Checking Fake Users :-
 
-    let existing_emails = new Set(users_data.map(user => user.email));
+    let existing_emails = new Set(brogrammerz.map(user => user.email));
     let existing_fake_users = fake_user_emails.every(email => existing_emails.has(email));
 
     if (!existing_fake_users) {
-        users_data.push(user_1, user_2, user_3, user_4, user_5);
-        localStorage.setItem("users", JSON.stringify(users_data));
+        brogrammerz.push(user_1, user_2, user_3, user_4, user_5);
+        localStorage.setItem("brogrammerz", JSON.stringify(brogrammerz));
     }
 
 };

@@ -15,7 +15,7 @@ let filter_results = document.getElementById("filter-results");
 
 // ------------------------------------------------------------------------------------------------
 
-let users_data = JSON.parse(localStorage.getItem("users")) || [];
+let brogrammerz = JSON.parse(localStorage.getItem("brogrammerz")) || [];
 let admin = JSON.parse(localStorage.getItem("admin")) || "";
 let total_users = document.getElementById("total-users");
 
@@ -32,10 +32,10 @@ window.addEventListener("load", () => {
         input.value = "";
     });
 
-    total_users.textContent = users_data.length;
+    total_users.textContent = brogrammerz.length;
     found_users.style.display = "none";
 
-    users_data.forEach((user) => {
+    brogrammerz.forEach((user) => {
         let filtered_user = document.createElement("div");
         filtered_user.classList.add("filtered-user");
         filtered_user.innerHTML = JSON.stringify(user, null, 2);
@@ -87,7 +87,7 @@ function filter_users() {
         return false;
     }
 
-    let filtered_user = users_data.filter((filter_user) => {
+    let filtered_user = brogrammerz.filter((filter_user) => {
         return (
             (!name_filter.value || filter_user.name.toLowerCase().includes(name_filter.value.toLowerCase())) &&
             (!gender_filter.value || filter_user.gender.toLowerCase() == (gender_filter.value.toLowerCase())) &&
@@ -151,7 +151,7 @@ function clear_filter() {
 
     filter_results.innerHTML = "";
 
-    users_data.forEach((user) => {
+    brogrammerz.forEach((user) => {
         let filtered_user = document.createElement("div");
         filtered_user.classList.add("filtered-user");
         filtered_user.innerHTML = JSON.stringify(user, null, 2);

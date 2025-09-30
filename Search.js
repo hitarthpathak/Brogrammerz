@@ -4,12 +4,12 @@ let search_results = document.getElementById("search-results");
 
 // ------------------------------------------------------------------------------------------------
 
-let users_data = JSON.parse(localStorage.getItem("users")) || [];
+let brogrammerz = JSON.parse(localStorage.getItem("brogrammerz")) || [];
 let logged_in_user_email = JSON.parse(localStorage.getItem("logged-in-user-email")) || "";
 
 // ------------------------------------------------------------------------------------------------
 
-let logged_in_user = users_data.find((filter_user) => {
+let logged_in_user = brogrammerz.find((filter_user) => {
     return filter_user.email == logged_in_user_email;
 });
 
@@ -34,7 +34,7 @@ function load_search_results() {
 
     if (search_user_input.value != "") {
 
-        filtered_user = users_data.filter((filter_user) => {
+        filtered_user = brogrammerz.filter((filter_user) => {
             return filter_user.name.toLowerCase().includes(search_user_input.value.toLowerCase());
         });
 

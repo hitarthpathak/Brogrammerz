@@ -3,12 +3,12 @@ let ranking_table = document.getElementById("ranking-table");
 
 // ------------------------------------------------------------------------------------------------
 
-let users_data = JSON.parse(localStorage.getItem("users")) || [];
+let brogrammerz = JSON.parse(localStorage.getItem("brogrammerz")) || [];
 let logged_in_user_email = JSON.parse(localStorage.getItem("logged-in-user-email")) || "";
 
 // ------------------------------------------------------------------------------------------------
 
-let logged_in_user = users_data.find((filter_user) => {
+let logged_in_user = brogrammerz.find((filter_user) => {
     return filter_user.email == logged_in_user_email;
 });
 
@@ -58,7 +58,7 @@ function your_profile() {
 
 function show_ranking() {
 
-    let ranked_users = users_data.sort((a, b) => b.followers.length - a.followers.length);
+    let ranked_users = brogrammerz.sort((a, b) => b.followers.length - a.followers.length);
 
     ranked_users.forEach((user, rank) => {
         let new_row = document.createElement("tr");

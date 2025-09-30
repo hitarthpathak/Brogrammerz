@@ -26,17 +26,17 @@ let follow_button = document.getElementById("follow-button");
 
 // ------------------------------------------------------------------------------------------------
 
-let users_data = JSON.parse(localStorage.getItem("users")) || [];
+let brogrammerz = JSON.parse(localStorage.getItem("brogrammerz")) || [];
 let show_user_email = JSON.parse(localStorage.getItem("show-user-email")) || "";
 let logged_in_user_email = JSON.parse(localStorage.getItem("logged-in-user-email")) || "";
 
 // ------------------------------------------------------------------------------------------------
 
-let show_user = users_data.find((filter_user) => {
+let show_user = brogrammerz.find((filter_user) => {
     return filter_user.email == show_user_email;
 });
 
-let logged_in_user = users_data.find((filter_user) => {
+let logged_in_user = brogrammerz.find((filter_user) => {
     return filter_user.email == logged_in_user_email;
 });
 
@@ -220,7 +220,7 @@ function show_followers_list() {
     list_box.innerHTML = "";
 
     show_user.followers.forEach((follower_email) => {
-        let follower_user = users_data.find((user) => user.email == follower_email);
+        let follower_user = brogrammerz.find((user) => user.email == follower_email);
 
         let connected_user_box = document.createElement("div");
         connected_user_box.classList.add("connected-user-box");
@@ -268,7 +268,7 @@ function show_followings_list() {
     list_box.innerHTML = "";
 
     show_user.followings.forEach((following_email) => {
-        let following_user = users_data.find((user) => user.email == following_email);
+        let following_user = brogrammerz.find((user) => user.email == following_email);
 
         let connected_user_box = document.createElement("div");
         connected_user_box.classList.add("connected-user-box");
@@ -337,7 +337,7 @@ function follow_user() {
     else {
         show_user.followers.push(logged_in_user_email);
         logged_in_user.followings.push(show_user_email);
-        localStorage.setItem("users", JSON.stringify(users_data));
+        localStorage.setItem("brogrammerz", JSON.stringify(brogrammerz));
         user_followers.textContent = "[" + show_user.followers.length + "]";
         follow_button.textContent = "Followed";
     }
