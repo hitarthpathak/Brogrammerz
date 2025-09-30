@@ -87,10 +87,14 @@ function load_search_results() {
 
 };
 
+// ------------------------------------------------------------------------------------------------
+
 function search_users() {
+
     search_parameter = new URLSearchParams(window.location.search);
     search_parameter.set("name", search_user_input.value);
     window.location.search = search_parameter.toString();
+
 };
 
 // ------------------------------------------------------------------------------------------------
