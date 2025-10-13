@@ -88,15 +88,19 @@
 
                 <div class="followers-box">
 
-                    <button id="follow-btn" disabled>Follow</button>
+                    <button id="follow-button" disabled>Follow</button>
 
                     <span id="display-user-followers"></span>
 
                 </div>
 
-            </div>
+                <div class="profile-url">
 
-            <div class="right">
+                    <span>Profile URL :</span>
+
+                    <span id="display-user-profile-url"></span>
+
+                </div>
 
                 <table>
 
@@ -181,6 +185,26 @@
 
             </div>
 
+            <div class="right">
+
+                <h1>Mini Blog</h1>
+
+                <hr>
+
+                <div class="input-box">
+
+                    <textarea id="blog-input"></textarea>
+
+                    <button id="save-blog-btn" onclick="post_blog()">Post</button>
+
+                </div>
+
+                <hr>
+
+                <div id="blogs-list"></div>
+
+            </div>
+
         </div>
 
         <hr>
@@ -190,12 +214,6 @@
             <span>© <a href="https://hitarthpathak.github.io" target="_blank">Hitarth Pathak</a></span>
 
         </footer>
-
-    </div>
-
-    <div class="display-error-message">
-
-        <p>You Can't Use Brogrammerz Below 650px!</p>
 
     </div>
 

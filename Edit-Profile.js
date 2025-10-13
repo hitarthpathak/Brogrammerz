@@ -1,6 +1,7 @@
 let user_profile_photo = document.getElementById("display-user-profile-photo");
 let user_name = document.getElementById("user-name");
 let user_bio = document.getElementById("user-bio");
+let user_profile_url = document.getElementById("user-profile-url");
 let user_followers = document.getElementById("user-followers");
 let user_email = document.getElementById("user-email");
 let user_password = document.getElementById("user-password");
@@ -32,6 +33,9 @@ let multiple_data_project_s = document.getElementById("multiple-data-project-s")
 let multiple_data_programming_language_s = document.getElementById("multiple-data-programming-language-s");
 let multiple_data_social_media = document.getElementById("multiple-data-social-media");
 
+let blog_input = document.getElementById("blog-input");
+let blogs_list = document.getElementById("blogs-list");
+
 // ------------------------------------------------------------------------------------------------
 
 let brogrammerz = JSON.parse(localStorage.getItem("brogrammerz")) || [];
@@ -58,6 +62,7 @@ window.addEventListener("load", () => {
     user_name.value = logged_in_user.name;
     user_bio.value = logged_in_user.bio;
     user_followers.textContent = "[" + logged_in_user.followers.length + "]";
+    user_profile_url.textContent = logged_in_user.url;
     user_date_of_birth.value = logged_in_user.date_of_birth;
     user_gender.value = logged_in_user.gender;
     user_relationship_status.value = logged_in_user.relationship_status;
@@ -194,6 +199,13 @@ window.addEventListener("load", () => {
 
         resume_box.appendChild(change_resume);
         resume_box.appendChild(delete_resume_button);
+    }
+
+    if (logged_in_user.mini_blog.length == 0) {
+        blogs_list.textContent = "No Blogs!";
+    }
+    else {
+        load_blogs();
     }
 
 });
@@ -555,7 +567,7 @@ function show_connections_box() {
     connections_box.innerHTML =
         `
 
-            <div class="top">
+            <div class="connections-box-top">
 
                 <span>Your Connections</span>
 
@@ -923,5 +935,326 @@ function delete_resume() {
     resume_box.innerHTML = "";
     user_resume.style.display = "inline-block";
     resume_box.appendChild(user_resume);
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
+function load_blogs() {
+
+    blogs_list.innerHTML = "";
+
+    if (logged_in_user.mini_blog.length == 0) {
+        blogs_list.textContent = "No Blogs!";
+        return;
+    }
+
+    logged_in_user.mini_blog.forEach((logged_in_user_blog_post, index) => {
+        let blog_post = document.createElement("div");
+        blog_post.className = "blog-post";
+
+        let blog_hr_1 = document.createElement("hr");
+        blog_hr_1.style.margin = "0.5rem 0";
+        let blog_hr_2 = document.createElement("hr");
+        blog_hr_2.style.margin = "0.5rem 0";
+
+        let blog_heading = document.createElement("div");
+        blog_heading.className = "blog-heading";
+
+        blog_heading.innerHTML = `
+            <span><b>${logged_in_user_blog_post.author}</b></span> | <span><i>${logged_in_user_blog_post.date}</i></span> | <span><i>${logged_in_user_blog_post.time}</i></span>
+        `;
+
+        let blog_data = document.createElement("article");
+        blog_data.className = "blog-data";
+        blog_data.textContent = logged_in_user_blog_post.blog;
+
+        let blog_details = document.createElement("p");
+        blog_details.className = "blog-details";
+        blog_details.textContent = "View Blog Details";
+        blog_details.onclick = function () {
+            show_blog_details_box(index);
+        };
+
+        let edit_blog_button = document.createElement("button");
+        edit_blog_button.className = "edit-blog-button";
+        edit_blog_button.textContent = "Edit";
+        edit_blog_button.onclick = function () {
+            edit_blog(index);
+        };
+
+        let delete_blog_button = document.createElement("button");
+        delete_blog_button.className = "delete-blog-button";
+        delete_blog_button.textContent = "Delete";
+        delete_blog_button.onclick = function () {
+            delete_blog(index);
+        };
+
+        let blog_button_box = document.createElement("div");
+        blog_button_box.className = "blog-button-box";
+        blog_button_box.appendChild(edit_blog_button);
+        blog_button_box.appendChild(delete_blog_button);
+
+        let blog_options = document.createElement("div");
+        blog_options.className = "blog-options";
+        blog_options.appendChild(blog_details);
+        blog_options.appendChild(blog_button_box);
+
+        blog_post.appendChild(blog_heading);
+        blog_post.appendChild(blog_hr_1);
+        blog_post.appendChild(blog_data);
+        blog_post.appendChild(blog_hr_2);
+        blog_post.appendChild(blog_options);
+
+        blogs_list.appendChild(blog_post);
+    });
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
+function show_blog_details_box(index) {
+
+    let existing_box = document.querySelector(".show-blog-details-box");
+
+    if (existing_box) return true;
+
+    let body = document.getElementById("body");
+
+    let blog_details_box = document.createElement("div");
+    blog_details_box.classList.add("show-blog-details-box");
+    blog_details_box.innerHTML = `
+
+            <div class="blog-details-box-top">
+
+                <span>Blog Post</span>
+
+                <button id="x-button" onclick="hide_blog_details_box()">X</button>
+
+            </div>
+
+            <div class="blog-post">
+
+                <div class="blog-heading">
+
+                    <span><b>${logged_in_user.mini_blog[index].author}</b></span> | <span><i>${logged_in_user.mini_blog[index].date}</i></span> | <span><i>${logged_in_user.mini_blog[index].time}</i></span>
+
+                </div>
+
+                <hr style="margin: 0.5rem 0;">
+
+                <article class="blog-data">${logged_in_user.mini_blog[index].blog}</article>
+
+                <hr style="margin: 0.5rem 0;">
+
+                <div class="blog-options">
+
+                    <p id="comments-number">Comments[${logged_in_user.mini_blog[index].comments.length}]</p>
+
+                </div>
+
+            </div>
+
+            <div id="comments-box"></div>
+            
+        `;
+
+    body.appendChild(blog_details_box);
+
+    let comments = logged_in_user.mini_blog[index].comments;
+    let comments_box = document.getElementById("comments-box");
+
+    comments.forEach((comment) => {
+
+        let comment_container = document.createElement("div");
+        comment_container.className = "comment-container";
+
+        let blog_comment = document.createElement("div");
+        blog_comment.className = "blog-comment";
+
+        blog_comment.innerHTML = `
+
+                <div class="comment-heading">
+
+                    <span class="commenter-name">${comment.commenter}</span> | <span><i>${comment.comment_date}</i></span> | <span><i>${comment.comment_time}</i></span>
+
+                </div>
+
+                <p class="comment">${comment.comment}</p>
+
+            `;
+
+        let delete_comment_button = document.createElement("button");
+        delete_comment_button.className = "delete-comment-button";
+        delete_comment_button.textContent = "Delete Comment";
+        delete_comment_button.onclick = function () {
+            delete_comment_container(index, comment_container);
+        };
+
+        comment_container.appendChild(blog_comment);
+        comment_container.appendChild(delete_comment_button);
+
+        comments_box.appendChild(comment_container);
+
+        let commenter_name_span = blog_comment.querySelector(".commenter-name");
+
+        commenter_name_span.addEventListener("click", () => {
+            localStorage.setItem("show-user-email", JSON.stringify(comment.commenter_email));
+            location = "User.html";
+        });
+
+    });
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
+function delete_comment_container(index, comment_container) {
+
+    let delete_comment_confirmation = 'Are You Sure You Want To Delete This Comment On Your Blog Post?';
+
+    if (confirm(delete_comment_confirmation) == true) {
+        let comments_box = document.getElementById("comments-box");
+
+        if (!comments_box) {
+            return;
+        }
+
+        let children_array = Array.from(comments_box.children);
+        let comment_index = children_array.indexOf(comment_container);
+
+        logged_in_user.mini_blog[index].comments.splice(comment_index, 1);
+
+        localStorage.setItem("brogrammerz", JSON.stringify(brogrammerz));
+
+        comments_box.removeChild(comment_container);
+
+        let comments_number = document.getElementById("comments-number");
+        comments_number.textContent = `Comments[${logged_in_user.mini_blog[index].comments.length}]`;
+
+        Array.from(comments_box.children).forEach((container, i) => {
+            let delete_button = container.querySelector(".delete-comment-button");
+
+            delete_button.onclick = function () {
+                delete_comment_container(index, container);
+            };
+        });
+    }
+    else {
+        return false;
+    }
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
+function hide_blog_details_box() {
+
+    let blog_details_box = document.querySelector(".show-blog-details-box");
+
+    if (!blog_details_box) return true;
+
+    blog_details_box.classList.remove("show-blog-details-box");
+    blog_details_box.classList.add("hide-blog-details-box");
+
+    blog_details_box.addEventListener("animationend", () => {
+        blog_details_box.remove();
+    }, { once: true });
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
+function edit_blog(index) {
+
+    let blog_post_divs = document.querySelectorAll(".blog-post");
+    let blog_post_div = blog_post_divs[index];
+
+    let edit_button = blog_post_div.querySelector(".edit-blog-button");
+    let is_editing = edit_button.classList.contains("editing");
+
+    if (!is_editing) {
+        let article_element = blog_post_div.querySelector("article");
+        let article_content = article_element.textContent;
+
+        let text_area = document.createElement("textarea");
+        text_area.className = "blog-data-input";
+        text_area.value = article_content;
+
+        article_element.replaceWith(text_area);
+
+        edit_button.classList.add("editing");
+        edit_button.textContent = "Save";
+    }
+    else {
+        let text_area = blog_post_div.querySelector(".blog-data-input");
+        let text_area_content = text_area.value;
+
+        if (text_area_content == "") {
+            alert("Blog Cannot Be Left Empty!");
+            return false;
+        }
+
+        let original_content = logged_in_user.mini_blog[index].blog;
+
+        if (text_area_content == original_content) {
+            let article = document.createElement("article");
+            article.className = "blog-data";
+            article.textContent = text_area_content;
+
+            text_area.replaceWith(article);
+
+            edit_button.classList.remove("editing");
+            edit_button.textContent = "Edit";
+            return;
+        }
+
+        let article = document.createElement("article");
+        article.className = "blog-data";
+        article.textContent = text_area_content;
+
+        logged_in_user.mini_blog[index].date = new Date().toLocaleDateString('en-US', {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+        logged_in_user.mini_blog[index].time = new Date().toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true
+        });
+        logged_in_user.mini_blog[index].blog = text_area_content;
+
+        localStorage.setItem("brogrammerz", JSON.stringify(brogrammerz));
+
+        text_area.replaceWith(article);
+
+        let blog_heading = blog_post_div.querySelector(".blog-heading");
+        blog_heading.innerHTML = `
+            <span><b>${logged_in_user.mini_blog[index].author}</b></span> | <span><i>${logged_in_user.mini_blog[index].date}</i></span> | <span><i>${logged_in_user.mini_blog[index].time}</i></span>
+        `;
+
+        edit_button.classList.remove("editing");
+        edit_button.textContent = "Edit";
+
+    }
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
+function delete_blog(index) {
+
+    let delete_blog_confirmation = 'Are You Sure You Want To Delete This Blog Post?';
+
+    if (confirm(delete_blog_confirmation) == true) {
+        logged_in_user.mini_blog.splice(index, 1);
+        localStorage.setItem("brogrammerz", JSON.stringify(brogrammerz));
+        load_blogs();
+    }
+    else {
+        return false;
+    }
 
 };

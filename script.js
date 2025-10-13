@@ -83,6 +83,4 @@ function check_login_data() {
         return true;
     }
 
-
 };
-

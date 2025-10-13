@@ -2,6 +2,7 @@ let user_profile_photo = document.getElementById("display-user-profile-photo");
 let display_user_name = document.getElementById("display-user-name");
 let display_user_bio = document.getElementById("display-user-bio");
 let display_user_followers = document.getElementById("display-user-followers");
+let display_user_profile_url = document.getElementById("display-user-profile-url");
 let display_user_date_of_birth = document.getElementById("display-user-date-of-birth");
 let display_user_gender = document.getElementById("display-user-gender");
 let display_user_relationship_status = document.getElementById("display-user-relationship-status");
@@ -18,6 +19,9 @@ let display_user_contact_email = document.getElementById("display-user-contact-e
 let display_user_contact_number = document.getElementById("display-user-contact-number");
 let display_user_resume = document.getElementById("display-user-resume");
 let show_resume_button = document.getElementById("show-resume");
+
+let blog_input = document.getElementById("blog-input");
+let blogs_list = document.getElementById("blogs-list");
 
 let search_user_input = document.getElementById("search-user-input");
 
@@ -41,20 +45,23 @@ window.addEventListener("load", () => {
         location = "index.html";
     };
 
+    document.title = logged_in_user.name;
+
     search_user_input.value = "";
 
     user_profile_photo.src = logged_in_user.profile_photo;
     display_user_name.textContent = logged_in_user.name;
     display_user_bio.textContent = logged_in_user.bio;
     display_user_followers.textContent = "[" + logged_in_user.followers.length + "]";
+    display_user_profile_url.textContent = logged_in_user.url;
     display_user_date_of_birth.textContent = logged_in_user.date_of_birth;
     display_user_gender.textContent = logged_in_user.gender;
     display_user_relationship_status.textContent = logged_in_user.relationship_status;
     display_user_hometown.textContent = logged_in_user.hometown;
     display_user_current_city.textContent = logged_in_user.current_city;
-    display_user_school_s.textContent = logged_in_user.school_s.join("\n");
-    display_user_college_s.textContent = logged_in_user.college_s.join("\n");
-    display_user_job_s.textContent = logged_in_user.job_s.join("\n");
+    display_user_school_s.textContent = logged_in_user.school_s.join("\n \n");
+    display_user_college_s.textContent = logged_in_user.college_s.join("\n \n");
+    display_user_job_s.textContent = logged_in_user.job_s.join("\n \n");
     display_user_project_s.textContent = logged_in_user.project_s.join("\n \n");
     display_user_programming_language_s.textContent = logged_in_user.programming_language_s.join("\n");
 
@@ -121,6 +128,13 @@ window.addEventListener("load", () => {
         show_resume_button.disabled = true;
     }
 
+    if (logged_in_user.mini_blog.length == 0) {
+        blogs_list.textContent = "No Blogs!";
+    }
+    else {
+        load_blogs();
+    }
+
 });
 
 // ------------------------------------------------------------------------------------------------
@@ -165,21 +179,23 @@ function edit_profile() {
 function show_connections_box() {
 
     let existing_box = document.querySelector(".show-connections-box");
+
     if (existing_box) return true;
 
     let body = document.getElementById("body");
+
     let connections_box = document.createElement("div");
     connections_box.classList.add("show-connections-box");
     connections_box.innerHTML =
         `
 
-            <div class="top">
+            <div class="connections-box-top">
 
                 <span>Your Connections</span>
 
             </div>
 
-            <div class="button-box">
+            <div class="connections-box-button-box">
 
                 <button id="followers-button" class="show-connections" onclick="show_followers_list()">Followers</button>
                 
@@ -189,9 +205,10 @@ function show_connections_box() {
 
             </div>
 
-            <div id="list-box"></div>
+            <div id="connected-users-list-box"></div>
             
-        `
+        `;
+
     body.appendChild(connections_box);
 
     show_followers_list();
@@ -202,12 +219,12 @@ function show_followers_list() {
 
     let followers_button = document.getElementById("followers-button");
     let followings_button = document.getElementById("followings-button");
-    let list_box = document.getElementById("list-box");
+    let connected_users_list_box = document.getElementById("connected-users-list-box");
 
     followers_button.classList.add("show-connections");
     followings_button.classList.remove("show-connections");
 
-    list_box.innerHTML = "";
+    connected_users_list_box.innerHTML = "";
 
     logged_in_user.followers.forEach((follower_email) => {
         let follower_user = brogrammerz.find((user) => user.email == follower_email);
@@ -254,7 +271,7 @@ function show_followers_list() {
         connected_user_box.appendChild(connected_user);
         connected_user_box.appendChild(remove_user);
 
-        list_box.appendChild(connected_user_box);
+        connected_users_list_box.appendChild(connected_user_box);
     });
 
 };
@@ -263,12 +280,12 @@ function show_followings_list() {
 
     let followers_button = document.getElementById("followers-button");
     let followings_button = document.getElementById("followings-button");
-    let list_box = document.getElementById("list-box");
+    let connected_users_list_box = document.getElementById("connected-users-list-box");
 
     followers_button.classList.remove("show-connections");
     followings_button.classList.add("show-connections");
 
-    list_box.innerHTML = "";
+    connected_users_list_box.innerHTML = "";
 
     logged_in_user.followings.forEach((following_email) => {
         let following_user = brogrammerz.find((user) => user.email == following_email);
@@ -314,7 +331,7 @@ function show_followings_list() {
         connected_user_box.appendChild(connected_user);
         connected_user_box.appendChild(remove_user);
 
-        list_box.appendChild(connected_user_box);
+        connected_users_list_box.appendChild(connected_user_box);
     });
 
 };
@@ -322,6 +339,7 @@ function show_followings_list() {
 function hide_connections_box() {
 
     let connections_box = document.querySelector(".show-connections-box");
+
     if (!connections_box) return true;
 
     connections_box.classList.remove("show-connections-box");
@@ -402,6 +420,280 @@ function show_resume() {
     let blob_url = base_64_to_blob_url(logged_in_user.resume);
     window.open(blob_url, "_blank");
 
+};
+
+// ------------------------------------------------------------------------------------------------
+
+function load_blogs() {
+
+    blogs_list.innerHTML = "";
+
+    if (logged_in_user.mini_blog.length == 0) {
+        blogs_list.textContent = "No Blogs!";
+        return;
+    }
+
+    logged_in_user.mini_blog.forEach((logged_in_user_blog_post, index) => {
+        let blog_post = document.createElement("div");
+        blog_post.className = "blog-post";
+
+        let blog_hr_1 = document.createElement("hr");
+        blog_hr_1.style.margin = "0.5rem 0";
+        let blog_hr_2 = document.createElement("hr");
+        blog_hr_2.style.margin = "0.5rem 0";
+
+        let blog_heading = document.createElement("div");
+        blog_heading.className = "blog-heading";
+
+        blog_heading.innerHTML = `
+            <span><b>${logged_in_user_blog_post.author}</b></span> | <span><i>${logged_in_user_blog_post.date}</i></span> | <span><i>${logged_in_user_blog_post.time}</i></span>
+        `;
+
+        let blog_data = document.createElement("article");
+        blog_data.className = "blog-data";
+        blog_data.textContent = logged_in_user_blog_post.blog;
+
+        let blog_details = document.createElement("p");
+        blog_details.className = "blog-details";
+        blog_details.textContent = "View Blog Details";
+        blog_details.onclick = function () {
+            show_blog_details_box(index);
+        };
+
+        let blog_options = document.createElement("div");
+        blog_options.className = "blog-options";
+        blog_options.appendChild(blog_details);
+
+        blog_post.appendChild(blog_heading);
+        blog_post.appendChild(blog_hr_1);
+        blog_post.appendChild(blog_data);
+        blog_post.appendChild(blog_hr_2);
+        blog_post.appendChild(blog_options);
+
+        blogs_list.appendChild(blog_post);
+    });
 
 };
 
+// ------------------------------------------------------------------------------------------------
+
+function post_blog() {
+
+    if (blog_input.value != "") {
+        let logged_in_user_blog_post = {
+            author: "",
+            date: "",
+            time: "",
+            blog: "",
+            comments: []
+        };
+
+        logged_in_user_blog_post.author = logged_in_user.name;
+        logged_in_user_blog_post.date = new Date().toLocaleDateString('en-US', {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+        logged_in_user_blog_post.time = new Date().toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true
+        });
+        logged_in_user_blog_post.blog = blog_input.value;
+        logged_in_user_blog_post.comments = [];
+
+        logged_in_user.mini_blog.push(logged_in_user_blog_post);
+
+        localStorage.setItem("brogrammerz", JSON.stringify(brogrammerz));
+        blog_input.value = "";
+        load_blogs();
+    }
+    else {
+        alert("Please Enter A Blog Post!");
+    }
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
+function show_blog_details_box(index) {
+
+    let existing_box = document.querySelector(".show-blog-details-box");
+
+    if (existing_box) return true;
+
+    let body = document.getElementById("body");
+
+    let blog_details_box = document.createElement("div");
+    blog_details_box.classList.add("show-blog-details-box");
+    blog_details_box.innerHTML =
+        `
+
+            <div class="blog-details-box-top">
+
+                <span>Blog Post</span>
+
+                <button id="x-button" onclick="hide_blog_details_box()">X</button>
+
+            </div>
+
+            <div class="blog-post">
+
+                <div class="blog-heading">
+
+                    <span><b>${logged_in_user.mini_blog[index].author}</b></span> | <span><i>${logged_in_user.mini_blog[index].date}</i></span> | <span><i>${logged_in_user.mini_blog[index].time}</i></span>
+
+                </div>
+
+                <hr style="margin: 0.5rem 0;">
+
+                <article class="blog-data">${logged_in_user.mini_blog[index].blog}</article>
+
+                <hr style="margin: 0.5rem 0;">
+
+                <div class="blog-options">
+
+                    <p id="comments-number">Comments[${logged_in_user.mini_blog[index].comments.length}]</p>
+
+                </div>
+
+            </div>
+
+            <div class="posting-comment-box">
+
+                <textarea id="posting-comment-input"></textarea>
+
+                <button id="posting-comment-button" onclick="post_comment(${index})">Post</button>
+
+            </div>
+
+            <div id="comments-box"></div>
+            
+        `;
+
+    body.appendChild(blog_details_box);
+
+    let comments = logged_in_user.mini_blog[index].comments;
+    let comments_box = document.getElementById("comments-box");
+
+    comments.forEach((comment) => {
+
+        let comment_container = document.createElement("div");
+        comment_container.className = "comment-container";
+
+        let blog_comment = document.createElement("div");
+        blog_comment.className = "blog-comment";
+
+        blog_comment.innerHTML = `
+
+                <div class="comment-heading">
+
+                    <span class="commenter-name">${comment.commenter}</span> | <span><i>${comment.comment_date}</i></span> | <span><i>${comment.comment_time}</i></span>
+
+                </div>
+
+                <p class="comment">${comment.comment}</p>
+
+            `;
+
+        comment_container.appendChild(blog_comment);
+        comments_box.appendChild(comment_container);
+
+        let commenter_name_span = blog_comment.querySelector(".commenter-name");
+
+        commenter_name_span.addEventListener("click", () => {
+            localStorage.setItem("show-user-email", JSON.stringify(comment.commenter_email));
+            location = "User.html";
+        });
+
+    });
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
+function post_comment(index) {
+
+    let comments_number = document.getElementById("comments-number");
+    let comments_box = document.getElementById("comments-box");
+    let posting_comment_input = document.getElementById("posting-comment-input");
+
+    let comment_container = document.createElement("div");
+    comment_container.className = "comment-container";
+
+    let blog_comment = document.createElement("div");
+    blog_comment.className = "blog-comment";
+
+    let commenter_name = logged_in_user.name;
+    let comment_date = new Date().toLocaleDateString('en-US', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    });
+    let comment_time = new Date().toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+    });
+    let comment_text = posting_comment_input.value;
+
+    if (comment_text == "") {
+        alert("Please Add A Comment First!");
+        return;
+    }
+
+    blog_comment.innerHTML = `
+
+            <div class="comment-heading">
+
+                <span class="commenter-name">${commenter_name}</span> | <span><i>${comment_date}</i></span> | <span><i>${comment_time}</i></span>
+
+            </div>
+
+            <p class="comment">${comment_text}</p>
+
+        `;
+
+    comment_container.appendChild(blog_comment);
+    comments_box.appendChild(comment_container);
+
+    logged_in_user.mini_blog[index].comments.push({
+        commenter: commenter_name,
+        commenter_email: logged_in_user_email,
+        comment_date: comment_date,
+        comment_time: comment_time,
+        comment: comment_text
+    });
+
+    localStorage.setItem("brogrammerz", JSON.stringify(brogrammerz));
+
+    posting_comment_input.value = "";
+    comments_number.textContent = `Comments[${logged_in_user.mini_blog[index].comments.length}]`;
+
+    let commenter_name_span = blog_comment.querySelector(".commenter-name");
+
+    commenter_name_span.addEventListener("click", () => {
+        localStorage.setItem("show-user-email", JSON.stringify(logged_in_user_email));
+        location = "User.html";
+    });
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
+function hide_blog_details_box() {
+
+    let blog_details_box = document.querySelector(".show-blog-details-box");
+
+    if (!blog_details_box) return true;
+
+    blog_details_box.classList.remove("show-blog-details-box");
+    blog_details_box.classList.add("hide-blog-details-box");
+
+    blog_details_box.addEventListener("animationend", () => {
+        blog_details_box.remove();
+    }, { once: true });
+
+};

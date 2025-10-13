@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-size: 1vw;
+    font-family: 'Times New Roman';
 }
 
 body {
@@ -20,24 +22,20 @@ hr {
     overflow: auto;
 }
 
-.display-error-message {
-    display: none;
-}
-
 /* ------------------------------------------------------------------------------------------------ */
 
 nav {
     border: 1px solid black;
-    height: 3rem;
+    height: auto;
     width: 100%;
-    padding: 0.3rem;
+    padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
 .logo-box {
-    height: 100%;
+    height: 3rem;
     width: auto;
 }
 
@@ -47,7 +45,7 @@ nav {
 }
 
 .search-box {
-    height: 100%;
+    height: 3rem;
     width: 50%;
     display: flex;
     align-items: center;
@@ -58,7 +56,6 @@ nav {
 .search-box input {
     height: 100%;
     width: 50%;
-    font-size: 1rem;
     padding: 0.5rem;
     outline: none;
 }
@@ -66,8 +63,7 @@ nav {
 .search-box button {
     height: 100%;
     width: auto;
-    font-size: 1rem;
-    padding: 0.3rem;
+    padding: 0 0.5rem;
     cursor: pointer;
 }
 
@@ -79,6 +75,12 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.profile-options .profile-options-left,
+.profile-options-right {
+    height: auto;
+    width: auto;
 }
 
 .profile-options a {
@@ -106,7 +108,7 @@ nav {
     animation: show-connections-box 0.3s;
 }
 
-.top {
+.connections-box-top {
     border-bottom: 1px solid black;
     height: 10%;
     width: auto;
@@ -115,11 +117,11 @@ nav {
     justify-content: center;
 }
 
-.top span {
+.connections-box-top span {
     font-size: 1.5rem;
 }
 
-.button-box {
+.connections-box-button-box {
     border-bottom: 1px solid black;
     height: 10%;
     width: auto;
@@ -128,7 +130,7 @@ nav {
     justify-content: space-evenly;
 }
 
-.button-box #followers-button,
+.connections-box-button-box #followers-button,
 #followings-button {
     height: auto;
     width: 40%;
@@ -136,7 +138,7 @@ nav {
     cursor: pointer;
 }
 
-.button-box #x-button {
+.connections-box-button-box #x-button {
     height: auto;
     width: auto;
     padding: 0.5rem 1rem;
@@ -147,7 +149,7 @@ nav {
     background-color: rgba(130, 130, 130, 0.300);
 }
 
-#list-box {
+#connected-users-list-box {
     height: 80%;
     width: auto;
     padding: 1rem;
@@ -159,7 +161,7 @@ nav {
     overflow: auto;
 }
 
-#list-box .connected-user-box {
+#connected-users-list-box .connected-user-box {
     height: 5rem;
     width: 100%;
     display: flex;
@@ -221,7 +223,7 @@ nav {
     }
 
     to {
-        height: 25rem;
+        height: 30rem;
         width: 40rem;
         opacity: 1;
     }
@@ -260,17 +262,16 @@ nav {
     border: 1px solid black;
     height: auto;
     width: 100%;
-    padding: 0.5rem;
+    padding: 1rem;
     display: flex;
     align-items: start;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 1rem;
 }
 
 /* ------------------------------------------------------------------------------------------------ */
 
 .main-box .left {
-    border: 5px solid white;
     height: 100%;
     width: 30%;
     padding: 1rem;
@@ -314,7 +315,7 @@ nav {
     text-align: center;
 }
 
-#follow-btn {
+#follow-button {
     height: auto;
     width: auto;
     padding: 0.3rem;
@@ -364,11 +365,13 @@ nav {
     gap: 0.5rem;
 }
 
-/* ------------------------------------------------------------------------------------------------ */
-
-.main-box .right {
-    height: 100%;
-    width: 70%;
+.profile-url {
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 0.3rem;
 }
 
 table {
@@ -377,11 +380,10 @@ table {
 }
 
 table td {
-    border: 3px solid white;
+    border: 1px solid black;
     height: auto;
     width: 50%;
-    padding: 1rem;
-    background-color: rgba(130, 130, 130, 0.200);
+    padding: 0.3rem;
 }
 
 td button {
@@ -410,14 +412,284 @@ td #user-resume {
 
 /* ------------------------------------------------------------------------------------------------ */
 
-footer {
-    border: 1px solid black;
-    height: 3rem;
-    width: 100%;
-    padding: 0.3rem;
+.main-box .right {
+    height: 100%;
+    width: 70%;
+    padding: 1rem;
+    background-color: rgba(130, 130, 130, 0.200);
+}
+
+h1 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.input-box {
+    height: auto;
+    width: auto;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.input-box #blog-input {
+    height: 10rem;
+    width: 100%;
+    padding: 0.5rem;
+    outline: none;
+}
+
+.input-box #save-blog-btn {
+    height: auto;
+    width: 100%;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+#blogs-list {
+    height: auto;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.blog-post {
+    border: 1px solid black;
+    height: auto;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+.blog-post .blog-heading {
+    height: auto;
+    width: 100%;
+    text-align: start;
+}
+
+.blog-post .blog-data {
+    height: auto;
+    width: 100%;
+    white-space: pre-wrap;
+}
+
+.blog-post .blog-data-input {
+    field-sizing: content;
+    width: 100%;
+    padding: 0.5rem;
+    white-space: pre-wrap;
+    outline: none;
+}
+
+.blog-post .blog-options {
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 0.5rem;
+}
+
+.blog-options .blog-details {
+    height: auto;
+    width: auto;
+    color: blue;
+    cursor: pointer;
+}
+
+.blog-options .blog-details:hover {
+    text-decoration: underline;
+}
+
+.blog-options .blog-button-box {
+    height: auto;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 0.5rem;
+}
+
+.blog-button-box .edit-blog-button,
+.delete-blog-button {
+    height: auto;
+    width: auto;
+    padding: 0.3rem;
+    cursor: pointer;
+}
+
+.show-blog-details-box {
+    border: 2px solid black;
+    height: 50rem;
+    width: 60rem;
+    background-color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    animation: show-blog-details-box 0.3s;
+    overflow: auto;
+}
+
+.blog-details-box-top {
+    height: 10%;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blog-details-box-top span {
+    font-size: 1.5rem;
+}
+
+.blog-details-box-top #x-button {
+    height: auto;
+    width: auto;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    position: fixed;
+    right: 0;
+    margin-right: 1rem;
+}
+
+.posting-comment-box {
+    border: 1px solid black;
+    height: auto;
+    width: auto;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.posting-comment-box #posting-comment-input {
+    height: auto;
+    width: 90%;
+    padding: 0.5rem;
+    outline: none;
+}
+
+.posting-comment-box #posting-comment-button {
+    height: auto;
+    width: 10%;
+    padding: 0.5rem;
+    outline: none;
+    cursor: pointer;
+}
+
+#comments-box {
+    height: auto;
+    width: auto;
+    padding: 1rem;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.comment-container {
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.blog-comment {
+    border: 1px solid black;
+    height: auto;
+    width: 100%;
+    padding: 0.5rem;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.comment-heading {
+    height: auto;
+    width: 100%;
+}
+
+.commenter-name {
+    height: auto;
+    width: auto;
+    color: blue;
+}
+
+.commenter-name:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.comment-container .delete-comment-button {
+    height: auto;
+    width: 10%;
+    cursor: pointer;
+}
+
+@keyframes show-blog-details-box {
+    from {
+        height: 0rem;
+        width: 0rem;
+        opacity: 0;
+    }
+
+    to {
+        height: 50rem;
+        width: 60rem;
+        opacity: 1;
+    }
+}
+
+.hide-blog-details-box {
+    border: 2px solid black;
+    height: 50rem;
+    width: 60rem;
+    background-color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    animation: hide-blog-details-box 0.3s;
+}
+
+@keyframes hide-blog-details-box {
+    from {
+        height: 50rem;
+        width: 60rem;
+        opacity: 1;
+    }
+
+    to {
+        height: 0rem;
+        width: 0rem;
+        opacity: 0;
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------ */
+
+footer {
+    border: 1px solid black;
+    height: auto;
+    width: 100%;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 footer a {
@@ -426,26 +698,4 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
-}
-
-/* ------------------------------------------------------------------------------------------------ */
-
-@media (max-width: 650px) {
-    #body {
-        display: none;
-    }
-
-    body {
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        align-items: top;
-        justify-content: center;
-    }
-
-    .display-error-message {
-        display: block;
-        margin-top: 10vh;
-        text-align: center;
-    }
 }

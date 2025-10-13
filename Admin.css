@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-size: 1vw;
+    font-family: 'Times New Roman';
 }
 
 body {
@@ -28,30 +30,30 @@ hr {
     overflow: auto;
 }
 
-.display-error-message {
-    display: none;
-}
-
 /* ------------------------------------------------------------------------------------------------ */
 
 nav {
     border: 1px solid black;
-    height: 3rem;
+    height: auto;
     width: 100%;
-    padding: 0.3rem;
+    padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
 .logo-box {
-    height: 100%;
+    height: 3rem;
     width: auto;
 }
 
 .logo-box img {
     height: 100%;
     width: auto;
+}
+
+h1 {
+    font-size: 2rem;
 }
 
 /* ------------------------------------------------------------------------------------------------ */
@@ -62,6 +64,12 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.profile-options .profile-options-left,
+.profile-options-right {
+    height: auto;
+    width: auto;
 }
 
 .profile-options a {
@@ -75,6 +83,7 @@ nav {
     padding: 0.3rem;
     cursor: pointer;
 }
+
 
 /* ------------------------------------------------------------------------------------------------ */
 
@@ -91,9 +100,14 @@ nav {
     padding: 1rem;
     text-align: center;
     background-color: rgba(130, 130, 130, 0.200);
+}
+
+.total-users-box span {
     font-size: 2rem;
     font-weight: bold;
 }
+
+/* ------------------------------------------------------------------------------------------------ */
 
 .filter-options {
     height: auto;
@@ -107,7 +121,7 @@ nav {
 }
 
 .filter-options-left {
-    height: 100%;
+    height: auto;
     width: auto;
     display: flex;
     align-items: center;
@@ -116,7 +130,7 @@ nav {
 }
 
 .filter-options-right {
-    height: 100%;
+    height: auto;
     width: auto;
     display: flex;
     align-items: center;
@@ -125,17 +139,17 @@ nav {
 }
 
 .filter-options button {
-    height: 3rem;
-    width: 5rem;
-    padding: 0.3rem;
+    height: 100%;
+    width: auto;
+    padding: 0.5rem;
     cursor: pointer;
 }
 
 .filter-options input,
 select {
-    height: auto;
+    height: 100%;
     width: auto;
-    padding: 0.3rem;
+    padding: 0.5rem;
     outline: none;
 }
 
@@ -151,9 +165,9 @@ select {
     width: 100%;
     padding: 1rem;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    flex-wrap: wrap;
     gap: 1rem;
 }
 
@@ -169,32 +183,18 @@ select {
 
 footer {
     border: 1px solid black;
-    height: 3rem;
+    height: auto;
     width: 100%;
-    padding: 0.3rem;
+    padding: 2rem;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
 }
 
-/* ------------------------------------------------------------------------------------------------ */
+footer a {
+    text-decoration: none;
+}
 
-@media (max-width: 650px) {
-    .body {
-        display: none;
-    }
-
-    body {
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        align-items: top;
-        justify-content: center;
-    }
-
-    .display-error-message {
-        display: block;
-        margin-top: 10vh;
-        text-align: center;
-    }
+footer a:hover {
+    text-decoration: underline;
 }

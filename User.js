@@ -1,6 +1,7 @@
 let user_profile_photo = document.getElementById("user-profile-photo");
 let user_name = document.getElementById("user-name");
 let user_bio = document.getElementById("user-bio");
+let user_profile_url = document.getElementById("user-profile-url");
 let user_followers = document.getElementById("user-followers");
 let user_email = document.getElementById("user-email");
 let user_password = document.getElementById("user-password");
@@ -20,6 +21,8 @@ let user_contact_email = document.getElementById("user-contact-email");
 let user_contact_number = document.getElementById("user-contact-number");
 let user_resume = document.getElementById("user-resume");
 let show_resume_button = document.getElementById("show-resume");
+
+let blogs_list = document.getElementById("blogs-list");
 
 let search_user_input = document.getElementById("search-user-input");
 let follow_button = document.getElementById("follow-button");
@@ -65,6 +68,7 @@ window.addEventListener("load", () => {
     user_name.textContent = show_user.name;
     user_bio.textContent = show_user.bio;
     user_followers.textContent = "[" + show_user.followers.length + "]";
+    user_profile_url.textContent = show_user.url;
     user_date_of_birth.textContent = show_user.date_of_birth;
     user_gender.textContent = show_user.gender;
     user_relationship_status.textContent = show_user.relationship_status;
@@ -139,6 +143,13 @@ window.addEventListener("load", () => {
         show_resume_button.disabled = true;
     }
 
+    if (show_user.mini_blog.length == 0) {
+        blogs_list.textContent = "No Blogs!";
+    }
+    else {
+        load_blogs();
+    }
+
 });
 
 // ------------------------------------------------------------------------------------------------
@@ -175,21 +186,23 @@ function explore() {
 function show_connections_box() {
 
     let existing_box = document.querySelector(".show-connections-box");
+
     if (existing_box) return true;
 
     let body = document.getElementById("body");
+
     let connections_box = document.createElement("div");
     connections_box.classList.add("show-connections-box");
     connections_box.innerHTML =
         `
 
-            <div class="top">
+            <div class="connections-box-top">
 
                 <span>${show_user.name}'s Connections</span>
 
             </div>
 
-            <div class="button-box">
+            <div class="connections-box-button-box">
 
                 <button id="followers-button" class="show-connections" onclick="show_followers_list()">Followers</button>
                 
@@ -199,7 +212,7 @@ function show_connections_box() {
 
             </div>
 
-            <div id="list-box"></div>
+            <div id="connected-users-list-box"></div>
             
         `
     body.appendChild(connections_box);
@@ -212,12 +225,12 @@ function show_followers_list() {
 
     let followers_button = document.getElementById("followers-button");
     let followings_button = document.getElementById("followings-button");
-    let list_box = document.getElementById("list-box");
+    let connected_users_list_box = document.getElementById("connected-users-list-box");
 
     followers_button.classList.add("show-connections");
     followings_button.classList.remove("show-connections");
 
-    list_box.innerHTML = "";
+    connected_users_list_box.innerHTML = "";
 
     show_user.followers.forEach((follower_email) => {
         let follower_user = brogrammerz.find((user) => user.email == follower_email);
@@ -251,7 +264,7 @@ function show_followers_list() {
 
         connected_user_box.appendChild(connected_user);
 
-        list_box.appendChild(connected_user_box);
+        connected_users_list_box.appendChild(connected_user_box);
     });
 
 };
@@ -260,12 +273,12 @@ function show_followings_list() {
 
     let followers_button = document.getElementById("followers-button");
     let followings_button = document.getElementById("followings-button");
-    let list_box = document.getElementById("list-box");
+    let connected_users_list_box = document.getElementById("connected-users-list-box");
 
     followers_button.classList.remove("show-connections");
     followings_button.classList.add("show-connections");
 
-    list_box.innerHTML = "";
+    connected_users_list_box.innerHTML = "";
 
     show_user.followings.forEach((following_email) => {
         let following_user = brogrammerz.find((user) => user.email == following_email);
@@ -299,7 +312,7 @@ function show_followings_list() {
 
         connected_user_box.appendChild(connected_user);
 
-        list_box.appendChild(connected_user_box);
+        connected_users_list_box.appendChild(connected_user_box);
     });
 
 };
@@ -307,6 +320,7 @@ function show_followings_list() {
 function hide_connections_box() {
 
     let connections_box = document.querySelector(".show-connections-box");
+
     if (!connections_box) return true;
 
     connections_box.classList.remove("show-connections-box");
@@ -367,5 +381,241 @@ function show_resume() {
 
     let blob_url = base_64_to_blob_url(show_user.resume);
     window.open(blob_url, "_blank");
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
+function load_blogs() {
+
+    blogs_list.innerHTML = "";
+
+    if (show_user.mini_blog.length == 0) {
+        blogs_list.textContent = "No Blogs!";
+        return;
+    }
+
+    show_user.mini_blog.forEach((show_user_blog_post, index) => {
+        let blog_post = document.createElement("div");
+        blog_post.className = "blog-post";
+
+        let blog_hr_1 = document.createElement("hr");
+        blog_hr_1.style.margin = "0.5rem 0";
+        let blog_hr_2 = document.createElement("hr");
+        blog_hr_2.style.margin = "0.5rem 0";
+
+        let blog_heading = document.createElement("div");
+        blog_heading.className = "blog-heading";
+
+        blog_heading.innerHTML = `
+            <span><b>${show_user_blog_post.author}</b></span> | <span><i>${show_user_blog_post.date}</i></span> | <span><i>${show_user_blog_post.time}</i></span>
+        `;
+
+        let blog_data = document.createElement("article");
+        blog_data.className = "blog-data";
+        blog_data.textContent = show_user_blog_post.blog;
+
+        let blog_details = document.createElement("p");
+        blog_details.className = "blog-details";
+        blog_details.textContent = "View Blog Details";
+        blog_details.onclick = function () {
+            show_blog_details_box(index);
+        };
+
+        let blog_options = document.createElement("div");
+        blog_options.className = "blog-options";
+        blog_options.appendChild(blog_details);
+
+        blog_post.appendChild(blog_heading);
+        blog_post.appendChild(blog_hr_1);
+        blog_post.appendChild(blog_data);
+        blog_post.appendChild(blog_hr_2);
+        blog_post.appendChild(blog_options);
+
+        blogs_list.appendChild(blog_post);
+    });
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
+function show_blog_details_box(index) {
+
+    let existing_box = document.querySelector(".show-blog-details-box");
+
+    if (existing_box) return true;
+
+    let body = document.getElementById("body");
+
+    let blog_details_box = document.createElement("div");
+    blog_details_box.classList.add("show-blog-details-box");
+    blog_details_box.innerHTML =
+        `
+
+            <div class="blog-details-box-top">
+
+                <span>Blog Post</span>
+
+                <button id="x-button" onclick="hide_blog_details_box()">X</button>
+
+            </div>
+
+            <div class="blog-post">
+
+                <div class="blog-heading">
+
+                    <span><b>${show_user.mini_blog[index].author}</b></span> | <span><i>${show_user.mini_blog[index].date}</i></span> | <span><i>${show_user.mini_blog[index].time}</i></span>
+
+                </div>
+
+                <hr style="margin: 0.5rem 0;">
+
+                <article class="blog-data">${show_user.mini_blog[index].blog}</article>
+
+                <hr style="margin: 0.5rem 0;">
+
+                <div class="blog-options">
+
+                    <p id="comments-number">Comments[${show_user.mini_blog[index].comments.length}]</p>
+
+                </div>
+
+            </div>
+
+            <div class="posting-comment-box">
+
+                <textarea id="posting-comment-input"></textarea>
+
+                <button id="posting-comment-button" onclick="post_comment(${index})">Post</button>
+
+            </div>
+
+            <div id="comments-box"></div>
+            
+        `;
+
+    body.appendChild(blog_details_box);
+
+    let comments = show_user.mini_blog[index].comments;
+    let comments_box = document.getElementById("comments-box");
+
+    comments.forEach((comment) => {
+
+        let comment_container = document.createElement("div");
+        comment_container.className = "comment-container";
+
+        let blog_comment = document.createElement("div");
+        blog_comment.className = "blog-comment";
+
+        blog_comment.innerHTML = `
+
+                <div class="comment-heading">
+
+                    <span class="commenter-name">${comment.commenter}</span> | <span><i>${comment.comment_date}</i></span> | <span><i>${comment.comment_time}</i></span>
+
+                </div>
+
+                <p class="comment">${comment.comment}</p>
+
+            `;
+
+        comment_container.appendChild(blog_comment);
+        comments_box.appendChild(comment_container);
+
+        let commenter_name_span = blog_comment.querySelector(".commenter-name");
+
+        commenter_name_span.addEventListener("click", () => {
+            localStorage.setItem("show-user-email", JSON.stringify(comment.commenter_email));
+            location = "User.html";
+        });
+
+    });
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
+function post_comment(index) {
+
+    let comments_number = document.getElementById("comments-number");
+    let comments_box = document.getElementById("comments-box");
+    let posting_comment_input = document.getElementById("posting-comment-input");
+
+    let comment_container = document.createElement("div");
+    comment_container.className = "comment-container";
+
+    let blog_comment = document.createElement("div");
+    blog_comment.className = "blog-comment";
+
+    let commenter_name = logged_in_user.name;
+    let comment_date = new Date().toLocaleDateString('en-US', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    });
+    let comment_time = new Date().toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+    });
+    let comment_text = posting_comment_input.value;
+
+    if (comment_text == "") {
+        alert("Please Add A Comment First!");
+        return;
+    }
+
+    blog_comment.innerHTML = `
+
+            <div class="comment-heading">
+
+                <span class="commenter-name">${commenter_name}</span> | <span><i>${comment_date}</i></span> | <span><i>${comment_time}</i></span>
+
+            </div>
+
+            <p class="comment">${comment_text}</p>
+
+        `;
+
+    comment_container.appendChild(blog_comment);
+    comments_box.appendChild(comment_container);
+
+    show_user.mini_blog[index].comments.push({
+        commenter: commenter_name,
+        commenter_email: logged_in_user_email,
+        comment_date: comment_date,
+        comment_time: comment_time,
+        comment: comment_text
+    });
+
+    localStorage.setItem("brogrammerz", JSON.stringify(brogrammerz));
+
+    posting_comment_input.value = "";
+    comments_number.textContent = `Comments[${show_user.mini_blog[index].comments.length}]`;
+
+    let commenter_name_span = blog_comment.querySelector(".commenter-name");
+
+    commenter_name_span.addEventListener("click", () => {
+        localStorage.setItem("show-user-email", JSON.stringify(logged_in_user_email));
+        location = "User.html";
+    });
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
+function hide_blog_details_box() {
+
+    let blog_details_box = document.querySelector(".show-blog-details-box");
+
+    if (!blog_details_box) return true;
+
+    blog_details_box.classList.remove("show-blog-details-box");
+    blog_details_box.classList.add("hide-blog-details-box");
+
+    blog_details_box.addEventListener("animationend", () => {
+        blog_details_box.remove();
+    }, { once: true });
 
 };

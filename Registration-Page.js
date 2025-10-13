@@ -10,6 +10,8 @@ let brogrammerz = JSON.parse(localStorage.getItem("brogrammerz")) || [];
 // ------------------------------------------------------------------------------------------------
 
 let new_user = {
+    url: "",
+    id: "",
     email: "",
     password: "",
     profile_photo: "Images/Add Profile Picture (Default).jpg",
@@ -31,7 +33,8 @@ let new_user = {
     social_media: [],
     contact_email: "",
     contact_number: "",
-    resume: ""
+    resume: "",
+    mini_blog: []
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -131,9 +134,19 @@ function save_data(name, date_of_birth, email, password) {
 
     localStorage.setItem("brogrammerz", JSON.stringify(brogrammerz));
 
+    generating_fake_users();
+
+};
+
+// ------------------------------------------------------------------------------------------------
+
+function generating_fake_users() {
+
     // Generating Fake Users :-
 
     let user_1 = {
+        url: "",
+        id: "",
         email: "aarav.sharma@example.in",
         password: "Aarav@2024",
         profile_photo: "Images/Add Profile Picture (Default).jpg",
@@ -164,10 +177,63 @@ function save_data(name, date_of_birth, email, password) {
         ],
         contact_email: "aarav.sharma@example.in",
         contact_number: "+91 9876543210",
-        resume: ""
+        resume: "",
+        mini_blog: [
+            {
+                author: "Aarav Sharma",
+                date: new Date().toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                }),
+                time: new Date().toLocaleTimeString([], {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true
+                }),
+                blog: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit?",
+                comments: [
+                    {
+                        commenter: "Neha Patel",
+                        commenter_email: "neha.patel@example.in",
+                        comment_date: new Date().toLocaleDateString('en-US', {
+                            weekday: 'long',
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        }),
+                        comment_time: new Date().toLocaleTimeString([], {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: true
+                        }),
+                        comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit?"
+                    },
+                    {
+                        commenter: "Rohit Verma",
+                        commenter_email: "rohit.verma@example.in",
+                        comment_date: new Date().toLocaleDateString('en-US', {
+                            weekday: 'long',
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        }),
+                        comment_time: new Date().toLocaleTimeString([], {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: true
+                        }),
+                        comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit?"
+                    }
+                ]
+            }
+        ]
     };
 
     let user_2 = {
+        url: "",
+        id: "",
         email: "neha.patel@example.in",
         password: "Neha@2024",
         profile_photo: "Images/Add Profile Picture (Default).jpg",
@@ -197,10 +263,63 @@ function save_data(name, date_of_birth, email, password) {
         ],
         contact_email: "neha.patel@example.in",
         contact_number: "+91 9988776655",
-        resume: ""
+        resume: "",
+        mini_blog: [
+            {
+                author: "Neha Patel",
+                date: new Date().toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                }),
+                time: new Date().toLocaleTimeString([], {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true
+                }),
+                blog: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit?",
+                comments: [
+                    {
+                        commenter: "Aarav Sharma",
+                        commenter_email: "aarav.sharma@example.in",
+                        comment_date: new Date().toLocaleDateString('en-US', {
+                            weekday: 'long',
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        }),
+                        comment_time: new Date().toLocaleTimeString([], {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: true
+                        }),
+                        comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit?"
+                    },
+                    {
+                        commenter: "Rohit Verma",
+                        commenter_email: "rohit.verma@example.in",
+                        comment_date: new Date().toLocaleDateString('en-US', {
+                            weekday: 'long',
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        }),
+                        comment_time: new Date().toLocaleTimeString([], {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: true
+                        }),
+                        comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit?"
+                    }
+                ]
+            }
+        ]
     };
 
     let user_3 = {
+        url: "",
+        id: "",
         email: "rohit.verma@example.in",
         password: "Rohit@2024",
         profile_photo: "Images/Add Profile Picture (Default).jpg",
@@ -230,10 +349,63 @@ function save_data(name, date_of_birth, email, password) {
         ],
         contact_email: "rohit.verma@example.in",
         contact_number: "+91 9876501234",
-        resume: ""
+        resume: "",
+        mini_blog: [
+            {
+                author: "Rohit Verma",
+                date: new Date().toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                }),
+                time: new Date().toLocaleTimeString([], {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true
+                }),
+                blog: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit?",
+                comments: [
+                    {
+                        commenter: "Neha Patel",
+                        commenter_email: "neha.patel@example.in",
+                        comment_date: new Date().toLocaleDateString('en-US', {
+                            weekday: 'long',
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        }),
+                        comment_time: new Date().toLocaleTimeString([], {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: true
+                        }),
+                        comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit?"
+                    },
+                    {
+                        commenter: "Aarav Sharma",
+                        commenter_email: "aarav.sharma@example.in",
+                        comment_date: new Date().toLocaleDateString('en-US', {
+                            weekday: 'long',
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        }),
+                        comment_time: new Date().toLocaleTimeString([], {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: true
+                        }),
+                        comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit?"
+                    },
+                ]
+            }
+        ]
     };
 
     let user_4 = {
+        url: "",
+        id: "",
         email: "kavya.singh@example.in",
         password: "Kavya@2024",
         profile_photo: "Images/Add Profile Picture (Default).jpg",
@@ -264,10 +436,63 @@ function save_data(name, date_of_birth, email, password) {
         ],
         contact_email: "kavya.singh@example.in",
         contact_number: "+91 9012345678",
-        resume: ""
+        resume: "",
+        mini_blog: [
+            {
+                author: "Kavya Singh",
+                date: new Date().toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                }),
+                time: new Date().toLocaleTimeString([], {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true
+                }),
+                blog: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit?",
+                comments: [
+                    {
+                        commenter: "Neha Patel",
+                        commenter_email: "neha.patel@example.in",
+                        comment_date: new Date().toLocaleDateString('en-US', {
+                            weekday: 'long',
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        }),
+                        comment_time: new Date().toLocaleTimeString([], {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: true
+                        }),
+                        comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit?"
+                    },
+                    {
+                        commenter: "Aarav Sharma",
+                        commenter_email: "aarav.sharma@example.in",
+                        comment_date: new Date().toLocaleDateString('en-US', {
+                            weekday: 'long',
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        }),
+                        comment_time: new Date().toLocaleTimeString([], {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: true
+                        }),
+                        comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit?"
+                    },
+                ]
+            }
+        ]
     };
 
     let user_5 = {
+        url: "",
+        id: "",
         email: "rahul.yadav@example.in",
         password: "Rahul@2024",
         profile_photo: "Images/Add Profile Picture (Default).jpg",
@@ -298,7 +523,58 @@ function save_data(name, date_of_birth, email, password) {
         ],
         contact_email: "rahul.yadav@example.in",
         contact_number: "+91 9123456780",
-        resume: ""
+        resume: "",
+        mini_blog: [
+            {
+                author: "Rahul Yadav",
+                date: new Date().toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                }),
+                time: new Date().toLocaleTimeString([], {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true
+                }),
+                blog: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit?",
+                comments: [
+                    {
+                        commenter: "Neha Patel",
+                        commenter_email: "neha.patel@example.in",
+                        comment_date: new Date().toLocaleDateString('en-US', {
+                            weekday: 'long',
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        }),
+                        comment_time: new Date().toLocaleTimeString([], {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: true
+                        }),
+                        comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit?"
+                    },
+                    {
+                        commenter: "Kavya Singh",
+                        commenter_email: "kavya.singh@example.in",
+                        comment_date: new Date().toLocaleDateString('en-US', {
+                            weekday: 'long',
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        }),
+                        comment_time: new Date().toLocaleTimeString([], {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: true
+                        }),
+                        comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore ex eveniet illo cupiditate, quas perspiciatis eum provident qui nemo voluptatum tenetur nisi numquam iusto similique labore debitis earum ducimus. Sit?"
+                    },
+                ]
+            }
+        ]
     };
 
     let fake_user_emails = [

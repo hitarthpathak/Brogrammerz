@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-size: 1vw;
+    font-family: 'Times New Roman';
 }
 
 body {
@@ -13,7 +15,6 @@ hr {
     margin: 1rem 0;
 }
 
-
 .body {
     height: 100vh;
     width: 100vw;
@@ -21,24 +22,20 @@ hr {
     overflow: auto;
 }
 
-.display-error-message {
-    display: none;
-}
-
 /* ------------------------------------------------------------------------------------------------ */
 
 nav {
     border: 1px solid black;
-    height: 3rem;
+    height: auto;
     width: 100%;
-    padding: 0.3rem;
+    padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
 .logo-box {
-    height: 100%;
+    height: 3rem;
     width: auto;
 }
 
@@ -48,7 +45,7 @@ nav {
 }
 
 .search-box {
-    height: 100%;
+    height: 3rem;
     width: 50%;
     display: flex;
     align-items: center;
@@ -59,7 +56,6 @@ nav {
 .search-box input {
     height: 100%;
     width: 50%;
-    font-size: 1rem;
     padding: 0.5rem;
     outline: none;
 }
@@ -67,8 +63,7 @@ nav {
 .search-box button {
     height: 100%;
     width: auto;
-    font-size: 1rem;
-    padding: 0.3rem;
+    padding: 0 0.5rem;
     cursor: pointer;
 }
 
@@ -80,6 +75,12 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.profile-options .profile-options-left,
+.profile-options-right {
+    height: auto;
+    width: auto;
 }
 
 .profile-options a {
@@ -121,12 +122,12 @@ td {
 
 footer {
     border: 1px solid black;
-    height: 3rem;
+    height: auto;
     width: 100%;
-    padding: 0.3rem;
+    padding: 2rem;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 footer a {
@@ -135,26 +136,4 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
-}
-
-/* ------------------------------------------------------------------------------------------------ */
-
-@media (max-width: 650px) {
-    .body {
-        display: none;
-    }
-
-    body {
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        align-items: top;
-        justify-content: center;
-    }
-
-    .display-error-message {
-        display: block;
-        margin-top: 10vh;
-        text-align: center;
-    }
 }
