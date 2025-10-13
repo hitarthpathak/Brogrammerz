@@ -492,7 +492,7 @@ h1 {
 
 .posting-comment-box {
     border: 1px solid black;
-    height: auto;
+    height: 10%;
     width: auto;
     margin-top: 1rem;
     padding: 0.5rem;
@@ -503,16 +503,15 @@ h1 {
 }
 
 .posting-comment-box #posting-comment-input {
-    height: auto;
+    height: 100%;
     width: 90%;
     padding: 0.5rem;
     outline: none;
 }
 
 .posting-comment-box #posting-comment-button {
-    height: auto;
+    height: 100%;
     width: 10%;
-    padding: 0.5rem;
     outline: none;
     cursor: pointer;
 }
@@ -565,9 +564,14 @@ h1 {
     cursor: pointer;
 }
 
+.comment {
+    white-space: pre-wrap;
+}
+
 .comment-container .delete-comment-button {
     height: auto;
     width: 10%;
+    padding: 0.3rem;
     cursor: pointer;
 }
 

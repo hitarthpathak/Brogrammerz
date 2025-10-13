@@ -562,7 +562,7 @@ function show_blog_details_box(index) {
 
             <div class="posting-comment-box">
 
-                <textarea id="posting-comment-input"></textarea>
+                <textarea id="posting-comment-input" placeholder="Enter A Comment"></textarea>
 
                 <button id="posting-comment-button" onclick="post_comment(${index})">Post</button>
 
