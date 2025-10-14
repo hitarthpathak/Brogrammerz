@@ -524,7 +524,7 @@ h1 {
 
 .show-blog-details-box {
     border: 2px solid black;
-    height: 50rem;
+    height: 40rem;
     width: 60rem;
     background-color: white;
     position: fixed;
@@ -651,7 +651,7 @@ h1 {
     }
 
     to {
-        height: 50rem;
+        height: 40rem;
         width: 60rem;
         opacity: 1;
     }
@@ -672,7 +672,7 @@ h1 {
 
 @keyframes hide-blog-details-box {
     from {
-        height: 50rem;
+        height: 40rem;
         width: 60rem;
         opacity: 1;
     }
@@ -702,4 +702,5 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
+
 }
