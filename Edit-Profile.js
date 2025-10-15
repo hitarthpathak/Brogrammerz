@@ -562,6 +562,7 @@ function show_connections_box() {
     if (existing_box) return true;
 
     let body = document.getElementById("body");
+
     let connections_box = document.createElement("div");
     connections_box.classList.add("show-connections-box");
     connections_box.innerHTML =
@@ -573,7 +574,7 @@ function show_connections_box() {
 
             </div>
 
-            <div class="button-box">
+            <div class="connections-box-button-box">
 
                 <button id="followers-button" class="show-connections" onclick="show_followers_list()">Followers</button>
                 
@@ -583,7 +584,7 @@ function show_connections_box() {
 
             </div>
 
-            <div id="list-box"></div>
+            <div id="connected-users-list-box"></div>
             
         `
     body.appendChild(connections_box);
@@ -596,12 +597,12 @@ function show_followers_list() {
 
     let followers_button = document.getElementById("followers-button");
     let followings_button = document.getElementById("followings-button");
-    let list_box = document.getElementById("list-box");
+    let connected_users_list_box = document.getElementById("connected-users-list-box");
 
     followers_button.classList.add("show-connections");
     followings_button.classList.remove("show-connections");
 
-    list_box.innerHTML = "";
+    connected_users_list_box.innerHTML = "";
 
     logged_in_user.followers.forEach((follower_email) => {
         let follower_user = brogrammerz.find((user) => user.email == follower_email);
@@ -648,7 +649,7 @@ function show_followers_list() {
         connected_user_box.appendChild(connected_user);
         connected_user_box.appendChild(remove_user);
 
-        list_box.appendChild(connected_user_box);
+        connected_users_list_box.appendChild(connected_user_box);
     });
 
 };
@@ -657,12 +658,12 @@ function show_followings_list() {
 
     let followers_button = document.getElementById("followers-button");
     let followings_button = document.getElementById("followings-button");
-    let list_box = document.getElementById("list-box");
+    let connected_users_list_box = document.getElementById("connected-users-list-box");
 
     followers_button.classList.remove("show-connections");
     followings_button.classList.add("show-connections");
 
-    list_box.innerHTML = "";
+    connected_users_list_box.innerHTML = "";
 
     logged_in_user.followings.forEach((following_email) => {
         let following_user = brogrammerz.find((user) => user.email == following_email);
@@ -708,7 +709,7 @@ function show_followings_list() {
         connected_user_box.appendChild(connected_user);
         connected_user_box.appendChild(remove_user);
 
-        list_box.appendChild(connected_user_box);
+        connected_users_list_box.appendChild(connected_user_box);
     });
 
 };
