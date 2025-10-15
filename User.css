@@ -96,7 +96,7 @@ nav {
 }
 
 .show-connections-box {
-    border: 2px solid black;
+    border: 1px solid black;
     height: 30rem;
     width: 40rem;
     background-color: white;
@@ -230,7 +230,7 @@ nav {
 }
 
 .hide-connections-box {
-    border: 2px solid black;
+    border: 1px solid black;
     height: 30rem;
     width: 40rem;
     background-color: white;
@@ -455,7 +455,7 @@ h1 {
 }
 
 .show-blog-details-box {
-    border: 2px solid black;
+    border: 1px solid black;
     height: 40rem;
     width: 60rem;
     background-color: white;
@@ -590,7 +590,7 @@ h1 {
 }
 
 .hide-blog-details-box {
-    border: 2px solid black;
+    border: 1px solid black;
     height: 50rem;
     width: 60rem;
     background-color: white;
@@ -634,5 +634,4 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
-
 }
