@@ -164,6 +164,10 @@ select {
     width: 10rem;
     background-color: rgba(130, 130, 130, 0.200);
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .filtered-user:hover {
@@ -215,4 +219,5 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
+
 }
