@@ -506,6 +506,7 @@ h1 {
     height: 100%;
     width: 90%;
     padding: 0.5rem;
+    resize: none;
     outline: none;
 }
 
