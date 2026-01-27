@@ -407,6 +407,7 @@ td #user-resume {
 }
 
 textarea.edit-page-input {
+    field-sizing: content;
     min-height: 3rem;
     resize: vertical;
 }
